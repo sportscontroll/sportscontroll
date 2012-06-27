@@ -3,7 +3,15 @@ package de.dhbw.sportcontroll.main;
 public class SportControll {
 
 	/**
-	 * @param args
+	 * Hauptklasse
+	 * 
+	 * @param args Aufrufparameter
+	 * @author schoko
+	 * @return 
+	 * @exception
+	 * @
+	 * 
+	 * @
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -25,9 +33,8 @@ public class SportControll {
 		System.out.println("Hello World und noch mal");
 		
 		
-		System.out.println("Hallo Katja");
-		
+		int i;
+		System.out.println("Hallo Katja");	
 
 	}
-
 }

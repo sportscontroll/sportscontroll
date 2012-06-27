@@ -1,0 +1,58 @@
+= Lastenheft SportControll =
+
+
+== Funktionale Anforderungen ==
+ * Erfassen persoenlicher Daten (Profile) Einstellungen
+ * verschiedene Benutzer/Profile
+ * Trainingseinheit abspeichern, aendern Loeschen(Datum, Ort, Sportart, Dauer, umfang, Intensitaet, bemerkung)
+ * Liste Alletrainingseinheiten, Sortieren nach....
+ * GUI 
+ 	* gesamtuebersicht
+ 	* Erfassungen Aenderung
+ 	* persoeliche Einstellungen
+ * Statistik
+ 	* Kalorienverbrauch
+ 	* Durschnittstrainings Dauer
+ 	* Wie viel welche Sportart
+ 	 
+ * Trainingsplan, z.b. Ziele setzen?
+ * export(ical, txt)
+ * 
+ 
+
+
+
+
+== nicht Funktionale Anforderungen ==
+ * M-V-C-Pattern
+ * Intuitive GUI
+ * Einfach Ausfuehrbar
+ * villeicht DB-Anbindung(SQLLite)
+ * Swing
+ * OO
+ * Collectionklassen
+ * JavaDoc
+ * ausfuehrbares JAR
+ * Exceptions
+ 
+ 
+ 
+ == GUI ==
+ 
+ === MenueBar ===
+  * Datei
+    * neues Profil
+  	* Profil oeffnen
+  	* speichern
+  	* speichern unter
+  	* export
+  	* schliessen
+  	
+  * Profil
+  	* Einstellungen
+  	* Statistik
+  	
+  * Hilfe
+  	* Hilfe
+  	* ueber
+ 
