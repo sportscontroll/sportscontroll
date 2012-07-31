@@ -1,7 +1,8 @@
 package de.dhbw.sportcontroll.dataobjects;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collections;
+
 
 
 public class UserProfile {
@@ -14,32 +15,22 @@ public class UserProfile {
 	private ArrayList<UserWeight> weightHistorie;
 	private ArrayList<Workout>	workouts;
 	
-	public UserProfile(int id, String name, int birthday, String gender, ArrayList<UserWeight> userWeightHistorie, ArrayList<Workout> workouts){
+	public UserProfile(int id, String name, Date birthday, String gender, int height, ArrayList<UserWeight> userWeightHistorie, ArrayList<Workout> workouts){
 		this.id = id;
 		this.name = name;
-		this.birthday = new Date(birthday);
-		this.setGender(gender);
+		this.birthday = birthday;
+		this.gender = gender;
+		this.height = height;
 		this.weightHistorie = userWeightHistorie;
 		this.workouts = workouts;	
 	}
-	public UserProfile(int id, String name, int birthday, String gender){
-		this.id = id;
-		this.name = name;
-		this.birthday = new Date(birthday);
-		this.setGender(gender);
-		this.weightHistorie = null;
-		this.workouts = null;	
+	public UserProfile(int id, String name, Date birthday, String gender, int height){
+		this(id, name, birthday, gender,  height, null,null );
 	}
 	
 	public UserProfile(int id, String name){
-		this.id = id;
-		this.name = name;
-		this.birthday = null;
-		this.gender = null;
-		this.weightHistorie = null;
-		this.workouts = null;
+		this(id, name, null,null,0,null, null);
 	}
-	
 	
 	/**
 	 * @return the id
@@ -132,12 +123,35 @@ public class UserProfile {
 	}
 	public void printProfile(){
 		System.out.println("name\t" + name);
-		System.out.print("\t birthday " + birthday.toLocaleString());
+		System.out.print("\t birthday " + birthday.toString());
 		System.out.print("\t gender " + gender);
 		System.out.println("\t Weights " + weightHistorie.size());
 		System.out.println("\t workouts " + workouts.size());
 	}
 	
+	public double getCurrentWeight(){
+		double currentWeight = 0;
+		if(weightHistorie != null && !weightHistorie.isEmpty() ){
+			
+			Collections.sort(weightHistorie);
+			currentWeight = weightHistorie.get(weightHistorie.size()-1).getWeight();
+		}		
+		
+		return currentWeight;
+	}
+	
+	
+	/**
+	 * Calculates the BMI from the currentWeight
+	 * @return BMI as double
+	 */	
+	public double getBMI(){
+		//BMI = weight / heightInMeter^2
+		
+		double heightInMeter = ((double)height) / 100;
+		
+		return getCurrentWeight() / Math.pow(heightInMeter, 2);
+	}
 	
 
 }

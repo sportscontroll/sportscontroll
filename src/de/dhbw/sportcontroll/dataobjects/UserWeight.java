@@ -4,7 +4,7 @@ import java.util.Date;
 
 
 
-public class UserWeight {
+public class UserWeight implements Comparable<UserWeight>{
 	
 	private int id;
 	private int UserId;
@@ -64,6 +64,11 @@ public class UserWeight {
 	 */
 	public void setWeight(double weight) {
 		this.weight = weight;
+	}
+
+	@Override
+	public int compareTo(UserWeight o) {
+		return date.compareTo(o.date);
 	}
 	
 	

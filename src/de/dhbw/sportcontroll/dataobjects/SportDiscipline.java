@@ -1,19 +1,20 @@
 package de.dhbw.sportcontroll.dataobjects;
 
-import java.util.ArrayList;
 
 
 public class SportDiscipline {
 
 	private int id;
 	private String name;
-	private double caloryConsumption;
-	private ArrayList<SportEquitment> equitment;
-	
-	
+	private double energyfactor;	
 	
 	
 
+	public SportDiscipline(int id, String name, double eneryFactor) {
+		this.id = id;
+		this.name = name;
+		this.energyfactor = eneryFactor;
+	}
 	/**
 	 * @return the id
 	 */
@@ -39,30 +40,17 @@ public class SportDiscipline {
 		this.name = name;
 	}
 	/**
-	 * @return the caloryConsumption
+	 * @return the energyfactor
 	 */
-	public double getCaloryConsumption() {
-		return caloryConsumption;
+	public double getEnergyfactor() {
+		return energyfactor;
 	}
 	/**
-	 * @param caloryConsumption the caloryConsumption to set
+	 * @param energyfactor the energyfactor to set
 	 */
-	public void setCaloryConsumption(double caloryConsumption) {
-		this.caloryConsumption = caloryConsumption;
+	public void setEnergyfactor(double energyfactor) {
+		this.energyfactor = energyfactor;
 	}
-	/**
-	 * @return the equitment
-	 */
-	public ArrayList<SportEquitment> getEquitment() {
-		return equitment;
-	}
-	/**
-	 * @param equitment the equitment to set
-	 */
-	public void setEquitment(ArrayList<SportEquitment> equitment) {
-		this.equitment = equitment;
-	}
-	
 	
 	
 	
