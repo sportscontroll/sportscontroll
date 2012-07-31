@@ -146,6 +146,58 @@ public class DataHandler {
 	}
 
 	
+
+	/**
+	 * Saves {@link UserWeight} in to DB, expects filled Obkects
+	 * Detemines by ID if new Object(id==0) or if Object needs to be updated (id >0) 
+	 * @param uw UserWeight Obkect
+	 * @return returns new or current ID
+	 * @throws SQLException
+	 * @throws SQLQueryException 
+	 */
+	public int SaveUserWeight(UserWeight uw) throws SQLException, SQLQueryException {		
+		PreparedStatement pst = null;
+		ResultSet generatedKeys = null;
+	
+	
+		//new UserProfile
+		if(uw.getId() == 0) {
+			pst = dbCon.prepareStatement("INSERT INTO weight ('uid', 'date', 'weight') values (?, ?, ?) ;");
+			pst.setInt(1, uw.getUserId());
+			pst.setLong(2, uw.getDate().getTimeInMillis());
+			pst.setDouble(3,uw.getWeight());
+			
+			
+			int affectedRows = pst.executeUpdate();
+	        if (affectedRows == 0) {
+	            throw new SQLQueryException("Creating Weight failed, no rows affected.");
+	        }
+	        
+	        generatedKeys = pst.getGeneratedKeys();
+	        if (generatedKeys.next()) {
+	        	uw.setId((int)generatedKeys.getLong(1));
+	        	System.out.print("new Weight rwoId " + uw.getId());
+	        	generatedKeys.close();
+	        	pst.close();
+	        } else {
+	            throw new SQLException("Creating Weight failed, no generated key obtained.");
+	        }
+	   	}
+		else {
+		//Workout exists just an Update
+		
+			pst = dbCon.prepareStatement("UPDATE weight SET 'uid' = ?, 'date' = ? , 'weight' = ? WHERE rowid = ? ;");
+			
+			pst.setInt(1, uw.getUserId());
+			pst.setLong(2, uw.getDate().getTimeInMillis());
+			pst.setDouble(3,uw.getWeight());
+			pst.setInt(4, uw.getId());
+			pst.execute();
+			
+			pst.close();			
+		}
+		return uw.getId();		
+	}
 	
 	
 	/**
