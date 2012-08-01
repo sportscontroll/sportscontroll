@@ -1,0 +1,13 @@
+= TODO  =
+einfaches TODO file  um die wirren Gedanken etwas zu ordnen
+
+ * Exceptionhandeling durchdenken und sauber umsetzen
+ * JavaDoc fehler fixen
+ * WorkoutList moegliche Performance einbusen wenn immer alle Aufgelistet werden?
+ 	-> Aber wenn alle einmal im Speicher ist das ja auch egal?
+ 	
+ * validate function in each dataObject
+ 	-> wird getoggelt bei save und Load fucktion?
+ 	-> wir getoggelt beim anlegen
+ 	
+ * neue Exceptions
