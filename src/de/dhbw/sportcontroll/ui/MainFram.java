@@ -136,7 +136,7 @@ public class MainFram extends javax.swing.JFrame {
 				{
 					B_TBMWorkout = new JButton();
 					ToolBarMain.add(B_TBMWorkout);
-					B_TBMWorkout.setIcon(new ImageIcon(getClass().getClassLoader().getResource("de/Picture/Lauf2.gif")));
+					B_TBMWorkout.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/Lauf2.gif")));
 					B_TBMWorkout.setAction(getWorkoutAction1());
 				}
 			}
