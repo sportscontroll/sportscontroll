@@ -125,7 +125,7 @@ public class Calc extends javax.swing.JFrame {
 			{
 				L_Size = new JLabel();
 				getContentPane().add(L_Size, new AnchorConstraint(349, 284, 410, 65, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				L_Size.setText("Körpergröße:");
+				L_Size.setText("KÃ¶rpergrÃ¶ÃŸe:");
 				L_Size.setPreferredSize(new java.awt.Dimension(98, 16));
 			}
 			{

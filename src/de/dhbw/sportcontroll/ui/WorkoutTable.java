@@ -40,18 +40,18 @@ public class WorkoutTable extends JPanel {
                                         "Strecke",
                                         "Ort"};
         private Object[][] data = {
-            {1,"Schwimmen","30", "20.07.12","10","Lörrach"},
-            {2,"Laufen","20", "21.07.12","10","Lörrach"},
-            {3,"Schwimmen","60", "30.07.12","10","Lörrach"},
-            {4,"Radfahren","85", "01.08.12","10","Lörrach"},
-            {1,"Schwimmen","30", "20.07.12","10","Lörrach"},
-            {2,"Laufen","20", "21.07.12","10","Lörrach"},
-            {3,"Schwimmen","60", "30.07.12","10","Lörrach"},
-            {4,"Radfahren","85", "01.08.12","10","Lörrach"},
-            {1,"Schwimmen","30", "20.07.12","10","Lörrach"},
-            {2,"Laufen","20", "21.07.12","10","Lörrach"},
-            {3,"Schwimmen","60", "30.07.12","10","Lörrach"},
-            {4,"Radfahren","85", "01.08.12","10","Lörrach"}
+            {1,"Schwimmen","30", "20.07.12","10","LÃ¶rrach"},
+            {2,"Laufen","20", "21.07.12","10","LÃ¶rrach"},
+            {3,"Schwimmen","60", "30.07.12","10","LÃ¶rrach"},
+            {4,"Radfahren","85", "01.08.12","10","LÃ¶rrach"},
+            {1,"Schwimmen","30", "20.07.12","10","LÃ¶rrach"},
+            {2,"Laufen","20", "21.07.12","10","LÃ¶rrach"},
+            {3,"Schwimmen","60", "30.07.12","10","LÃ¶rrach"},
+            {4,"Radfahren","85", "01.08.12","10","LÃ¶rrach"},
+            {1,"Schwimmen","30", "20.07.12","10","LÃ¶rrach"},
+            {2,"Laufen","20", "21.07.12","10","LÃ¶rrach"},
+            {3,"Schwimmen","60", "30.07.12","10","LÃ¶rrach"},
+            {4,"Radfahren","85", "01.08.12","10","LÃ¶rrach"}
     };
 
         public int getColumnCount() {

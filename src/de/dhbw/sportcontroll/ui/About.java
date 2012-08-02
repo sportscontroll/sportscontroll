@@ -42,7 +42,7 @@ public class About extends javax.swing.JDialog {
 			{
 			}
 			getContentPane().setLayout(null);
-			this.setTitle("Über");
+			this.setTitle("Ã¼ber");
 			{
 				L_Version = new JLabel();
 				getContentPane().add(L_Version, "North");

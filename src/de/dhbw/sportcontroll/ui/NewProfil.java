@@ -83,7 +83,7 @@ public class NewProfil extends javax.swing.JFrame {
 			{
 				RB_gender_m = new JRadioButton();
 				getContentPane().add(RB_gender_m, new AnchorConstraint(444, 524, 520, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				RB_gender_m.setText("M‰nnlich");
+				RB_gender_m.setText("m√§nnlich");
 				RB_gender_m.setPreferredSize(new java.awt.Dimension(77, 20));
 				getOB_Gender().add(RB_gender_m);
 			}
@@ -134,7 +134,7 @@ public class NewProfil extends javax.swing.JFrame {
 			{
 				L_Size = new JLabel();
 				getContentPane().add(L_Size, new AnchorConstraint(322, 292, 383, 74, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				L_Size.setText("Kˆrpergrˆﬂe:");
+				L_Size.setText("K√∂rpergr√∂√üe:");
 				L_Size.setPreferredSize(new java.awt.Dimension(84, 16));
 			}
 			{
@@ -165,7 +165,7 @@ public class NewProfil extends javax.swing.JFrame {
 	
 	private AbstractAction getCloseAction() {
 		if(closeAction == null) {
-			closeAction = new AbstractAction("Schlieﬂen", null) {
+			closeAction = new AbstractAction("Schlie√üen", null) {
 				public void actionPerformed(ActionEvent evt) {
 					System.exit(0);
 				}

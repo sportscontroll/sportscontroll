@@ -153,7 +153,7 @@ public class NewEntry extends javax.swing.JDialog {
 	
 	private AbstractAction getCloseAction() {
 		if(closeAction == null) {
-			closeAction = new AbstractAction("Schlieﬂen", null) {
+			closeAction = new AbstractAction("Schlie√üen", null) {
 				public void actionPerformed(ActionEvent evt) {
 					setVisible(false);
 				}

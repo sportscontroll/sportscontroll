@@ -26,7 +26,7 @@ public class LineChart extends ApplicationFrame {
 	double[] disci2= { 10.5, 22, 12.0, 15.5 ,45.0, 35.0, 34.0, 21.5, 45.2 };
 	double[] disci3= { 1.5, 23, 15.0, 11.5 ,43.0, 25.0, 14.0, 51.5, 35.2 };
 	
-	String[] month ={"Jannuar","Feburar","März","April","Mai","Juni"};
+	String[] month ={"Jannuar","Feburar","MÃ¤rz","April","Mai","Juni"};
 	
     /**
      * Creates a new chart
