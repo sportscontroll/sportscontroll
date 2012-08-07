@@ -448,9 +448,11 @@ public class DataHandler {
 									rsWorkout.getInt("did"), 
 									loadSportDiscipline(rsWorkout.getInt("did")), 
 									new Date(rsWorkout.getLong("date")), 
-									rsWorkout.getInt("duration"), 
+									rsWorkout.getInt("duration"),
+									rsWorkout.getInt("heartrate"),
 									rsWorkout.getString("location"), 
-									rsWorkout.getInt("energy"));
+									rsWorkout.getInt("energy"),
+									rsWorkout.getString("comment"));
 			workout.add(wo);
 		}		
 		
@@ -477,9 +479,10 @@ public class DataHandler {
 									loadSportDiscipline(rsWorkout.getInt("did")), 
 									new Date(rsWorkout.getLong("date")), 
 									rsWorkout.getInt("duration"), 
+									rsWorkout.getInt("heartrate"),
 									rsWorkout.getString("location"), 
-									rsWorkout.getInt("energy"));			
-			
+									rsWorkout.getInt("energy"),
+									rsWorkout.getString("comment"));
 		}		
 		
 		st.close();		
@@ -503,13 +506,15 @@ public class DataHandler {
 	
 		//new UserProfile
 		if(w.getId() == 0) {
-			pst = dbCon.prepareStatement("INSERT INTO workout ('uid', 'did', 'date', 'duration', 'location', 'energy') values (?, ?, ?, ?, ?, ? ) ;");
+			pst = dbCon.prepareStatement("INSERT INTO workout ('uid', 'did', 'date', 'duration', 'heartrate', 'location', 'energy', 'comment') values (?, ?, ?, ?, ?, ?, ?, ? ) ;");
 			pst.setInt(1, w.getUid());
 			pst.setInt(2, w.getDid());
 			pst.setLong(3, w.getDate().getTimeInMillis());
 			pst.setDouble(4, w.getDuration());
-			pst.setString(5, w.getLocation());
-			pst.setInt(6, w.getConsumedCalories());
+			pst.setInt(5, w.getHeartRate());
+			pst.setString(6, w.getLocation());
+			pst.setInt(7, w.getConsumedCalories());
+			pst.setString(8, w.getComment());
 			
 			int affectedRows = pst.executeUpdate();
 	        if (affectedRows == 0) {
@@ -529,15 +534,17 @@ public class DataHandler {
 		else {
 		//Workout exists just an Update
 		
-			pst = dbCon.prepareStatement("UPDATE workout SET 'uid' = ?, 'did' = ?, 'date' = ?, 'duration' = ?, 'location' = ?, 'energy' = ? WHERE rowid = ? ;");
+			pst = dbCon.prepareStatement("UPDATE workout SET 'uid' = ?, 'did' = ?, 'date' = ?, 'duration' = ?, 'heartrate' = ?, 'location' = ?, 'energy' = ?, 'comment' = ? WHERE rowid = ? ;");
 			
 			pst.setInt(1, w.getUid());
 			pst.setInt(2, w.getDid());
 			pst.setLong(3, w.getDate().getTimeInMillis());
 			pst.setDouble(4, w.getDuration());
-			pst.setString(5, w.getLocation());
-			pst.setInt(6, w.getConsumedCalories());
-			pst.setInt(7, w.getId());
+			pst.setInt(5, w.getHeartRate());
+			pst.setString(6, w.getLocation());
+			pst.setInt(7, w.getConsumedCalories());
+			pst.setString(8, w.getComment());
+			pst.setInt(9, w.getId());
 			pst.execute();
 			
 			pst.close();			
@@ -562,7 +569,7 @@ public class DataHandler {
 			stat = dbCon.createStatement();		    
 		    stat.executeUpdate("create table userprofile ( name, birthday, gender, height);");
 		    stat.executeUpdate("create table weight (uid, date, weight);");
-		    stat.executeUpdate("create table workout ( uid, did, date, duration, location, energy);");
+		    stat.executeUpdate("create table workout ( uid, did, date, duration, heartrate, location, energy, comment);");
 		    stat.executeUpdate("create table sportdiscipline ( name, energyfactor);");
 		    
 	    } catch (SQLException e) {

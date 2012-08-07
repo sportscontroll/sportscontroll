@@ -3,9 +3,13 @@
  */
 package de.dhbw.sportcontroll.dataobjects;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import sun.java2d.pipe.SpanShapeRenderer.Simple;
 
 /**
  * To simplify the work with Dates and stuff
@@ -94,5 +98,15 @@ public class Date extends GregorianCalendar {
 		super(year, month, dayOfMonth, hourOfDay, minute, second);
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public String getDateGreLiEnd() {
+		DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+		return df.format(this.getTime());
+	}
+	
 
 }

@@ -5,6 +5,14 @@ package de.dhbw.sportcontroll.dataobjects;
 
 public class Workout {
 	
+	public static final int SEHR_GUT 		= 1;
+    public static final int GUT 			= 2;
+    public static final int BEFRIEDIGEND 	= 3;
+    public static final int AUSREICHEND 	= 4;
+   
+	
+	
+	
 	private int id;	
 	private int uid;
 	private int did;
@@ -13,32 +21,39 @@ public class Workout {
 	private int duration;
 	private String location;
 	private int energy;
+	private int heartRate;
+	private String comment;
+	//private enum rating{"sehr gut", };
 	
-	public Workout(int id, int uid, int did, SportDiscipline disciplin, Date date, int duration, String location, int consumedCalories){
+	public Workout(int id, int uid, int did, SportDiscipline disciplin, Date date, int duration, int heartRate, String location, int consumedCalories, String comment){
 		this.id = id;
 		this.uid = uid;
 		this.did = did;
 		this.date = date;
 		this.duration = duration;
+		this.heartRate = heartRate;
 		this.location = location;
 		this.disciplin = disciplin;
-		this.energy = consumedCalories;		
+		this.energy = consumedCalories;
+		this.comment = comment;
 	}
 	
-	public Workout(int id, int uid, int did, Date d, int duration, String location){		
+	public Workout(int id, int uid, int did, Date d, int duration, int heartRate, String location, String comment){		
 		this.id = id;
 		this.uid = uid;
 		this.did = did;
 		this.date = d;
 		this.duration = duration;
+		this.heartRate = heartRate;
 		this.location = location;
 		this.disciplin = null;
 		this.energy = calculateConsumedCalories();
+		this.comment = comment;
 		
 	}
 	
-	public Workout( int uid, int did, Date date, int duration, String location){
-		this(0, uid, did, date, duration, location);
+	public Workout( int uid, int did, Date date, int duration, int heartrate, String location, String comment){
+		this(0, uid, did, date, duration, heartrate, location, comment);
 	}
 	
 	
@@ -146,12 +161,45 @@ public class Workout {
 		this.energy = consumedCalories;
 	}
 	
+	
+	
+	/**
+	 * @return the heartRate
+	 */
+	public int getHeartRate() {
+		return heartRate;
+	}
+
+	/**
+	 * @param heartRate the heartRate to set
+	 */
+	public void setHeartRate(int heartRate) {
+		this.heartRate = heartRate;
+	}
+
+	/**
+	 * @return the comment
+	 */
+	public String getComment() {
+		return comment;
+	}
+
+	/**
+	 * @param comment the comment to set
+	 */
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 	public int calculateConsumedCalories() {
 		// check for did or disciplin!
 		//TODO
 		return 1;
 	}
 	
+	/*
+	 * print workoutObject just for testing pourpous
+	 */
 	public void printWorkout() {
 		System.out.println("id = " + id);
 		System.out.println("uid = " + uid);

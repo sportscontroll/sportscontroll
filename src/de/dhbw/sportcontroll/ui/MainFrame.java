@@ -1,8 +1,10 @@
 package de.dhbw.sportcontroll.ui;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -37,7 +39,7 @@ import org.jfree.ui.RefineryUtilities;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-public class MainFram extends javax.swing.JFrame {
+public class MainFrame extends JFrame {
 	/**
 	 * 
 	 */
@@ -59,6 +61,8 @@ public class MainFram extends javax.swing.JFrame {
 	private JMenu M_Help;
 	private JMenu M_Profil;
 	private JMenu M_File;
+	
+	
 	//Actions
 	private AbstractAction workoutAction1;
 	private AbstractAction calcAction1;
@@ -73,6 +77,9 @@ public class MainFram extends javax.swing.JFrame {
 	private AbstractAction newWeightAction;
 	private AbstractAction newEntryAction;
 	private AbstractAction CloseAction;
+	
+	
+	
 	private JButton B_TBMWorkout;
 	private JButton B_TBMCalc;
 	private JButton B_TBMStatistic;
@@ -89,25 +96,30 @@ public class MainFram extends javax.swing.JFrame {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				MainFram inst = new MainFram();
+				MainFrame inst = new MainFrame();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 	
-	public MainFram() {
+	public MainFrame() {
 		super();
 		initGUI();
 	}
 	
 	private void initGUI() {
 		try {
+			//FIXME what whe unsvaed data?
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			
+			
+			
 			this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Picture/Lauf2.gif")).getImage());
 			this.setTitle("SportControll");
-			this.setExtendedState(MainFram.MAXIMIZED_BOTH);
+			this.setExtendedState(MainFrame.MAXIMIZED_BOTH);
 			this.setSize(600,500);
+			
 			{
 				ToolBarMain = new JToolBar();
 				getContentPane().add(ToolBarMain, BorderLayout.NORTH);
@@ -137,9 +149,9 @@ public class MainFram extends javax.swing.JFrame {
 					B_TBMWorkout = new JButton();
 					ToolBarMain.add(B_TBMWorkout);
 					B_TBMWorkout.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/Lauf2.gif")));
-					B_TBMWorkout.setAction(getWorkoutAction1());
 				}
 			}
+			
 			{
 				TB_Footer = new JToolBar();
 				BorderLayout TB_FooterLayout = new BorderLayout();
@@ -158,6 +170,7 @@ public class MainFram extends javax.swing.JFrame {
 					TB_Footer.add(B_TBF_Clock, BorderLayout.EAST);
 					B_TBF_Clock.setText("$DATE$");
 					B_TBF_Clock.setPreferredSize(new java.awt.Dimension(191, 16));
+					B_TBF_Clock.setVisible(false);
 				}
 			}
 			this.setJMenuBar(MenuBar);
@@ -176,7 +189,7 @@ public class MainFram extends javax.swing.JFrame {
 							I_NewEntry = new JMenuItem();
 							MI_DataNew.add(I_NewEntry);
 							I_NewEntry.setText("Eintrag");
-							I_NewEntry.setAction(getNewEntryAction());
+							
 						}
 						{
 							I_NewWeight = new JMenuItem();
@@ -200,7 +213,7 @@ public class MainFram extends javax.swing.JFrame {
 						I_DataClose = new JMenuItem();
 						M_File.add(I_DataClose);
 						I_DataClose.setText("Schlie�en");
-						I_DataClose.setAction(getCloseAction());
+						
 					}
 				}
 				{
@@ -263,38 +276,9 @@ public class MainFram extends javax.swing.JFrame {
 		}
 	}
 	
-	private AbstractAction getCloseAction() {
-		if(CloseAction == null) {
-			CloseAction = new AbstractAction("Schlie�en", null) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1653001180308436701L;
-
-				public void actionPerformed(ActionEvent evt) {
-				
-					System.exit(0);
-				}
-			};
-		}
-		return CloseAction;
-	}
 	
-	private AbstractAction getNewEntryAction() {
-		if(newEntryAction == null) {
-			newEntryAction = new AbstractAction("Eintrag", null) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = -463121038831680973L;
-
-				public void actionPerformed(ActionEvent evt) {
-					NewEntry.main(null);
-				}
-			};
-		}
-		return newEntryAction;
-	}
+	
+	
 	
 	private AbstractAction getNewWeightAction() {
 		if(newWeightAction == null) {
@@ -468,7 +452,7 @@ public class MainFram extends javax.swing.JFrame {
 	
 	private JPanel getPanel1() {
 		if(Panel1 == null) {
-			Panel1 = new JPanel();
+			Panel1 = new JPanel(new CardLayout());
 		}
 		return Panel1;
 	}
@@ -489,20 +473,66 @@ public class MainFram extends javax.swing.JFrame {
 		return calcAction1;
 	}
 	
-	private AbstractAction getWorkoutAction1() {
-		if(workoutAction1 == null) {
-			workoutAction1 = new AbstractAction("", new ImageIcon(getClass().getClassLoader().getResource("Picture/Lauf2.gif"))) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 2514105036702971549L;
+	
 
-				public void actionPerformed(ActionEvent evt) {
-					WorkoutTable.main(null);
-				}
-			};
-		}
-		return workoutAction1;
+	public void showError(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	/**
+	 * sets a given JPanel to the MainFrame
+	 * @param jp
+	 */
+	public void addToMainPanel(JPanel jp){
+		Panel1.add(jp, "test");
+	}
+	
+	
+	/**
+	 * shows the given String on the MainFrame top right corner
+	 *  its suposed to be a Date :-)
+	 * @param date
+	 */
+	public void showDateinMainFrame(String date){
+		B_TBF_Clock.setText(date);
+		B_TBF_Clock.setVisible(true);
+	}
+	
+	
+	/**
+	 * addActionlistener to CloseButton 
+	 * @param al
+	 */
+	public void addCloseListener(ActionListener al){
+		I_DataClose.addActionListener(al);
+	}
+	
+	/**
+	 * adds ActionListener to NewEntryListener
+	 * @param al
+	 */
+	public void addNewEntryListener(ActionListener al){
+		I_NewEntry.addActionListener(al);
+	}
+	
+	
+	/**
+	 * adds ActinListsner to Button to show WorkoutTable
+	 * @param al
+	 */
+	public void addWorkoutTableActionListener(ActionListener al) {		
+		B_TBMWorkout.addActionListener(al);
 	}
 
+	public void showPanel() {
+		CardLayout cl = (CardLayout)(Panel1.getLayout());
+        cl.show(Panel1, "test");
+		
+	}
+	
+		
+	
+	
 }

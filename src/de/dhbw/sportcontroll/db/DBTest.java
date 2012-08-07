@@ -2,7 +2,6 @@ package de.dhbw.sportcontroll.db;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import de.dhbw.sportcontroll.dataobjects.*;
@@ -13,6 +12,8 @@ import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
 public class DBTest {
 
 	/**
+	 * 
+	 * 
 	 * only for Testing the DB and DH
 	 * 
 	 * @param args
@@ -62,7 +63,7 @@ public class DBTest {
 		
 		
 		
-		Workout w1 = new Workout(newProfile.getId(), 1, new Date(System.currentTimeMillis()), (60 * 30), "Duerrenbuehl");
+		Workout w1 = new Workout(newProfile.getId(), 1, new Date(System.currentTimeMillis()), (60 * 30), 180, "Duerrenbuehl", "war schon besser");
 		w1.setId(5);
 		try {
 			w1.printWorkout();

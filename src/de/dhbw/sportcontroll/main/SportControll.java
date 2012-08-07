@@ -1,5 +1,9 @@
 package de.dhbw.sportcontroll.main;
 
+import de.dhbw.sportcontroll.controller.ActionController;
+import de.dhbw.sportcontroll.db.DataHandler;
+import de.dhbw.sportcontroll.ui.MainFrame;
+
 public class SportControll {
 
 	/**
@@ -9,32 +13,15 @@ public class SportControll {
 	 * @author schoko
 	 * @return 
 	 * @exception
-	 * @
 	 * 
-	 * @
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
-		System.out.println("Hello World und noch mal");
+		System.out.println("Starting sportscontroll");
 		
+		MainFrame view = new MainFrame();
+		ActionController sportsControll = new ActionController(view);
 		
-		int i;
-		System.out.println("Hallo Katja");	
-
+		view.setVisible(true);		
+		
 	}
 }

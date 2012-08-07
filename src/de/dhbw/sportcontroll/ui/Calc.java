@@ -159,7 +159,7 @@ public class Calc extends javax.swing.JFrame {
 			{
 				L_Size = new JLabel();
 				getContentPane().add(L_Size, new AnchorConstraint(349, 284, 410, 65, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				L_Size.setText("Körpergröße:");
+				L_Size.setText("Kï¿½rpergrï¿½ï¿½e:");
 				L_Size.setPreferredSize(new java.awt.Dimension(98, 16));
 			}
 			{
@@ -230,7 +230,7 @@ public class Calc extends javax.swing.JFrame {
 					String eduration = TF_duration.getText();
 					String esize = TF_Size.getText();
 					String ebirthdate = TF_Birthdate.getText();
-					double BasicCalorie= Calculate.calconsumption(sduration, sdiscipline, sweight);//, OB_gender_m);
+					//double BasicCalorie= Calculate.calconsumption(sduration, sdiscipline, sweight);//, OB_gender_m);
 					
 				}
 			};
@@ -241,7 +241,7 @@ public class Calc extends javax.swing.JFrame {
 	private JRadioButton getRB_gender_m() {
 		if(RB_gender_m == null) {
 			RB_gender_m = new JRadioButton();
-			RB_gender_m.setText("männlich");
+			RB_gender_m.setText("mï¿½nnlich");
 			RB_gender_m.setPreferredSize(new java.awt.Dimension(107, 44));
 			RB_gender_m.isSelected();
 			getOB_Gender().add(RB_gender_m);
