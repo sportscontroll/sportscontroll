@@ -3,10 +3,13 @@ package de.dhbw.sportcontroll.ui;
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
 
+import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
+import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.main.Calculate;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
@@ -42,7 +45,6 @@ public class Calc extends javax.swing.JFrame {
 	private JLabel L_Gender;
 	private JLabel L_Output;
 	private JLabel L_Age;
-	private JLabel L_bezAge;	
 	private JComboBox CB_Discipline;
 	private JLabel L_discipline;
 	private JTextField TF_duration;
@@ -94,22 +96,17 @@ public class Calc extends javax.swing.JFrame {
 				getContentPane().add(getL_discipline(), new AnchorConstraint(591, 601, 645, 519, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				getContentPane().add(getTF_duration(), new AnchorConstraint(581, 498, 658, 316, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				getContentPane().add(getL_duration(), new AnchorConstraint(605, 126, 658, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				getContentPane().add(L_Output, new AnchorConstraint(734, 889, 937, 66, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				L_Output.setText("$out$");
-				L_Output.setPreferredSize(new java.awt.Dimension(316, 53));
+				getContentPane().add(L_Output, new AnchorConstraint(865, 418, 941, 198, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				
 			}
-			{
-				L_Age = new JLabel();
-				getContentPane().add(L_Age, new AnchorConstraint(169, 899, 230, 680, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				L_Age.setText("$age$");
-				L_Age.setPreferredSize(new java.awt.Dimension(84, 16));
-			}
-			{
-				L_bezAge = new JLabel();
-				getContentPane().add(L_bezAge, new AnchorConstraint(85, 899, 146, 680, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				L_bezAge.setText("Alter");
-				L_bezAge.setPreferredSize(new java.awt.Dimension(84, 16));
-			}
+//			{
+//				L_Age = new JLabel();
+//				getContentPane().add(L_Age, new AnchorConstraint(169, 899, 230, 680, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+//				L_Age.setPreferredSize(new java.awt.Dimension(84, 16));
+//				int iage = Calculate.CalcAge(TF_Birthdate.getText());
+//				String sage = Integer.toString( iage);
+//				L_Age.setText(sage);
+//			}
 			{
 				TF_Weight = new JTextField();
 				getContentPane().add(TF_Weight, new AnchorConstraint(74, 498, 162, 316, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
@@ -211,8 +208,6 @@ public class Calc extends javax.swing.JFrame {
 			BasicKalAction = new AbstractAction("Grundumsatz", null) {
 				public void actionPerformed(ActionEvent evt) {
 					String esize = TF_Size.getText();
-//					if(esize == null || esize.trim().length() == 0)
-//						System.out.println("EINGABE IST Leer ODER NUR LEERZEICHEN!");
 					String eweight = TF_Weight.getText();
 					String ebirthdate = TF_Birthdate.getText();	   					
 					double BasicCalorie= Calculate.BasicCalorie(eweight, esize, ebirthdate, RB_gender_w, RB_gender_m);//, OB_gender_m);
@@ -228,9 +223,11 @@ public class Calc extends javax.swing.JFrame {
 				public void actionPerformed(ActionEvent evt) {
 					String eweight = TF_Weight.getText();
 					String eduration = TF_duration.getText();
-					String esize = TF_Size.getText();
-					String ebirthdate = TF_Birthdate.getText();
-					//double BasicCalorie= Calculate.calconsumption(sduration, sdiscipline, sweight);//, OB_gender_m);
+					// String esize = TF_Size.getText();
+					// String ebirthdate = TF_Birthdate.getText();
+					String ediscipline = (String)CB_Discipline.getSelectedItem();
+				
+					double BasicCalorie = Calculate.calconsumption(eduration, ediscipline, eweight);
 					
 				}
 			};
@@ -299,6 +296,8 @@ public class Calc extends javax.swing.JFrame {
 			CB_Discipline = new JComboBox();
 			CB_Discipline.setModel(CB_DisciplineModel);
 			CB_Discipline.setPreferredSize(new java.awt.Dimension(128, 23));
+			//ArrayList sDiscipline = DataHandler.loadAllSportDisciplines();
+	
 		}
 		return CB_Discipline;
 	}
