@@ -15,6 +15,7 @@ import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
 import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
 import de.dhbw.sportcontroll.exceptions.SQLQueryException;
+import de.dhbw.sportcontroll.ui.ConfigProfil;
 import de.dhbw.sportcontroll.ui.MainFrame;
 import de.dhbw.sportcontroll.ui.NewEntry;
 import de.dhbw.sportcontroll.ui.WorkoutTable;
@@ -48,7 +49,8 @@ public class ActionController {
 		
 		mView.addCloseListener(new CloseListener());
 		mView.addNewEntryListener(new NewEntryListener());
-		mView.addWorkoutTableActionListener(new WorkoutTableListener());
+		mView.addButtonWorkoutTableActionListener(new ButtonWorkoutTableListener());
+		mView.addButtonConfigProfileActionListener(new ButtonProfileListener());
 		
 	}
 	
@@ -91,18 +93,43 @@ public class ActionController {
 		}			
 	}
 	
-	class WorkoutTableListener implements ActionListener {
+	class ButtonWorkoutTableListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Show WorkoutTabl e" + e.getActionCommand());
 			WorkoutTable wt = new WorkoutTable();
 			wt.setVisible(true);
 			wt.setOpaque(true);
-			mView.addToMainPanel(wt);
-			mView.showPanel();
+			//mView.addToMainPanel(wt, "workouttable");
+			mView.showPanelWorkoutTable();		
+		}
+	}
+	
+	class ButtonProfileListener implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Show Profile e" + e.getActionCommand());
+			
+			mView.showPanelProfile();
 			
 			
 		}
 	}
+	
+//	private AbstractAction getProfilConfigAction() {
+//		if(profilConfigAction == null) {
+//			profilConfigAction = new AbstractAction("Einstellungen", null) {
+//				/**
+//				 * 
+//				 */
+//				private static final long serialVersionUID = 5783351402761490929L;
+//
+//				public void actionPerformed(ActionEvent evt) {
+//					ConfigProfil.main(null);
+//				}
+//			};
+//		}
+//		return profilConfigAction;
+//	}
 
 }

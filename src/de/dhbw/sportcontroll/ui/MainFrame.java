@@ -87,7 +87,7 @@ public class MainFrame extends JFrame {
 	private JToolBar ToolBarMain;
 	private JToolBar TB_Footer;
 	private JLabel B_TBF_Clock;
-	private JPanel Panel1;
+	private JPanel contentPanel;
 	
 	
 	/**
@@ -109,6 +109,11 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void initGUI() {
+		
+		WorkoutTable panelWorkoutTable = new WorkoutTable();
+		ConfigProfil panelProfile = new ConfigProfil();
+		
+		
 		try {
 			//FIXME what whe unsvaed data?
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -117,7 +122,7 @@ public class MainFrame extends JFrame {
 			
 			this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("Picture/Lauf2.gif")).getImage());
 			this.setTitle("SportControll");
-			this.setExtendedState(MainFrame.MAXIMIZED_BOTH);
+			//this.setExtendedState(MainFrame.MAXIMIZED_BOTH);
 			this.setSize(600,500);
 			
 			{
@@ -153,11 +158,17 @@ public class MainFrame extends JFrame {
 			}
 			
 			{
+				contentPanel = new JPanel(new CardLayout());
+				contentPanel.add(panelProfile, "profile");
+			//	contentPanel.add(panelWorkoutTable, "workout");
+				
+				
+				
 				TB_Footer = new JToolBar();
 				BorderLayout TB_FooterLayout = new BorderLayout();
 				TB_Footer.setLayout(TB_FooterLayout);
 				getContentPane().add(TB_Footer, BorderLayout.SOUTH);
-				getContentPane().add(getPanel1(), BorderLayout.CENTER);
+				getContentPane().add(contentPanel, BorderLayout.CENTER);
 				TB_Footer.setPreferredSize(new java.awt.Dimension(584, 20));
 				{
 					/**Feature ShowTime and Date
@@ -224,8 +235,7 @@ public class MainFrame extends JFrame {
 						I_ProfilConfig = new JMenuItem();
 						M_Profil.add(I_ProfilConfig);
 						I_ProfilConfig.setText("Einstellungen");
-						I_ProfilConfig.setAction(getProfilConfigAction());
-						I_ProfilConfig.setAccelerator(KeyStroke.getKeyStroke("pressed N"));
+						
 					}
 					{
 						I_ProfileChange = new JMenuItem();
@@ -312,21 +322,7 @@ public class MainFrame extends JFrame {
 		return newDisciplineAction;
 	}
 	
-	private AbstractAction getProfilConfigAction() {
-		if(profilConfigAction == null) {
-			profilConfigAction = new AbstractAction("Einstellungen", null) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 5783351402761490929L;
-
-				public void actionPerformed(ActionEvent evt) {
-					ConfigProfil.main(null);
-				}
-			};
-		}
-		return profilConfigAction;
-	}
+	
 	
 	private AbstractAction getProfilChangeAction() {
 		if(profilChangeAction == null) {
@@ -451,10 +447,10 @@ public class MainFrame extends JFrame {
 	}
 	
 	private JPanel getPanel1() {
-		if(Panel1 == null) {
-			Panel1 = new JPanel(new CardLayout());
+		if(contentPanel == null) {
+			contentPanel = new JPanel(new CardLayout());
 		}
-		return Panel1;
+		return contentPanel;
 	}
 	
 	private AbstractAction getCalcAction1() {
@@ -481,13 +477,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	
-	/**
-	 * sets a given JPanel to the MainFrame
-	 * @param jp
-	 */
-	public void addToMainPanel(JPanel jp){
-		Panel1.add(jp, "test");
-	}
+	
 	
 	
 	/**
@@ -522,16 +512,27 @@ public class MainFrame extends JFrame {
 	 * adds ActinListsner to Button to show WorkoutTable
 	 * @param al
 	 */
-	public void addWorkoutTableActionListener(ActionListener al) {		
+	public void addButtonWorkoutTableActionListener(ActionListener al) {		
 		B_TBMWorkout.addActionListener(al);
 	}
 
-	public void showPanel() {
-		CardLayout cl = (CardLayout)(Panel1.getLayout());
-        cl.show(Panel1, "test");
-		
+	
+	
+	public void addButtonConfigProfileActionListener(ActionListener al){
+		I_ProfilConfig.addActionListener(al);
+		B_TBMCalc.addActionListener(al);		
+		I_ProfilConfig.setAccelerator(KeyStroke.getKeyStroke("pressed N"));
 	}
 	
+	public void showPanelWorkoutTable() {
+		CardLayout cl = (CardLayout)(contentPanel.getLayout());
+        cl.show(contentPanel, "workout");
+		
+	}
+	public void showPanelProfile() {
+		CardLayout cl = (CardLayout)(contentPanel.getLayout());
+        cl.show(contentPanel, "profile");		
+	}
 		
 	
 	

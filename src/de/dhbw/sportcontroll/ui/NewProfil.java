@@ -53,7 +53,7 @@ public class NewProfil extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				ConfigProfil inst = new ConfigProfil();
-				inst.setLocationRelativeTo(null);
+				//inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
