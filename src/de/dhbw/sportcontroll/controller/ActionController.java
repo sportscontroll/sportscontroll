@@ -108,11 +108,8 @@ public class ActionController {
 	class ButtonProfileListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Show Profile e" + e.getActionCommand());
-			
-			mView.showPanelProfile();
-			
-			
+			System.out.println("Show Profile e" + e.getActionCommand());			
+			mView.showPanelProfile();			
 		}
 	}
 	
