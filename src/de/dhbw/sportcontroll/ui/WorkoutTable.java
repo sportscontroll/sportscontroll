@@ -8,6 +8,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import javax.swing.table.AbstractTableModel;
+
+import de.dhbw.sportcontroll.main.Test;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -15,6 +18,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WorkoutTable extends JPanel {
+	/**
+	 * Show the workouts in table form
+	 * @author Katja
+	 * @return Workout as table
+	 */
     private boolean DEBUG = false;
 
     public WorkoutTable() {
@@ -33,36 +41,30 @@ public class WorkoutTable extends JPanel {
     }
 
     class TableModel extends AbstractTableModel {
-        private String[] columnNames = {"ID",
-                                        "Sportart",
-                                        "Dauer",
-                                        "Datum",
-                                        "Strecke",
-                                        "Ort"};
-        private Object[][] data = {
-            {1,"Schwimmen","30", "20.07.12","10","Lörrach"},
-            {2,"Laufen","20", "21.07.12","10","Lörrach"},
-            {3,"Schwimmen","60", "30.07.12","10","Lörrach"},
-            {4,"Radfahren","85", "01.08.12","10","Lörrach"},
-            {1,"Schwimmen","30", "20.07.12","10","Lörrach"},
-            {2,"Laufen","20", "21.07.12","10","Lörrach"},
-            {3,"Schwimmen","60", "30.07.12","10","Lörrach"},
-            {4,"Radfahren","85", "01.08.12","10","Lörrach"},
-            {1,"Schwimmen","30", "20.07.12","10","Lörrach"},
-            {2,"Laufen","20", "21.07.12","10","Lörrach"},
-            {3,"Schwimmen","60", "30.07.12","10","Lörrach"},
-            {4,"Radfahren","85", "01.08.12","10","Lörrach"}
-    };
-
+        private String[] columnNames = Test.GETColumnName();
+        
+        private Object [][] data = Test.GETWorkout();
+        	
         public int getColumnCount() {
+        	/*
+        	 * @return length of columnNames 
+        	 */
             return columnNames.length;
         }
 
         public int getRowCount() {
+        	/*
+        	 * @return length of data (Count Row) 
+        	 */
             return data.length;
         }
 
         public String getColumnName(int col) {
+        	/*
+        	 * @return columnNames
+        	 * 
+             */
+   
             return columnNames[col];
         }
 
@@ -75,8 +77,7 @@ public class WorkoutTable extends JPanel {
         }
 
         public boolean isCellEditable(int row, int col) {
-            //Note that the data/cell address is constant,
-            //no matter where the cell appears onscreen.
+           
             if (col < 1) {
                 return false;
             } else {
