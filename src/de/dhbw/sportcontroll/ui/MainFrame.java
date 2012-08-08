@@ -160,7 +160,7 @@ public class MainFrame extends JFrame {
 			{
 				contentPanel = new JPanel(new CardLayout());
 				contentPanel.add(panelProfile, "profile");
-			//	contentPanel.add(panelWorkoutTable, "workout");
+				contentPanel.add(panelWorkoutTable, "workout");
 				
 				
 				
@@ -477,7 +477,13 @@ public class MainFrame extends JFrame {
 	}
 	
 	
-	
+	/**
+	 * sets a given JPanel to the MainFrame
+	 * @param jp
+	 */
+	public void addToMainPanel(JPanel jp, String title){
+		contentPanel.add(jp, title);
+	}
 	
 	
 	/**
