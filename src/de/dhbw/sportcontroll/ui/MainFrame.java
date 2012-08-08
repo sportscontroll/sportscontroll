@@ -92,6 +92,7 @@ public class MainFrame extends JFrame {
 	
 	/**
 	* Auto-generated main method to display this JFrame
+	* 
 	*/
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
