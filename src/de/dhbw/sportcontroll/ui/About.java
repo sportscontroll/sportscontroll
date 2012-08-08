@@ -9,6 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
+/**
+ * This Frame give a short Information about author and Version 
+ * @author Katja.Kaiser
+ */
 
 public class About extends javax.swing.JDialog {
 	private JLabel L_Program;

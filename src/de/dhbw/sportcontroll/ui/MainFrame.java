@@ -25,6 +25,10 @@ import javax.swing.WindowConstants;
 
 import org.jfree.ui.RefineryUtilities;
 
+/**
+* This is the Mainframe from here the user work. 
+* @author Katja.Kaiser
+*/
 
 
 /**
