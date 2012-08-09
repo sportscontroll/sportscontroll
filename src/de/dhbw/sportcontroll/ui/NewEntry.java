@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.AbstractAction;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -54,6 +55,9 @@ public class NewEntry extends javax.swing.JDialog {
 	private JLabel L_Distance;
 	private JTextField TB_CaloryConsumption;
 	private JLabel L_Weather;
+	private JButton B_SaveNewWei;
+	private JButton B_SaveNewDis;
+	private JButton B_SaveNewWork;
 	private JTextArea TA_Note;
 	private JLabel L_Note;
 	private JComboBox CB_Weather;
@@ -73,7 +77,6 @@ public class NewEntry extends javax.swing.JDialog {
 	private JLabel L_Location;
 	private JTextField TB_Weight;
 	private JLabel L_Weight;
-	private JButton OK;
 	private JPanel P_NewWeight;
 	private JPanel P_NewDiscipline;
 	private AbstractAction OKAction;
@@ -109,7 +112,7 @@ public class NewEntry extends javax.swing.JDialog {
 				{
 					P_NewEntry = new JPanel();
 					TP_New.addTab("Eintrag", null, P_NewEntry, null);
-					P_NewEntry.setPreferredSize(new java.awt.Dimension(379, 236));
+					P_NewEntry.setPreferredSize(new java.awt.Dimension(517, 488));
 					P_NewEntry.add(getL_Discipline());
 					P_NewEntry.add(getCB_Discipline());
 					P_NewEntry.add(getL_Duration());
@@ -128,6 +131,14 @@ public class NewEntry extends javax.swing.JDialog {
 					P_NewEntry.add(getCB_Weather());
 					P_NewEntry.add(getL_Note());
 					P_NewEntry.add(getTA_Note());
+					P_NewEntry.add(getB_SaveNewWork());
+					{
+						B_Cancel = new JButton();
+						P_NewEntry.add(B_Cancel);
+						B_Cancel.setText("Abbrechen");
+						B_Cancel.setAction(getCloseAction());
+						B_Cancel.setPreferredSize(new java.awt.Dimension(92, 43));
+					}
 				}
 				{
 					P_NewDiscipline = new JPanel();
@@ -138,6 +149,7 @@ public class NewEntry extends javax.swing.JDialog {
 					P_NewDiscipline.add(getL_caloryConsumption());
 					P_NewDiscipline.add(getTB_CaloryConsumption());
 					P_NewDiscipline.add(getCB_DistanceSport());
+					P_NewDiscipline.add(getB_SaveNewDis());
 				}
 				{
 					P_NewWeight = new JPanel();
@@ -146,23 +158,10 @@ public class NewEntry extends javax.swing.JDialog {
 					P_NewWeight.add(getJTextField1());
 					P_NewWeight.add(getL_Weight());
 					P_NewWeight.add(getTB_Weight());
+					P_NewWeight.add(getB_SaveNewWei());
 				}
 			}
-			{
-				OK = new JButton();
-				getContentPane().add(OK, new AnchorConstraint(906, 720, 1001, 480, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				OK.setText("OK");
-				OK.setAction(getOKAction());
-				OK.setPreferredSize(new java.awt.Dimension(92,25));
-			}
-			{
-				B_Cancel = new JButton();
-				getContentPane().add(B_Cancel, new AnchorConstraint(906, 972, 1001, 733, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				B_Cancel.setText("Abbrechen");
-				B_Cancel.setAction(getCloseAction());
-				B_Cancel.setPreferredSize(new java.awt.Dimension(92,25));
-			}
-			this.setSize(538, 471);
+			this.setSize(538, 554);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -341,7 +340,7 @@ public class NewEntry extends javax.swing.JDialog {
 		if(CB_DistanceSport == null) {
 			CB_DistanceSport = new JCheckBox();
 			CB_DistanceSport.setText("Streckensport");
-			CB_DistanceSport.setPreferredSize(new java.awt.Dimension(169, 50));
+			CB_DistanceSport.setPreferredSize(new java.awt.Dimension(231, 50));
 		}
 		return CB_DistanceSport;
 	}
@@ -453,9 +452,36 @@ public class NewEntry extends javax.swing.JDialog {
 		if(TA_Note == null) {
 			TA_Note = new JTextArea();
 			TA_Note.setText("...");
-			TA_Note.setPreferredSize(new java.awt.Dimension(380, 51));
+			TA_Note.setPreferredSize(new java.awt.Dimension(439, 51));
 		}
 		return TA_Note;
+	}
+	
+	private JButton getB_SaveNewWork() {
+		if(B_SaveNewWork == null) {
+			B_SaveNewWork = new JButton();
+			B_SaveNewWork.setText("Speichern");
+			B_SaveNewWork.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
+		}
+		return B_SaveNewWork;
+	}
+	
+	private JButton getB_SaveNewDis() {
+		if(B_SaveNewDis == null) {
+			B_SaveNewDis = new JButton();
+			B_SaveNewDis.setText("Speichern");
+			B_SaveNewDis.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
+		}
+		return B_SaveNewDis;
+	}
+	
+	private JButton getB_SaveNewWei() {
+		if(B_SaveNewWei == null) {
+			B_SaveNewWei = new JButton();
+			B_SaveNewWei.setText("Speichern");
+			B_SaveNewWei.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
+		}
+		return B_SaveNewWei;
 	}
 
 }
