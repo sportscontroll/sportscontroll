@@ -25,7 +25,13 @@ import de.dhbw.sportcontroll.ui.WorkoutTable;
  * @author Daniel
  *
  */
+
+
+
 public class ActionController {
+	
+	public static final int USER_ID = 1;
+	
 	private MainFrame mView;
 	private DataHandler dh;
 	
