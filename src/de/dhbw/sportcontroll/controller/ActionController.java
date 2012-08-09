@@ -127,21 +127,7 @@ public class ActionController {
 	}
 	
 	
-//	private AbstractAction getProfilConfigAction() {
-//		if(profilConfigAction == null) {
-//			profilConfigAction = new AbstractAction("Einstellungen", null) {
-//				/**
-//				 * 
-//				 */
-//				private static final long serialVersionUID = 5783351402761490929L;
-//
-//				public void actionPerformed(ActionEvent evt) {
-//					ConfigProfil.main(null);
-//				}
-//			};
-//		}
-//		return profilConfigAction;
-//	}
+
 
 	
 	public class CloseListener implements WindowListener, ActionListener {

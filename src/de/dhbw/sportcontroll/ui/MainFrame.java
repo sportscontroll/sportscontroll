@@ -149,7 +149,7 @@ public class MainFrame extends JFrame {
 					ToolBarMain.add(B_TBMNew);
 					B_TBMNew.setPreferredSize(new java.awt.Dimension(12, 27));
 					B_TBMNew.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/New.gif")));
-					B_TBMNew.setAction(getNewAction1());
+					
 				}
 				{
 					//Old Statistic Button with getStatisticAction1 but save Picture
@@ -420,23 +420,7 @@ public class MainFrame extends JFrame {
 		return AboutAction;
 	}
 	
-	private AbstractAction getNewAction1() {
-		if(NewAction1 == null) {
-			NewAction1 = new AbstractAction("", new ImageIcon(getClass().getClassLoader().getResource("Picture/New.gif"))) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1710623350377813373L;
-				private Container Panel1;
-
-				public void actionPerformed(ActionEvent evt) {
-					WorkoutTable.main(null);
-
-				}
-			};
-		}
-		return NewAction1;
-	}
+	
 	
 	private AbstractAction getStatisticAction1() {
 		if(statisticAction1 == null) {
@@ -510,6 +494,7 @@ public class MainFrame extends JFrame {
 	 */
 	public void addNewEntryListener(ActionListener al){
 		I_NewEntry.addActionListener(al);
+		B_TBMNew.addActionListener(al);
 	}
 	
 	
