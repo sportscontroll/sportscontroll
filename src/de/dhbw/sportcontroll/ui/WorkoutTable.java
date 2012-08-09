@@ -21,7 +21,8 @@ import java.awt.event.ActionListener;
 
 public class WorkoutTable extends JPanel {
 	/**
-	 * Show the workouts in table form
+	 * Show the workouts in table form.
+	 * Funktion: Sort, change Rows
 	 * @author Katja
 	 * @return Workout as table
 	 */
@@ -78,15 +79,15 @@ public class WorkoutTable extends JPanel {
         public Class getColumnClass(int c) {
             return getValueAt(0, c).getClass();
         }
-
-        public boolean isCellEditable(int row, int col) {
-           
-            if (col < 1) {
-                return false;
-            } else {
-                return true;
-            }
-        }
+//		Function to edit table
+//        public boolean isCellEditable(int row, int col) {
+//           
+//            if (col < 1) {
+//                return false;
+//            } else {
+//                return true;
+//            }
+//        }
 
         public void setValueAt(Object value, int row, int col) {
             if (DEBUG) {

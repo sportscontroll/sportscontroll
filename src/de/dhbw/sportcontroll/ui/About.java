@@ -32,6 +32,7 @@ public class About extends javax.swing.JDialog {
 				JFrame frame = new JFrame();
 				About inst = new About(frame);
 				inst.setVisible(true);
+			    
 			}
 		});
 	}
@@ -46,7 +47,8 @@ public class About extends javax.swing.JDialog {
 			{
 			}
 			getContentPane().setLayout(null);
-			this.setTitle("über");
+			this.setTitle("Über");
+			
 			{
 				L_Version = new JLabel();
 				getContentPane().add(L_Version, "North");

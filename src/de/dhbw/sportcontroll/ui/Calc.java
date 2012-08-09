@@ -16,6 +16,7 @@ import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -66,6 +67,7 @@ public class Calc extends JPanel {
 	private JTextField TF_Birthdate;
 	private JTextField TF_Size;
 	private JTextField TF_Weight;
+	private JLabel L_CalcPic;
 	private double iweight;
 
 //	/**
@@ -94,10 +96,11 @@ public class Calc extends JPanel {
 			//this.setTitle("Rechner");
 			{
 				L_Output = new JLabel();
-				getContentPane().add(getCB_Discipline(), new AnchorConstraint(581, 855, 658, 623, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				getContentPane().add(getL_discipline(), new AnchorConstraint(591, 601, 645, 519, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				getContentPane().add(getTF_duration(), new AnchorConstraint(581, 498, 658, 316, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				getContentPane().add(getL_duration(), new AnchorConstraint(605, 126, 658, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				getContentPane().add(getL_CalcPic(), new AnchorConstraint(75, 966, 658, 725, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				getContentPane().add(getCB_Discipline(), new AnchorConstraint(705, 665, 781, 316, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				getContentPane().add(getL_discipline(), new AnchorConstraint(715, 289, 778, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				getContentPane().add(getTF_duration(), new AnchorConstraint(581, 665, 658, 316, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				getContentPane().add(getL_duration(), new AnchorConstraint(605, 289, 668, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				getContentPane().add(L_Output, new AnchorConstraint(865, 418, 941, 198, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				
 			}
@@ -111,42 +114,42 @@ public class Calc extends JPanel {
 //			}
 			{
 				TF_Weight = new JTextField();
-				getContentPane().add(TF_Weight, new AnchorConstraint(74, 498, 162, 316, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				TF_Weight.setPreferredSize(new java.awt.Dimension(70, 23));
+				getContentPane().add(TF_Weight, new AnchorConstraint(75, 665, 161, 316, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				TF_Weight.setPreferredSize(new java.awt.Dimension(192, 26));
 				//double iweight = Double.parseDouble(TF_Weight.getText());
 			}
 			{
 				L_Weight = new JLabel();
-				getContentPane().add(L_Weight, new AnchorConstraint(85, 285, 146, 66, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				L_Weight.setText("Gewicht");
-				L_Weight.setPreferredSize(new java.awt.Dimension(84, 16));
+				getContentPane().add(L_Weight, new AnchorConstraint(85, 289, 145, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				L_Weight.setText("Gewicht:");
+				L_Weight.setPreferredSize(new java.awt.Dimension(121, 18));
 			}
 			{
 				B_Calorie = new JButton();
-				getContentPane().add(B_Calorie, new AnchorConstraint(695, 980, 781, 674, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				getContentPane().add(B_Calorie, new AnchorConstraint(821, 979, 908, 674, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				B_Calorie.setText("Kalorien");
-				B_Calorie.setPreferredSize(new java.awt.Dimension(169, 26));
+				B_Calorie.setPreferredSize(new java.awt.Dimension(168, 26));
 				B_Calorie.setAction(getCalorieAction());
 			}
 			{
 				B_BasicKal = new JButton();
-				getContentPane().add(B_BasicKal, new AnchorConstraint(695, 674, 781, 362, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				getContentPane().add(B_BasicKal, new AnchorConstraint(821, 674, 908, 362, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				B_BasicKal.setText("Grundumsatz");
 				B_BasicKal.setPreferredSize(new java.awt.Dimension(172, 26));
 				B_BasicKal.setAction(getBasicKalAction());
 			}
 			{
 				B_BMI = new JButton();
-				getContentPane().add(B_BMI, new AnchorConstraint(695, 363, 781, 49, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				getContentPane().add(B_BMI, new AnchorConstraint(821, 363, 908, 48, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				B_BMI.setText("BMI");
-				B_BMI.setPreferredSize(new java.awt.Dimension(173, 26));
+				B_BMI.setPreferredSize(new java.awt.Dimension(174, 26));
 				B_BMI.setAction(getCalcBMIAction());
 			}
 			{
 				L_Gender = new JLabel();
-				getContentPane().add(L_Gender, new AnchorConstraint(467, 284, 528, 65, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				getContentPane().add(L_Gender, new AnchorConstraint(468, 289, 531, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				L_Gender.setText("Geschlecht:");
-				L_Gender.setPreferredSize(new java.awt.Dimension(98, 16));
+				L_Gender.setPreferredSize(new java.awt.Dimension(121, 19));
 			}
 			{
 				TF_Size = new JTextField();
@@ -157,15 +160,15 @@ public class Calc extends JPanel {
 			}
 			{
 				L_Size = new JLabel();
-				getContentPane().add(L_Size, new AnchorConstraint(349, 284, 410, 65, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				L_Size.setText("K�rpergr��e:");
-				L_Size.setPreferredSize(new java.awt.Dimension(98, 16));
+				getContentPane().add(L_Size, new AnchorConstraint(348, 289, 411, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				L_Size.setText("Körpergröße:");
+				L_Size.setPreferredSize(new java.awt.Dimension(121, 19));
 			}
 			{
 				L_Birthdate = new JLabel();
-				getContentPane().add(L_Birthdate, new AnchorConstraint(211, 285, 272, 66, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				getContentPane().add(L_Birthdate, new AnchorConstraint(211, 289, 271, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				L_Birthdate.setText("Geburtsdatum:");
-				L_Birthdate.setPreferredSize(new java.awt.Dimension(84, 16));
+				L_Birthdate.setPreferredSize(new java.awt.Dimension(121, 18));
 			}
 			{
 				TF_Birthdate = new JTextField();
@@ -245,7 +248,7 @@ public class Calc extends JPanel {
 	private JRadioButton getRB_gender_m() {
 		if(RB_gender_m == null) {
 			RB_gender_m = new JRadioButton();
-			RB_gender_m.setText("m�nnlich");
+			RB_gender_m.setText("männlich");
 			RB_gender_m.setPreferredSize(new java.awt.Dimension(107, 44));
 			RB_gender_m.isSelected();
 			getOB_Gender().add(RB_gender_m);
@@ -274,7 +277,8 @@ public class Calc extends JPanel {
 	private JLabel getL_duration() {
 		if(L_duration == null) {
 			L_duration = new JLabel();
-			L_duration.setText("Dauer");
+			L_duration.setText("Dauer:");
+			L_duration.setPreferredSize(new java.awt.Dimension(121, 19));
 		}
 		return L_duration;
 	}
@@ -282,7 +286,7 @@ public class Calc extends JPanel {
 	private JTextField getTF_duration() {
 		if(TF_duration == null) {
 			TF_duration = new JTextField();
-			TF_duration.setPreferredSize(new java.awt.Dimension(100, 23));
+			TF_duration.setPreferredSize(new java.awt.Dimension(192, 23));
 		}
 		return TF_duration;
 	}
@@ -291,6 +295,7 @@ public class Calc extends JPanel {
 		if(L_discipline == null) {
 			L_discipline = new JLabel();
 			L_discipline.setText("Sportart:");
+			L_discipline.setPreferredSize(new java.awt.Dimension(121, 19));
 		}
 		return L_discipline;
 	}
@@ -302,11 +307,20 @@ public class Calc extends JPanel {
 							new String[] { "Item One", "Item Two" });
 			CB_Discipline = new JComboBox();
 			CB_Discipline.setModel(CB_DisciplineModel);
-			CB_Discipline.setPreferredSize(new java.awt.Dimension(128, 23));
+			CB_Discipline.setPreferredSize(new java.awt.Dimension(192, 23));
 			//ArrayList sDiscipline = DataHandler.loadAllSportDisciplines();
 	
 		}
 		return CB_Discipline;
+	}
+	
+	private JLabel getL_CalcPic() {
+		if(L_CalcPic == null) {
+			L_CalcPic = new JLabel();
+			L_CalcPic.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/calculator.gif")));
+			L_CalcPic.setPreferredSize(new java.awt.Dimension(133, 175));
+		}
+		return L_CalcPic;
 	}
 
 }

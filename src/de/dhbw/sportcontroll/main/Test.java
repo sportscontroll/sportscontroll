@@ -3,6 +3,7 @@ package de.dhbw.sportcontroll.main;
  * This is a test class
  */
 import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.GregorianCalendar;
 
 
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
+import de.dhbw.sportcontroll.dataobjects.Workout;
 import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.db.DataHandler.*;
 
@@ -54,8 +56,9 @@ public class Test {
 	                {"4","Radfahren","85", "01.08.12","10","Lörrach"},
 	                
 	        };
+	    	int anz = 1;
 	    	
-	    	return wo;
+			return wo;
 	    }
 	    
 	    public static String [] GETColumnName()
@@ -66,10 +69,9 @@ public class Test {
 	    	 * return CulumnName as String Array
 	    	 */
 	    	
-	    	String[] cn= {	"ID",
-			                "Sportart",
+	    	String[] cn= {	"Datum",
+	    			        "Sportart",
 			                "Dauer",
-			                "Datum",
 			                "Strecke",
 			                "Ort"
 			             };
