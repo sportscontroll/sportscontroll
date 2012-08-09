@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import de.dhbw.sportcontroll.dataobjects.*;
-import de.dhbw.sportcontroll.exceptions.CantDeleteException;
+import de.dhbw.sportcontroll.exceptions.SQLCantDeleteException;
 import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
 import de.dhbw.sportcontroll.exceptions.SQLQueryException;
 import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
@@ -469,12 +469,12 @@ public class DataHandler {
 	/**
 	 * Dummy function. this version is with one standard user which cannot be deleted
 	 * @param up
-	 * @throws CantDeleteException
+	 * @throws SQLCantDeleteException
 	 */
-	public void deleteUserProfile(UserProfile up) throws CantDeleteException {
+	public void deleteUserProfile(UserProfile up) throws SQLCantDeleteException {
 		System.out.println("dummy we don't delete user Data!");
 		if(up != null)
-			throw new CantDeleteException();
+			throw new SQLCantDeleteException();
 	}
 	
 	/**

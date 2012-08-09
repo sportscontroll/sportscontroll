@@ -5,6 +5,7 @@ package de.dhbw.sportcontroll.controller;
 
 import java.awt.event.*;
 import java.sql.SQLException;
+import java.util.EventListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -78,27 +79,7 @@ public class ActionController {
 	
 	
 	
-	/**
-	 * CloseListener for CloseButtons 
-	 * @author Daniel
-	 * {@link ActionListener}
-	 *
-	 */
-	class CloseListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-        	//FIXME proper save and close actions
-            try {
-				dh.saveUserProfile(currentUser);
-			} catch (SQLException | SQLQueryException e1) {
-				mView.showError("Fehler beim Speichern! das ist nicht gut!");
-				e1.printStackTrace();
-			}
-        	finally{
-        		mView.setVisible(false);
-        		System.exit(0);
-        	}
-        }
-    }
+	
 	
 	/**
 	 * NewEntryListener implements ActionListener for opening the NewEnty Dialog
@@ -135,7 +116,7 @@ public class ActionController {
 	}
 	
 	
-	class ButtonCalculatorListener implements ActionListener	{
+	class ButtonCalculatorListener implements ActionListener {
 		private static final long serialVersionUID = -4327610667106708501L;
 
 		public void actionPerformed(ActionEvent evt) {
@@ -162,4 +143,57 @@ public class ActionController {
 //		return profilConfigAction;
 //	}
 
+	
+	public class CloseListener implements WindowListener, ActionListener {
+	    		
+		private void handleCloseAction(){
+			System.out.println("ich wurde geschlossen");
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			try {
+				dh.saveUserProfile(currentUser);
+			} catch (SQLException | SQLQueryException e1) {
+				mView.showError("Fehler beim Speichern! das ist nicht gut!");
+				e1.printStackTrace();
+			}
+	    	finally{
+	    		mView.setVisible(false);
+	    		System.exit(0);	    		
+	    	}
+			
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+	    	handleCloseAction();
+	    }
+		@Override
+		public void windowActivated(WindowEvent e) {	
+		}
+		@Override
+		public void windowClosed(WindowEvent e) {
+			handleCloseAction();			
+		}
+		@Override
+		public void windowClosing(WindowEvent e) {
+			handleCloseAction();
+			
+		}
+		@Override
+		public void windowDeactivated(WindowEvent e) {
+		}
+		@Override
+		public void windowDeiconified(WindowEvent e) {
+		}
+		@Override
+		public void windowIconified(WindowEvent e) {			
+		}
+		@Override
+		public void windowOpened(WindowEvent e) {
+		}		
+	}
 }
