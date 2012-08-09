@@ -47,7 +47,8 @@ public class ConfigProfil extends JPanel {
 //	}
 	
 	public ConfigProfil() {
-		super();
+		super(new AnchorLayout());
+		
 		initGUI();
 	}
 	
@@ -58,74 +59,88 @@ public class ConfigProfil extends JPanel {
 			
 			
 			{
+				
+				
+				L_Age = new JLabel();
+				L_Age.setText("$age$");
+					
 				RB_gender_w = new JRadioButton();
-				getRootPane().add(getJLabel4x(), new AnchorConstraint(158, 816, 219, 735, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				getRootPane().add(RB_gender_w, new AnchorConstraint(524, 524, 601, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(L_Age, new AnchorConstraint(158, 816, 219, 735, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(RB_gender_w, new AnchorConstraint(524, 524, 601, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				RB_gender_w.setText("Weiblich");
 				RB_gender_w.setPreferredSize(new java.awt.Dimension(77, 20));
 				getOB_Gender().add(RB_gender_w);
 			}
 			{
 				RB_gender_m = new JRadioButton();
-				getRootPane().add(RB_gender_m, new AnchorConstraint(444, 524, 520, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(RB_gender_m, new AnchorConstraint(444, 524, 520, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				RB_gender_m.setText("mönnlich");
 				RB_gender_m.setPreferredSize(new java.awt.Dimension(77, 20));
 				getOB_Gender().add(RB_gender_m);
 			}
 			{
 				L_Name = new JLabel();
-				getRootPane().add(L_Name, new AnchorConstraint(78, 292, 139, 74, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(L_Name, new AnchorConstraint(78, 292, 139, 74, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				L_Name.setText("Name:");
 				L_Name.setPreferredSize(new java.awt.Dimension(84, 16));
 			}
 			{
 				TF_Name = new JTextField();
-				getRootPane().add(TF_Name, new AnchorConstraint(66, 673, 154, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(TF_Name, new AnchorConstraint(66, 673, 154, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				TF_Name.setText("$Name$");
 				TF_Name.setPreferredSize(new java.awt.Dimension(134, 23));
 			}
 			{
 				B_OK = new JButton();
-				getRootPane().add(B_OK, new AnchorConstraint(891, 654, 979, 381, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(B_OK, new AnchorConstraint(891, 654, 979, 381, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				B_OK.setText("OK");
 				B_OK.setPreferredSize(new java.awt.Dimension(105, 23));
 				B_OK.setAction(getOKAction());
 			}
 			{
 				B_Cancel = new JButton();
-				getRootPane().add(B_Cancel, new AnchorConstraint(891, 941, 979, 667, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(B_Cancel, new AnchorConstraint(891, 941, 979, 667, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				B_Cancel.setText("Abbrechen");
 				B_Cancel.setPreferredSize(new java.awt.Dimension(105, 23));
 				B_Cancel.setAction(getCloseAction());
 			}
 			{
 				TF_Birthdate = new JTextField();
-				getRootPane().add(TF_Birthdate, new AnchorConstraint(181, 673, 269, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(TF_Birthdate, new AnchorConstraint(181, 673, 269, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				TF_Birthdate.setText("$birthdate$");
 				TF_Birthdate.setPreferredSize(new java.awt.Dimension(134, 23));
 			}
 			{
 				TF_Size = new JTextField();
-				getRootPane().add(TF_Size, new AnchorConstraint(311, 673, 398, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(TF_Size, new AnchorConstraint(311, 673, 398, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				TF_Size.setPreferredSize(new java.awt.Dimension(134, 23));
 				TF_Size.setText("$size$");
 			}
 			{
 				L_Birthdate = new JLabel();
-				getRootPane().add(L_Birthdate, new AnchorConstraint(192, 292, 253, 74, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(L_Birthdate, new AnchorConstraint(192, 292, 253, 74, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				L_Birthdate.setText("Geburtsdatum:");
 				L_Birthdate.setPreferredSize(new java.awt.Dimension(84, 16));
 			}
 			{
 				L_Size = new JLabel();
-				getRootPane().add(L_Size, new AnchorConstraint(322, 292, 383, 74, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(L_Size, new AnchorConstraint(322, 292, 383, 74, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				L_Size.setText("Körpergröße:");
 				L_Size.setPreferredSize(new java.awt.Dimension(84, 16));
 			}
 			{
+
+				
+				
+				L_Age = new JLabel();
+				L_Age.setText("Alter:");
+				L_Age.setPreferredSize(new java.awt.Dimension(84, 16));
+					
+				
+				
 				L_Gender = new JLabel();
-				getRootPane().add(L_Gender, new AnchorConstraint(440, 292, 501, 74, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				getRootPane().add(getJLabel4(), new AnchorConstraint(78, 923, 139, 704, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(L_Gender, new AnchorConstraint(440, 292, 501, 74, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(L_Age, new AnchorConstraint(78, 923, 139, 704, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				L_Gender.setText("Geschlecht:");
 				L_Gender.setPreferredSize(new java.awt.Dimension(84, 16));
 			}
@@ -163,14 +178,7 @@ public class ConfigProfil extends JPanel {
 		return closeAction;
 	}
 	
-	private JLabel getJLabel4() {
-		if(L_Age == null) {
-			L_Age = new JLabel();
-			L_Age.setText("Alter:");
-			L_Age.setPreferredSize(new java.awt.Dimension(84, 16));
-		}
-		return L_Age;
-	}
+	
 
 	private ButtonGroup getOB_Gender() {
 		if(OB_Gender == null) {
@@ -181,12 +189,6 @@ public class ConfigProfil extends JPanel {
 		return OB_Gender;
 	}
 	
-	private JLabel getJLabel4x() {
-		if(L_Age == null) {
-			L_Age = new JLabel();
-			L_Age.setText("$age$");
-		}
-		return L_Age;
-	}
+	
 
 }

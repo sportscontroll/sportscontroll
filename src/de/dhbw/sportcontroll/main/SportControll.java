@@ -21,7 +21,7 @@ public class SportControll {
 		MainFrame view = new MainFrame();
 		ActionController sportsControll = new ActionController(view);
 		
-		view.setVisible(true);		
+				
 		
 	}
 }

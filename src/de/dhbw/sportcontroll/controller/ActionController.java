@@ -39,24 +39,37 @@ public class ActionController {
 	
 	public ActionController( MainFrame view){		
 		
-		mView = view;
 		
+		//get connection to DB
 		try {
 			dh = DataHandler.getInstance();
 		} catch (SQLDriverNotFoundException | SQLConnectionException e) {
 			view.showError("fehler in der DatenBank! ");
 			e.printStackTrace();
 		}
+		// load DEFAULT User
+		try {
+			currentUser = dh.loadUserProfile(USER_ID);
+		} catch (SQLException e) {
+			System.out.println("Error loading user");
+			e.printStackTrace();
+		}
 		
+		//load View
+		mView = view;
 		
-		mView.showDateinMainFrame((new Date(System.currentTimeMillis()).getDateGreLiEnd()));
-		
-		//add actionlisteners
-		
+		//add actionlisteners		
 		mView.addCloseListener(new CloseListener());
 		mView.addNewEntryListener(new NewEntryListener());
 		mView.addButtonWorkoutTableActionListener(new ButtonWorkoutTableListener());
 		mView.addButtonConfigProfileActionListener(new ButtonProfileListener());
+		
+		//add Date to buttom of MainFrame
+		mView.showDateinMainFrame((new Date(System.currentTimeMillis()).getDateGreLiEnd()));
+		
+		
+		//set view visible
+		view.setVisible(true);
 		
 	}
 	

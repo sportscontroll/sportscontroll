@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import de.dhbw.sportcontroll.dataobjects.*;
+import de.dhbw.sportcontroll.exceptions.CantDeleteException;
 import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
 import de.dhbw.sportcontroll.exceptions.SQLQueryException;
 import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
@@ -155,7 +156,7 @@ public class DataHandler {
 	 * @throws SQLException
 	 * @throws SQLQueryException 
 	 */
-	public int SaveUserWeight(UserWeight uw) throws SQLException, SQLQueryException {		
+	public int saveUserWeight(UserWeight uw) throws SQLException, SQLQueryException {		
 		PreparedStatement pst = null;
 		ResultSet generatedKeys = null;
 	
@@ -197,6 +198,25 @@ public class DataHandler {
 			pst.close();			
 		}
 		return uw.getId();		
+	}
+	
+	/**
+	 * deletes a given UserWeight Object from the SQL DB an stets the five Object to null 
+	 * @param uw
+	 * @throws SQLException
+	 */
+	public void deleteUserWeight(UserWeight uw) throws SQLException {
+		PreparedStatement pst = null;
+		
+		if(uw != null && uw.getId() > 0) {
+		
+			pst = dbCon.prepareStatement("DELETE FROM weight rowid = ? ;");
+			
+			pst.setInt(1, uw.getId());
+			pst.execute();
+		}
+		uw = null;
+		pst.close();	
 	}
 	
 	
@@ -284,6 +304,24 @@ public class DataHandler {
 			pst.close();			
 		}
 		return sd.getId();		
+	}
+
+	/**
+	 * deletes a given sportdiscipline Object from the SQL DB an stets the five Object to null 
+	 * @param sd
+	 * @throws SQLException
+	 */
+	public void deleteSportDiscipline(SportDiscipline sd) throws SQLException {
+		PreparedStatement pst = null;
+		
+		if(sd != null && sd.getId() > 0) {
+		
+			pst = dbCon.prepareStatement("DELETE FROM sportdiscipline rowid = ? ;");			
+			pst.setInt(1, sd.getId());
+			pst.execute();
+		}
+		sd = null;
+		pst.close();	
 	}
 	
 	
@@ -428,7 +466,16 @@ public class DataHandler {
 			
 		}
 	}
-	
+	/**
+	 * Dummy function. this version is with one standard user which cannot be deleted
+	 * @param up
+	 * @throws CantDeleteException
+	 */
+	public void deleteUserProfile(UserProfile up) throws CantDeleteException {
+		System.out.println("dummy we don't delete user Data!");
+		if(up != null)
+			throw new CantDeleteException();
+	}
 	
 	/**
 	 * Loads complete Workoutlist
@@ -560,35 +607,42 @@ public class DataHandler {
 	
 	
 	
-	
-	
-	
-	public void createTables(){
+	/**
+	 *  created SQLTables and adds default user
+	 * @throws SQLException 
+	 */	
+	public void createTables() throws SQLException{
 		Statement stat;
-		try {
-			stat = dbCon.createStatement();		    
-		    stat.executeUpdate("create table userprofile ( name, birthday, gender, height);");
-		    stat.executeUpdate("create table weight (uid, date, weight);");
-		    stat.executeUpdate("create table workout ( uid, did, date, duration, heartrate, location, energy, comment);");
-		    stat.executeUpdate("create table sportdiscipline ( name, energyfactor);");
-		    
-	    } catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	   
+
+		stat = dbCon.createStatement();		    
+	    stat.executeUpdate("create table userprofile ( name, birthday, gender, height);");
+	    stat.executeUpdate("create table weight (uid, date, weight);");
+	    stat.executeUpdate("create table workout ( uid, did, date, duration, heartrate, location, energy, comment);");
+	    stat.executeUpdate("create table sportdiscipline ( name, energyfactor);");
+	
+	
+	
+		stat = dbCon.createStatement();		 
+		Date today = new Date();
+		long todayInMillisec = today.getTimeInMillis();
+		//profiles
+		stat.executeUpdate("insert into userprofile values ( 'Username', '" + todayInMillisec + " ', '', 0); ");
+								
+		
 	}
+	
 	
 	
 	/**
 	 * filling Db with dummy data
+	 * @throws SQLException 
 	 */
-	public void fillDB(){
+	public void fillDB() throws SQLException{
 		createTables();		
 		
-		Date today = new Date();
 		
 		Statement stat;
-		try {
+		
 			stat = dbCon.createStatement();
 			//profiles
 			stat.executeUpdate("insert into userprofile values ( 'Daniel', '01081987', 'male', 182); ");
@@ -616,11 +670,7 @@ public class DataHandler {
 			stat.executeUpdate("insert into workout values (1, 1,"+ (System.currentTimeMillis()/1000) +", (60*30), 'Parkschwimmbad' , 500); ");
 			stat.executeUpdate("insert into workout values (2, 1,"+ (System.currentTimeMillis()/1000) +", (60*30), 'Parkschwimmbad' , 500); ");
 			stat.executeUpdate("insert into workout values (2, 1,"+ (System.currentTimeMillis()/1000) +", (60*30), 'Parkschwimmbad' , 500); ");
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+		
 	}
 
 }
