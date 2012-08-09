@@ -5,6 +5,10 @@ import java.awt.font.*;
 import java.awt.geom.*;
 import javax.swing.*;
  
+/**
+ * This Panel draw Chart with Line2D
+ * @author Katja.Kaiser
+ */
 public class GraphingData extends JPanel {
 	//test data
     int[] data = {

@@ -18,7 +18,7 @@ import org.jfree.ui.RefineryUtilities;
 
 /**
  * Line Chart with jfree
- * 
+ * @author Katja.Kaiser
  */
 public class LineChart extends ApplicationFrame {
 // Testdata 

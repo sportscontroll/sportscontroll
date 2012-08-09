@@ -25,6 +25,10 @@ import javax.swing.WindowConstants;
 
 import org.jfree.ui.RefineryUtilities;
 
+/**
+* This is the Mainframe from here the user work. 
+* @author Katja.Kaiser
+*/
 
 
 /**
@@ -83,6 +87,7 @@ public class MainFrame extends JFrame {
 	private JButton B_TBMWorkout;
 	private JButton B_TBMCalc;
 	private JButton B_TBMStatistic;
+	private JButton B_TBMSave;
 	private JButton B_TBMNew;
 	private JToolBar ToolBarMain;
 	private JToolBar TB_Footer;
@@ -137,11 +142,20 @@ public class MainFrame extends JFrame {
 					B_TBMNew.setAction(getNewAction1());
 				}
 				{
+					//Old Statistic Button with getStatisticAction1 but save Picture
 					B_TBMStatistic = new JButton();
 					ToolBarMain.add(B_TBMStatistic);
-					B_TBMStatistic.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/stat.gif")));
+					B_TBMStatistic.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
 					B_TBMStatistic.setAction(getStatisticAction1());
 					B_TBMStatistic.setPreferredSize(new java.awt.Dimension(46, 52));
+				}
+				{	
+					//New Save Button with save Picture				
+					B_TBMSave = new JButton();
+					ToolBarMain.add(B_TBMSave);
+					B_TBMSave.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
+					//B_TBMSave.setAction(getSaveAction1());
+					B_TBMSave.setPreferredSize(new java.awt.Dimension(46, 52));
 				}
 				{
 					B_TBMCalc = new JButton();

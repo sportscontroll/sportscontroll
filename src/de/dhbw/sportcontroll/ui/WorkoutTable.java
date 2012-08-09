@@ -8,6 +8,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import de.dhbw.sportcontroll.main.Test;
 
@@ -31,11 +33,12 @@ public class WorkoutTable extends JPanel {
         JTable table = new JTable(new TableModel());
         table.setPreferredScrollableViewportSize(new Dimension(800,500));
         table.setFillsViewportHeight(true);
-        
-
+        // TableRowSorter sort table
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>();
+        table.setRowSorter( sorter );
+        sorter.setModel( new TableModel ());
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
-
         //Add the scroll pane to this panel.
         add(scrollPane);
     }
