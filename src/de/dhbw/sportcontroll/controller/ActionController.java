@@ -15,6 +15,7 @@ import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
 import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
 import de.dhbw.sportcontroll.exceptions.SQLQueryException;
+import de.dhbw.sportcontroll.ui.Calc;
 import de.dhbw.sportcontroll.ui.ConfigProfil;
 import de.dhbw.sportcontroll.ui.MainFrame;
 import de.dhbw.sportcontroll.ui.NewEntry;
@@ -63,6 +64,7 @@ public class ActionController {
 		mView.addNewEntryListener(new NewEntryListener());
 		mView.addButtonWorkoutTableActionListener(new ButtonWorkoutTableListener());
 		mView.addButtonConfigProfileActionListener(new ButtonProfileListener());
+		mView.addButtonCalculatorActionListener(new ButtonCalculatorListener());
 		
 		//add Date to buttom of MainFrame
 		mView.showDateinMainFrame((new Date(System.currentTimeMillis()).getDateGreLiEnd()));
@@ -131,6 +133,18 @@ public class ActionController {
 			mView.showPanelProfile();			
 		}
 	}
+	
+	
+	class ButtonCalculatorListener implements ActionListener	{
+		private static final long serialVersionUID = -4327610667106708501L;
+
+		public void actionPerformed(ActionEvent evt) {
+			System.out.println("shwo calc");
+			mView.showPanelClaculator();			
+		}
+		
+	}
+	
 	
 //	private AbstractAction getProfilConfigAction() {
 //		if(profilConfigAction == null) {

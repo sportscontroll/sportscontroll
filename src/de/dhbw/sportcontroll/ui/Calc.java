@@ -3,15 +3,16 @@ package de.dhbw.sportcontroll.ui;
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
 
+import de.dhbw.sportcontroll.controller.Calculate;
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
 import de.dhbw.sportcontroll.db.DataHandler;
-import de.dhbw.sportcontroll.main.Calculate;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -20,6 +21,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -40,7 +42,7 @@ import javax.swing.SwingUtilities;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-public class Calc extends javax.swing.JFrame {
+public class Calc extends JPanel {
 	
 	private JLabel L_Gender;
 	private JLabel L_Output;
@@ -66,30 +68,30 @@ public class Calc extends javax.swing.JFrame {
 	private JTextField TF_Weight;
 	private double iweight;
 
-	/**
-	* Auto-generated main method to display this JFrame
-	*/
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				Calc inst = new Calc();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
+//	/**
+//	* Auto-generated main method to display this JFrame
+//	*/
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				Calc inst = new Calc();
+//				inst.setLocationRelativeTo(null);
+//				inst.setVisible(true);
+//			}
+//		});
+//	}
 	
 	public Calc() {
-		super();
+		super(new AnchorLayout());
 		initGUI();
 	}
 	
 	private void initGUI() {
 		try {
-			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			//setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			AnchorLayout thisLayout = new AnchorLayout();
-			getContentPane().setLayout(thisLayout);
-			this.setTitle("Rechner");
+			//getContentPane().setLayout(thisLayout);
+			//this.setTitle("Rechner");
 			{
 				L_Output = new JLabel();
 				getContentPane().add(getCB_Discipline(), new AnchorConstraint(581, 855, 658, 623, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
@@ -174,7 +176,7 @@ public class Calc extends javax.swing.JFrame {
 				TF_Birthdate.setPreferredSize(new java.awt.Dimension(134,23));
 	//			double ibirtdate = Double.parseDouble(TF_Birthdate.getText());
 			}
-			pack();
+			
 			this.setSize(567, 338);
 		} catch (Exception e) {
 		    
@@ -187,6 +189,11 @@ public class Calc extends javax.swing.JFrame {
 		}
 	}
 	
+	private JPanel getContentPane() {
+		
+		return this;
+	}
+
 	private AbstractAction getCalcBMIAction() {
 		if(CalcBMIAction == null) {
 			CalcBMIAction = new AbstractAction("BMI", null) {

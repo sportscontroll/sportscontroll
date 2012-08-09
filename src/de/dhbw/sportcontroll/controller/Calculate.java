@@ -1,4 +1,4 @@
-package de.dhbw.sportcontroll.main;
+package de.dhbw.sportcontroll.controller;
 /**
  * Calculate provides the calc functions:
  *  - BodyMassIndex

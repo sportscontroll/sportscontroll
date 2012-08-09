@@ -25,6 +25,8 @@ import javax.swing.WindowConstants;
 
 import org.jfree.ui.RefineryUtilities;
 
+import de.dhbw.sportcontroll.controller.Calculate;
+
 /**
 * This is the Mainframe from here the user work. 
 * @author Katja.Kaiser
@@ -95,18 +97,18 @@ public class MainFrame extends JFrame {
 	private JPanel contentPanel;
 	
 	
-	/**
-	* Auto-generated main method to display this JFrame
-	*/
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				MainFrame inst = new MainFrame();
-				inst.setLocationRelativeTo(null);
-				inst.setVisible(true);
-			}
-		});
-	}
+//	/**
+//	* Auto-generated main method to display this JFrame
+//	*/
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(new Runnable() {
+//			public void run() {
+//				MainFrame inst = new MainFrame();
+//				inst.setLocationRelativeTo(null);
+//				inst.setVisible(true);
+//			}
+//		});
+//	}
 	
 	public MainFrame() {
 		super();
@@ -117,6 +119,7 @@ public class MainFrame extends JFrame {
 		
 		
 		WorkoutTable panelWorkoutTable = new WorkoutTable();
+		Calc panelCalculator = new Calc();
 		ConfigProfil panelProfile = new ConfigProfil();
 		
 		
@@ -146,9 +149,9 @@ public class MainFrame extends JFrame {
 					//Old Statistic Button with getStatisticAction1 but save Picture
 					B_TBMStatistic = new JButton();
 					ToolBarMain.add(B_TBMStatistic);
-					B_TBMStatistic.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
-					B_TBMStatistic.setAction(getStatisticAction1());
-					B_TBMStatistic.setPreferredSize(new java.awt.Dimension(46, 52));
+					B_TBMStatistic.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/stat.gif")));
+					
+					
 				}
 				{	
 					//New Save Button with save Picture				
@@ -163,7 +166,7 @@ public class MainFrame extends JFrame {
 					ToolBarMain.add(B_TBMCalc);
 					B_TBMCalc.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/Rechner.gif")));
 					B_TBMCalc.setPreferredSize(new java.awt.Dimension(46, 52));
-					B_TBMCalc.setAction(getCalcAction1());
+					
 				}
 				{
 					B_TBMWorkout = new JButton();
@@ -175,6 +178,7 @@ public class MainFrame extends JFrame {
 			{
 				contentPanel = new JPanel(new CardLayout());
 				contentPanel.add(panelWorkoutTable, "workout");
+				contentPanel.add(panelCalculator, "calculator");
 				contentPanel.add(panelProfile, "profile");
 				
 				
@@ -462,28 +466,8 @@ public class MainFrame extends JFrame {
 		return statisticAction1;
 	}
 	
-	private JPanel getPanel1() {
-		if(contentPanel == null) {
-			contentPanel = new JPanel(new CardLayout());
-		}
-		return contentPanel;
-	}
 	
-	private AbstractAction getCalcAction1() {
-		if(calcAction1 == null) {
-			calcAction1 = new AbstractAction("", new ImageIcon(getClass().getClassLoader().getResource("Picture/Rechner.gif"))) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = -4327610667106708501L;
-
-				public void actionPerformed(ActionEvent evt) {
-					Calc.main(null);
-				}
-			};
-		}
-		return calcAction1;
-	}
+	
 	
 	
 
@@ -530,11 +514,15 @@ public class MainFrame extends JFrame {
 		B_TBMWorkout.addActionListener(al);
 	}
 
+	public void addButtonCalculatorActionListener(ActionListener al) {
+		B_TBMCalc.addActionListener(al);
+		
+	}
 	
 	
 	public void addButtonConfigProfileActionListener(ActionListener al){
 		I_ProfilConfig.addActionListener(al);
-		B_TBMCalc.addActionListener(al);		
+		B_TBMStatistic.addActionListener(al);		
 		I_ProfilConfig.setAccelerator(KeyStroke.getKeyStroke("pressed N"));
 	}
 	
@@ -546,6 +534,10 @@ public class MainFrame extends JFrame {
 	public void showPanelProfile() {
 		CardLayout cl = (CardLayout)(contentPanel.getLayout());
         cl.show(contentPanel, "profile");		
+	}
+	public void showPanelClaculator() {
+		CardLayout cl = (CardLayout)(contentPanel.getLayout());
+        cl.show(contentPanel, "calculator");		
 	}
 		
 	
