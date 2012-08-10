@@ -44,7 +44,7 @@ public class Calculate {
 				
 					if (dweight>19 && dweight<300 && dsize>1.00 && dsize<3.00)	{					
 							BMIvalue = dweight/(dsize*dsize);
-							JOptionPane.showMessageDialog(null, "Der Bmi betr�gt "+BMIvalue+" ! ", "Berechneter BMI", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Der Bmi beträgt "+BMIvalue+" ! ", "Berechneter BMI", JOptionPane.ERROR_MESSAGE);
 					 }
 				return BMIvalue;
 				//Should BMI show in calc or statistic?

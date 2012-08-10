@@ -6,9 +6,12 @@ import com.cloudgarden.layout.AnchorLayout;
 import de.dhbw.sportcontroll.controller.Calculate;
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
 import de.dhbw.sportcontroll.db.DataHandler;
+import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
+import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
@@ -97,12 +100,13 @@ public class Calc extends JPanel {
 			{
 				L_Output = new JLabel();
 				getContentPane().add(getL_CalcPic(), new AnchorConstraint(75, 966, 658, 725, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				getContentPane().add(getCB_Discipline(), new AnchorConstraint(705, 665, 781, 316, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(getCB_Discipline(), new AnchorConstraint(708, 669, 782, 320, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				getContentPane().add(getL_discipline(), new AnchorConstraint(715, 289, 778, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				getContentPane().add(getTF_duration(), new AnchorConstraint(581, 665, 658, 316, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(getTF_duration(), new AnchorConstraint(584, 669, 661, 320, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				getContentPane().add(getL_duration(), new AnchorConstraint(605, 289, 668, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				getContentPane().add(L_Output, new AnchorConstraint(865, 418, 941, 198, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				
+				this.add(L_Output, new AnchorConstraint(457, 917, 534, 695, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				L_Output.setPreferredSize(new java.awt.Dimension(126, 26));
+
 			}
 //			{
 //				L_Age = new JLabel();
@@ -286,7 +290,7 @@ public class Calc extends JPanel {
 	private JTextField getTF_duration() {
 		if(TF_duration == null) {
 			TF_duration = new JTextField();
-			TF_duration.setPreferredSize(new java.awt.Dimension(192, 23));
+			TF_duration.setPreferredSize(new java.awt.Dimension(198, 26));
 		}
 		return TF_duration;
 	}
@@ -300,14 +304,22 @@ public class Calc extends JPanel {
 		return L_discipline;
 	}
 	
-	private JComboBox getCB_Discipline() {
+	private JComboBox getCB_Discipline() throws SQLException, SQLDriverNotFoundException, SQLConnectionException {
 		if(CB_Discipline == null) {
 			ComboBoxModel CB_DisciplineModel = 
 					new DefaultComboBoxModel(
-							new String[] { "Item One", "Item Two" });
+							new String[] { "Auswählen" });
 			CB_Discipline = new JComboBox();
 			CB_Discipline.setModel(CB_DisciplineModel);
-			CB_Discipline.setPreferredSize(new java.awt.Dimension(192, 23));
+			CB_Discipline.setPreferredSize(new java.awt.Dimension(198, 25));
+			
+			//Load Date from Database
+			ArrayList<SportDiscipline> sdList = DataHandler.getInstance().loadAllSportDisciplines();
+			
+			for (SportDiscipline sd : sdList) {
+				
+			     CB_Discipline.addItem(sd.getName());			 
+			}			 
 			//ArrayList sDiscipline = DataHandler.loadAllSportDisciplines();
 	
 		}

@@ -198,7 +198,7 @@ public class MainFrame extends JFrame {
 				TB_Footer.setPreferredSize(new java.awt.Dimension(584, 20));
 				{
 					/**Feature ShowTime and Date
-					 * Need: Date/Time Input
+					 *
 					 */
 					
 					B_TBF_Clock = new JLabel();
@@ -406,7 +406,7 @@ public class MainFrame extends JFrame {
 	
 	private AbstractAction getAboutAction() {
 		if(AboutAction == null) {
-			AboutAction = new AbstractAction("�ber", null) {
+			AboutAction = new AbstractAction("Über", null) {
 				/**
 				 * 
 				 */
@@ -432,7 +432,7 @@ public class MainFrame extends JFrame {
 
 				public void actionPerformed(ActionEvent evt) {
 					//PieChart during sportdicipline
-			        PieChart discipline = new PieChart("Durchfr�hrung Sportarten", "Prozentual Sportarten");
+			        PieChart discipline = new PieChart("Durchfrührung Sportarten", "Prozentual Sportarten");
 			        discipline.pack();			       
 			        discipline.setVisible(true);
 			        discipline.setLocation(5,110);
@@ -456,11 +456,6 @@ public class MainFrame extends JFrame {
 		return statisticAction1;
 	}
 	
-	
-	
-	
-	
-
 	public void showError(String string) {
 		// TODO Auto-generated method stub
 		

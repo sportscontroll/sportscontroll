@@ -15,6 +15,19 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
+
+/**
+* This code was edited or generated using CloudGarden's Jigloo
+* SWT/Swing GUI Builder, which is free for non-commercial
+* use. If Jigloo is being used commercially (ie, by a corporation,
+* company or business for any purpose whatever) then you
+* should purchase a license for each developer using Jigloo.
+* Please visit www.cloudgarden.com for details.
+* Use of Jigloo implies acceptance of these licensing terms.
+* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
+* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
+* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+*/
 public class ConfigProfil extends JPanel {
 	private JButton B_OK;
 	private JButton B_Cancel;
@@ -65,16 +78,17 @@ public class ConfigProfil extends JPanel {
 				L_Age.setText("$age$");
 					
 				RB_gender_w = new JRadioButton();
-				this.add(L_Age, new AnchorConstraint(158, 816, 219, 735, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(L_Age, new AnchorConstraint(175, 831, 235, 751, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				L_Age.setPreferredSize(new java.awt.Dimension(32, 18));
 				this.add(RB_gender_w, new AnchorConstraint(524, 524, 601, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				RB_gender_w.setText("Weiblich");
+				RB_gender_w.setText("weiblich");
 				RB_gender_w.setPreferredSize(new java.awt.Dimension(77, 20));
 				getOB_Gender().add(RB_gender_w);
 			}
 			{
 				RB_gender_m = new JRadioButton();
 				this.add(RB_gender_m, new AnchorConstraint(444, 524, 520, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				RB_gender_m.setText("mönnlich");
+				RB_gender_m.setText("männlich");
 				RB_gender_m.setPreferredSize(new java.awt.Dimension(77, 20));
 				getOB_Gender().add(RB_gender_m);
 			}
@@ -134,15 +148,15 @@ public class ConfigProfil extends JPanel {
 				
 				L_Age = new JLabel();
 				L_Age.setText("Alter:");
-				L_Age.setPreferredSize(new java.awt.Dimension(84, 16));
+				L_Age.setPreferredSize(new java.awt.Dimension(88, 18));
 					
 				
 				
 				L_Gender = new JLabel();
-				this.add(L_Gender, new AnchorConstraint(440, 292, 501, 74, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				this.add(L_Age, new AnchorConstraint(78, 923, 139, 704, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(L_Gender, new AnchorConstraint(451, 293, 511, 76, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(L_Age, new AnchorConstraint(95, 923, 155, 703, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				L_Gender.setText("Geschlecht:");
-				L_Gender.setPreferredSize(new java.awt.Dimension(84, 16));
+				L_Gender.setPreferredSize(new java.awt.Dimension(87, 18));
 			}
 			
 			setSize(400, 300);

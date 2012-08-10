@@ -42,7 +42,7 @@ public class NewProfil extends javax.swing.JFrame {
 	private JLabel L_Size;
 	private JTextField TF_Size;
 	private JLabel L_Birthday;
-	private JTextField jTextField1;
+	private JTextField TF_Birthdate;
 	private JLabel L_Name;
 	private JTextField TF_Name;
 
@@ -114,10 +114,10 @@ public class NewProfil extends javax.swing.JFrame {
 				B_Cancel.setAction(getCloseAction());
 			}
 			{
-				jTextField1 = new JTextField();
-				getContentPane().add(jTextField1, new AnchorConstraint(181, 673, 269, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				jTextField1.setText("$birthday$");
-				jTextField1.setPreferredSize(new java.awt.Dimension(134, 23));
+				TF_Birthdate = new JTextField();
+				getContentPane().add(TF_Birthdate, new AnchorConstraint(181, 673, 269, 324, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				TF_Birthdate.setText("$birthday$");
+				TF_Birthdate.setPreferredSize(new java.awt.Dimension(134, 23));
 			}
 			{
 				L_Birthday = new JLabel();
