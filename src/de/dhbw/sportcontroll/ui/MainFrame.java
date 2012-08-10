@@ -151,14 +151,14 @@ public class MainFrame extends JFrame {
 					B_TBMNew.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/New.gif")));
 					
 				}
-				{
-					//Old Statistic Button with getStatisticAction1 but save Picture
-					B_TBMStatistic = new JButton();
-					ToolBarMain.add(B_TBMStatistic);
-					B_TBMStatistic.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/stat.gif")));
-					
-					
-				}
+//				{
+//					//Old Statistic Button with getStatisticAction1 
+//					B_TBMStatistic = new JButton();
+//					ToolBarMain.add(B_TBMStatistic);
+//					B_TBMStatistic.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/stat.gif")));
+//					
+//					
+//				}
 				{	
 					//New Save Button with save Picture				
 					B_TBMSave = new JButton();
@@ -422,39 +422,39 @@ public class MainFrame extends JFrame {
 	
 	
 	
-	private AbstractAction getStatisticAction1() {
-		if(statisticAction1 == null) {
-			statisticAction1 = new AbstractAction("", new ImageIcon(getClass().getClassLoader().getResource("Picture/stat.gif"))) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 8997818017855334640L;
-
-				public void actionPerformed(ActionEvent evt) {
-					//PieChart during sportdicipline
-			        PieChart discipline = new PieChart("Durchfrührung Sportarten", "Prozentual Sportarten");
-			        discipline.pack();			       
-			        discipline.setVisible(true);
-			        discipline.setLocation(5,110);
-			        discipline.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					
-			        //LineChart kilometer
-			        LineChart kilometer = new LineChart("Kilometer");
-			        kilometer.pack();
-		            RefineryUtilities.centerFrameOnScreen(kilometer);
-		            kilometer.setVisible(true);
-		            kilometer.setLocation(523,110);
-		            kilometer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-					
-		            GraphingData.main(null);
-		            
-
-			        
-				}
-			};
-		}
-		return statisticAction1;
-	}
+//	/private AbstractAction getStatisticAction1() {
+//		if(statisticAction1 == null) {
+//			statisticAction1 = new AbstractAction("", new ImageIcon(getClass().getClassLoader().getResource("Picture/stat.gif"))) {
+//				/**
+//				 * 
+//				 */
+//				private static final long serialVersionUID = 8997818017855334640L;
+//
+//				public void actionPerformed(ActionEvent evt) {
+//					//PieChart during sportdicipline
+//			        PieChart discipline = new PieChart("Durchfrührung Sportarten", "Prozentual Sportarten");
+//			        discipline.pack();			       
+//			        discipline.setVisible(true);
+//			        discipline.setLocation(5,110);
+//			        discipline.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//					
+//			        //LineChart kilometer
+//			        LineChart kilometer = new LineChart("Kilometer");
+//			        kilometer.pack();
+//		            RefineryUtilities.centerFrameOnScreen(kilometer);
+//		            kilometer.setVisible(true);
+//		            kilometer.setLocation(523,110);
+//		            kilometer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//					
+//		            GraphingData.main(null);
+//		            
+//
+//			        
+//				}
+//			};
+//		}
+//		return statisticAction1;
+//	}
 	
 	public void showError(String string) {
 		// TODO Auto-generated method stub
