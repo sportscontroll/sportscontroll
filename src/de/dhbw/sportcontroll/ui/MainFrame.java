@@ -263,18 +263,18 @@ public class MainFrame extends JFrame {
 						I_ProfilConfig.setText("Einstellungen");
 						
 					}
-					{
-						I_ProfileChange = new JMenuItem();
-						M_Profil.add(I_ProfileChange);
-						I_ProfileChange.setText("Profil wechseln");
-						I_ProfileChange.setAction(getProfilChangeAction());
-					}
-					{
-						I_ProfileNew = new JMenuItem();
-						M_Profil.add(I_ProfileNew);
-						I_ProfileNew.setText("Neues Profil");
-						I_ProfileNew.setAction(getProfilNewAction());
-					}
+//					{
+//						I_ProfileChange = new JMenuItem();
+//						M_Profil.add(I_ProfileChange);
+//						I_ProfileChange.setText("Profil wechseln");
+//						I_ProfileChange.setAction(getProfilChangeAction());
+//					}
+//					{
+//						I_ProfileNew = new JMenuItem();
+//						M_Profil.add(I_ProfileNew);
+//						I_ProfileNew.setText("Neues Profil");
+//						I_ProfileNew.setAction(getProfilNewAction());
+//					}
 				}
 //				{
 //					M_Config = new JMenu();
