@@ -11,6 +11,7 @@ package de.dhbw.sportcontroll.controller;
 
 
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -87,7 +88,7 @@ public class Calculate {
 				return 0;
 				}
 			
-			public static double calconsumption (String sduration, String sDiscipline, String sweight)
+			public static double calconsumption (String sduration, String sdiscipline, String sweight)
 			
 			{
 				/**Calc the calconsumption while train
@@ -104,11 +105,16 @@ public class Calculate {
 				double dduration= 0;
 				
 				dweight = Checker.CheckWeight(sweight);
+				//TODO
 				//Met = //Search sDiscipline gebe MET ZUR�CK
 				// test met = 2
 				double met = 2 ;
-				// double met = SportDiscipline.getEnergyfactor(int id);
-			//	getDataHanndler(loadDiscipline.getEnergyfactor);
+				int id = 1;
+
+			//	SportDiscipline sdList = DataHandler.getInstance().loadSportDiscipline(1);	
+			 
+			//	double met = SportDiscipline.getEnergyfactor();
+			
 				double calocon = met*dweight*dduration ;
 				JOptionPane.showMessageDialog(null, calocon , "Kalorie", JOptionPane.ERROR_MESSAGE);
 				
