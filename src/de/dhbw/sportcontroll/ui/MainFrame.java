@@ -509,7 +509,7 @@ public class MainFrame extends JFrame {
 	
 	public void addButtonConfigProfileActionListener(ActionListener al){
 		I_ProfilConfig.addActionListener(al);
-		B_TBMStatistic.addActionListener(al);		
+	//	B_TBMStatistic.addActionListener(al);		
 		I_ProfilConfig.setAccelerator(KeyStroke.getKeyStroke("pressed N"));
 	}
 	

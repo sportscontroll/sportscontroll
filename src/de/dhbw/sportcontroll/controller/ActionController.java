@@ -98,7 +98,7 @@ public class ActionController {
 	class ButtonWorkoutTableListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Show WorkoutTabl e" + e.getActionCommand());
+			System.out.println("Show WorkoutTable" + e.getActionCommand());
 			WorkoutTable wt = new WorkoutTable();
 			wt.setVisible(true);
 			wt.setOpaque(true);

@@ -21,7 +21,10 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
+import sun.security.action.GetBooleanAction;
+
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
+import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
 import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
 
@@ -213,6 +216,7 @@ public class Calculate {
 			{
 				// CheckEnergyfactor not implement
 				int imet= 0;
+			//	imet=sd1.getEnergyfactor();
 				
 				
 				return imet;				
