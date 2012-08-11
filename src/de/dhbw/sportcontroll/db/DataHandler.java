@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import sun.nio.cs.US_ASCII;
+
+import de.dhbw.sportcontroll.controller.ActionController;
 import de.dhbw.sportcontroll.dataobjects.*;
 import de.dhbw.sportcontroll.exceptions.SQLCantDeleteException;
 import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
@@ -62,7 +65,7 @@ public class DataHandler {
 	 * closes the DB-Connection to the SQLite-File
 	 * @throws SQLConnectionException
 	 */
-	public static void cleanUp() throws SQLConnectionException  {
+	public void cleanUp() throws SQLConnectionException  {
 		if(dh != null) {
 			if(dh.dbCon != null) {
 				try {
@@ -118,10 +121,48 @@ public class DataHandler {
 			}
 			throw new SQLConnectionException(e);
 		}
+		try {
+			createTables();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
 	
+	/**
+	 *  created SQLTables and adds default user
+	 * @throws SQLException 
+	 */	
+	public void createTables() throws SQLException{
+		Statement stat;
+		ResultSet rs;
+		boolean defaultExists = false;
+
+		stat = dbCon.createStatement();		    
+	    stat.executeUpdate("CREATE TABLE IF NOT EXISTS userprofile ( name, birthday, gender, height);");
+	    stat.executeUpdate("CREATE TABLE IF NOT EXISTS weight (uid, date, weight);");
+	    stat.executeUpdate("CREATE TABLE IF NOT EXISTS workout ( uid, did, date, duration, heartrate, location, energy, comment);");
+	    stat.executeUpdate("CREATE TABLE IF NOT EXISTS sportdiscipline ( name, energyfactor);");
+	
+	    
+		stat = dbCon.createStatement();	
+		rs = stat.executeQuery("SELECT rowid FROM userprofile WHERE rowid = " + ActionController.USER_ID + " ; ");
+		while(rs.next()){
+			defaultExists = true;
+		}
+		if(defaultExists == false){			
+		
+			Date today = new Date();
+			long todayInMillisec = today.getTimeInMillis();
+			//profiles
+			stat.executeUpdate("insert into userprofile values ( 'Username', '" + todayInMillisec + " ', '', 0); ");
+		}
+								
+		
+	}	
+
 	/**
 	 * loads complete WeightHistory from a given UserId
 	 * @param profileId
@@ -444,10 +485,7 @@ public class DataHandler {
 	        } else {
 	            throw new SQLException("Creating user failed, no generated key obtained.");
 	        }
-	        //add first Weight if existts
-	        if(!p.getUserWeightHistorie().isEmpty()){
-	        	
-	        }
+	       
 	        
 	        // new user, so no workouts yet
 
@@ -465,6 +503,23 @@ public class DataHandler {
 			pst.close();
 			
 		}
+		
+		if(p.getUserWeightHistorie() != null && !p.getUserWeightHistorie().isEmpty()){
+			for(UserWeight uw : p.getUserWeightHistorie()){
+				if(uw.getUserId() == 0)
+					uw.setUserId(p.getId());
+				dh.saveUserWeight(uw);
+			}
+		}
+		
+		if(p.getWorkouts() != null && !p.getWorkouts().isEmpty()) {
+			for(Workout w : p.getWorkouts()){
+				if(w.getUid() == 0)
+					w.setUid(p.getId());
+				dh.saveWorkout(w);
+			}
+		}
+			
 	}
 	/**
 	 * Dummy function. this version is with one standard user which cannot be deleted
@@ -598,80 +653,6 @@ public class DataHandler {
 			pst.close();			
 		}
 		return w.getId();		
-	}
-
-
-	
-
-	
-
-	
-	
-	
-	/**
-	 *  created SQLTables and adds default user
-	 * @throws SQLException 
-	 */	
-	public void createTables() throws SQLException{
-		Statement stat;
-
-		stat = dbCon.createStatement();		    
-	    stat.executeUpdate("create table userprofile ( name, birthday, gender, height);");
-	    stat.executeUpdate("create table weight (uid, date, weight);");
-	    stat.executeUpdate("create table workout ( uid, did, date, duration, heartrate, location, energy, comment);");
-	    stat.executeUpdate("create table sportdiscipline ( name, energyfactor);");
-	
-	
-	
-		stat = dbCon.createStatement();		 
-		Date today = new Date();
-		long todayInMillisec = today.getTimeInMillis();
-		//profiles
-		stat.executeUpdate("insert into userprofile values ( 'Username', '" + todayInMillisec + " ', '', 0); ");
-								
-		
-	}
-	
-	
-	
-	/**
-	 * filling Db with dummy data
-	 * @throws SQLException 
-	 */
-	public void fillDB() throws SQLException{
-		createTables();		
-		
-		
-		Statement stat;
-		
-			stat = dbCon.createStatement();
-			//profiles
-			stat.executeUpdate("insert into userprofile values ( 'Daniel', '01081987', 'male', 182); ");
-			stat.executeUpdate("insert into userprofile values ('Katja', '20101992', 'female', 169); ");
-
-			//weights
-			stat.executeUpdate("insert into weight (uid, date, weight) values (1, "+ (int)(Math.random() * 100000000.0) +", 75); ");
-			stat.executeUpdate("insert into weight (uid, date, weight) values (1, "+ (int)(Math.random() * 100000000.0) +", 75); ");
-			stat.executeUpdate("insert into weight (uid, date, weight) values (1, "+ (int)(Math.random() * 100000000.0) +", 75); ");
-			stat.executeUpdate("insert into weight (uid, date, weight) values (1, "+ (int)(Math.random() * 100000000.0) +", 75); ");
-			
-			stat.executeUpdate("insert into weight (uid, date, weight) values (2, "+ (int)(Math.random() * 100000000.0) +", 75); ");
-			stat.executeUpdate("insert into weight (uid, date, weight) values (2, "+ (int)(Math.random() * 100000000.0) +", 75); ");
-			stat.executeUpdate("insert into weight (uid, date, weight) values (2, "+ (int)(Math.random() * 100000000.0) +", 75); ");
-			stat.executeUpdate("insert into weight (uid, date, weight) values (2, "+ (int)(Math.random() * 100000000.0) +", 75); ");	
-			
-			
-			//dicipline
-			stat.executeUpdate("insert into sportdiscipline (name, energyFactor) values ('Schwimmen', 21); ");
-			stat.executeUpdate("insert into sportdiscipline (name, energyFactor) values ('Laufen', 25); ");
-			stat.executeUpdate("insert into sportdiscipline (name, energyFactor) values ('Radfahren', 18); ");
-			
-			//workouts
-			stat.executeUpdate("insert into workout values (1, 1,"+ (System.currentTimeMillis()/1000) +", (60*30), 'Parkschwimmbad' , 500); ");
-			stat.executeUpdate("insert into workout values (1, 1,"+ (System.currentTimeMillis()/1000) +", (60*30), 'Parkschwimmbad' , 500); ");
-			stat.executeUpdate("insert into workout values (2, 1,"+ (System.currentTimeMillis()/1000) +", (60*30), 'Parkschwimmbad' , 500); ");
-			stat.executeUpdate("insert into workout values (2, 1,"+ (System.currentTimeMillis()/1000) +", (60*30), 'Parkschwimmbad' , 500); ");
-		
 	}
 
 }

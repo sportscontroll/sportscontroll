@@ -172,20 +172,27 @@ public class ActionController {
 		private void handleCloseAction(){
 			System.out.println("ich wurde geschlossen");
 			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			try {
 				dh.saveUserProfile(currentUser);
 			} catch (SQLException | SQLQueryException e1) {
 				mView.showError("Fehler beim Speichern! das ist nicht gut!");
 				e1.printStackTrace();
 			}
+			
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 	    	finally{
 	    		mView.setVisible(false);
+	    		try {
+					dh.cleanUp();
+				} catch (SQLConnectionException e) {
+					e.printStackTrace();
+				}
 	    		System.exit(0);	    		
 	    	}
 			
