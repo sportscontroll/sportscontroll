@@ -107,8 +107,8 @@ public class Calculate {
 				//Met = //Search sDiscipline gebe MET ZUR�CK
 				// test met = 2
 				double met = 2 ;
-			//	double met = SportDiscipline.getEnergyfactor(sDiscipline);
-				
+				// double met = SportDiscipline.getEnergyfactor(int id);
+			//	getDataHanndler(loadDiscipline.getEnergyfactor);
 				double calocon = met*dweight*dduration ;
 				JOptionPane.showMessageDialog(null, calocon , "Kalorie", JOptionPane.ERROR_MESSAGE);
 				

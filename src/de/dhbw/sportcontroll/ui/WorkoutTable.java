@@ -1,25 +1,26 @@
 package de.dhbw.sportcontroll.ui;
 
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.WindowConstants;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import de.dhbw.sportcontroll.dataobjects.Workout;
 import de.dhbw.sportcontroll.main.Test;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class WorkoutTable extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8773616597956968154L;
+
 	/**
 	 * Show the workouts in table form.
 	 * Funktion: Sort, change Rows
@@ -27,17 +28,21 @@ public class WorkoutTable extends JPanel {
 	 * @return Workout as table
 	 */
     private boolean DEBUG = false;
+    
+    TableModel tableModel;
 
     public WorkoutTable() {
         super(new GridLayout(1,0));
 
+        this.tableModel = new TableModel ();
+        
         JTable table = new JTable(new TableModel());
         table.setPreferredScrollableViewportSize(new Dimension(800,500));
         table.setFillsViewportHeight(true);
         // TableRowSorter sort table
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>();
         table.setRowSorter( sorter );
-        sorter.setModel( new TableModel ());
+        sorter.setModel( tableModel);
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
         //Add the scroll pane to this panel.
@@ -143,13 +148,16 @@ public class WorkoutTable extends JPanel {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
-    }
+    
+    /**
+     * sets all Workouts to the Table
+     * @param workouts
+     */
+	public void setTableData(ArrayList<Workout> workouts) {
+		int i = 1;
+		for(Workout w : workouts){
+		 System.out.println(workouts);
+		}
+		
+	}
 }

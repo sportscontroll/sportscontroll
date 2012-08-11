@@ -16,6 +16,10 @@ public class UserWeight implements Comparable<UserWeight>{
 		this.weight = weight;
 		this.date = new Date(date);
 	}
+	public UserWeight(Date date, double weight){
+		this.weight = weight;
+		this.date = date;
+	}
 	
 	/**
 	 * @return the id

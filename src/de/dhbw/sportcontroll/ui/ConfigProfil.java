@@ -30,7 +30,6 @@ import javax.swing.SwingUtilities;
 */
 public class ConfigProfil extends JPanel {
 	private JButton B_OK;
-	private JButton B_Cancel;
 	private JLabel L_Gender;
 	private JLabel L_Age;
 	private JLabel L_Size;
@@ -106,17 +105,10 @@ public class ConfigProfil extends JPanel {
 			}
 			{
 				B_OK = new JButton();
-				this.add(B_OK, new AnchorConstraint(891, 654, 979, 381, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(B_OK, new AnchorConstraint(878, 958, 965, 686, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				B_OK.setText("OK");
-				B_OK.setPreferredSize(new java.awt.Dimension(105, 23));
+				B_OK.setPreferredSize(new java.awt.Dimension(109, 26));
 				B_OK.setAction(getOKAction());
-			}
-			{
-				B_Cancel = new JButton();
-				this.add(B_Cancel, new AnchorConstraint(891, 941, 979, 667, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				B_Cancel.setText("Abbrechen");
-				B_Cancel.setPreferredSize(new java.awt.Dimension(105, 23));
-				B_Cancel.setAction(getCloseAction());
 			}
 			{
 				TF_Birthdate = new JTextField();
