@@ -60,7 +60,15 @@ public class Test {
 	    	
 			return wo;
 	    }
-	    
+		
+	    public void setTableData(ArrayList<Workout> workouts) {
+			int i = 1;
+			for(Workout w : workouts){
+				w.getId();
+				System.out.println(w.getId());
+				}
+	}
+	      
 	    public static String [] GETColumnName()
 	    {
 	    	/**

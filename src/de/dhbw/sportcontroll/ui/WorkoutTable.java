@@ -2,7 +2,10 @@ package de.dhbw.sportcontroll.ui;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -39,6 +42,8 @@ public class WorkoutTable extends JPanel {
         JTable table = new JTable(new TableModel());
         table.setPreferredScrollableViewportSize(new Dimension(800,500));
         table.setFillsViewportHeight(true);
+        table.addMouseListener(new NewMouseListener());
+        
         // TableRowSorter sort table
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>();
         table.setRowSorter( sorter );
@@ -47,6 +52,8 @@ public class WorkoutTable extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
         //Add the scroll pane to this panel.
         add(scrollPane);
+        
+        
     }
 
     class TableModel extends AbstractTableModel {
@@ -153,11 +160,41 @@ public class WorkoutTable extends JPanel {
      * sets all Workouts to the Table
      * @param workouts
      */
+	
 	public void setTableData(ArrayList<Workout> workouts) {
 		int i = 1;
+		// ArrayList<String[][]> list=new ArrayList<String[][]>();
 		for(Workout w : workouts){
-		 System.out.println(workouts);
-		}
+		//	list.addAll((Collection<? extends String[][]>) w);
+		//	System.out.println(list);
+			   }
+		
+			//tableModel.setValueAt(value, row, col);
 		
 	}
+    /*
+     * DoubleClick Mouse Listener
+     * start 
+     */
+//    public class TableRowListener extends MouseAdapter{
+//    	
+//    	public void mouseClicked(MouseEvent e){
+//    		if (e.getClickCount() == 2) { 
+//    			
+//    			System.out.println("Öffne Eintrag");
+//    			int row = table.getSelectedRow();
+//               /*
+//                *  Wenn wir die die ID mit einbinden! Sonst weiß ich nicht wie der den Eintrag nach
+//                *  dem Sortieren noch identifizieren sollten???
+//                */
+//    			
+//    			int iid = (Integer) table.getValueAt(row, 0);
+//                System.out.println("ID:" + iid);
+//    			// Start New Entry with ID
+//    		}
+//    	}
+    }
+
+    
 }
+
