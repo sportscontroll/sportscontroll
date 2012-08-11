@@ -1,19 +1,32 @@
 package de.dhbw.sportcontroll.ui;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.InputMethodListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.EventObject;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.CellEditorListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 
 import de.dhbw.sportcontroll.dataobjects.Workout;
 import de.dhbw.sportcontroll.main.Test;
@@ -32,18 +45,17 @@ public class WorkoutTable extends JPanel {
 	 */
     private boolean DEBUG = false;
     
-    TableModel tableModel;
+    private TableModel tableModel;
+    private JTable table;
 
     public WorkoutTable() {
         super(new GridLayout(1,0));
 
         this.tableModel = new TableModel ();
+        table = new JTable(new TableModel());
         
-        JTable table = new JTable(new TableModel());
         table.setPreferredScrollableViewportSize(new Dimension(800,500));
         table.setFillsViewportHeight(true);
-        table.addMouseListener(new NewMouseListener());
-        
         // TableRowSorter sort table
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>();
         table.setRowSorter( sorter );
@@ -52,12 +64,20 @@ public class WorkoutTable extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
         //Add the scroll pane to this panel.
         add(scrollPane);
+         
+        
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         
         
     }
 
     class TableModel extends AbstractTableModel {
-        private String[] columnNames = Test.GETColumnName();
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 3479829496492026281L;
+
+		private String[] columnNames = Test.GETColumnName();
         
         private Object [][] data = Test.GETWorkout();
         	
@@ -131,6 +151,7 @@ public class WorkoutTable extends JPanel {
             }
             System.out.println("--------------------------");
         }
+        
     }
 
     /**
@@ -160,41 +181,20 @@ public class WorkoutTable extends JPanel {
      * sets all Workouts to the Table
      * @param workouts
      */
-	
 	public void setTableData(ArrayList<Workout> workouts) {
 		int i = 1;
-		// ArrayList<String[][]> list=new ArrayList<String[][]>();
 		for(Workout w : workouts){
-		//	list.addAll((Collection<? extends String[][]>) w);
-		//	System.out.println(list);
-			   }
-		
-			//tableModel.setValueAt(value, row, col);
+			//.tableModel.setValueAt(value, row, col)
+		}
 		
 	}
-    /*
-     * DoubleClick Mouse Listener
-     * start 
-     */
-//    public class TableRowListener extends MouseAdapter{
-//    	
-//    	public void mouseClicked(MouseEvent e){
-//    		if (e.getClickCount() == 2) { 
-//    			
-//    			System.out.println("Öffne Eintrag");
-//    			int row = table.getSelectedRow();
-//               /*
-//                *  Wenn wir die die ID mit einbinden! Sonst weiß ich nicht wie der den Eintrag nach
-//                *  dem Sortieren noch identifizieren sollten???
-//                */
-//    			
-//    			int iid = (Integer) table.getValueAt(row, 0);
-//                System.out.println("ID:" + iid);
-//    			// Start New Entry with ID
-//    		}
-//    	}
-    }
-
-    
+	
+	
+	public void addTableMouseAdapter(MouseAdapter ma){
+		table.addMouseListener(ma);
+	}
+	
+	
+	
+	
 }
-

@@ -9,6 +9,9 @@ import java.util.EventListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import de.dhbw.sportcontroll.dataobjects.Date;
 import de.dhbw.sportcontroll.dataobjects.UserProfile;
@@ -65,17 +68,6 @@ public class ActionController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		if(currentUser.getWorkouts() == null)
-			try {
-				currentUser.setWorkouts(dh.loadUserWorkouts(currentUser.getId()));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
-					
-		//add some DummyData
-		//addDummyData();
 		
 					
 		//add some DummyData
@@ -90,6 +82,8 @@ public class ActionController {
 		mView.addButtonWorkoutTableActionListener(new ButtonWorkoutTableListener());
 		mView.addButtonConfigProfileActionListener(new ButtonProfileListener());
 		mView.addButtonCalculatorActionListener(new ButtonCalculatorListener());
+		mView.addSaveListener(new SaveActionListener());
+		mView.addTableMouseAdapter(new TableMouseAdapter());
 		
 		//add Date to buttom of MainFrame
 		mView.showDateinMainFrame((new Date(System.currentTimeMillis()).getDateGreLiEnd()));
@@ -99,7 +93,7 @@ public class ActionController {
 		//set view visible
 		view.setVisible(true);
 		
-	} 
+	}
 	
 	
 	private void addDummyData(){
@@ -122,6 +116,8 @@ public class ActionController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		
 		
 		
@@ -165,8 +161,6 @@ public class ActionController {
 	
 	
 	class ButtonCalculatorListener implements ActionListener {
-		private static final long serialVersionUID = -4327610667106708501L;
-
 		public void actionPerformed(ActionEvent evt) {
 			System.out.println("shwo calc");
 			mView.showPanelClaculator();			
@@ -174,8 +168,45 @@ public class ActionController {
 		
 	}
 	
+	class SaveActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent evt) {
+			System.out.println("Save Data");
+			try {
+				dh.saveUserProfile(currentUser);
+			} catch (SQLException | SQLQueryException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		}
+		
+	}
 	
-
+	/**
+	 * TableMouseAdapter is used to determine wicht row is clicked to load and edit the selected 
+	 * Workout
+	 * @author schoko
+	 *
+	 */	
+	class TableMouseAdapter extends MouseAdapter{
+		
+		public void mouseClicked(MouseEvent e) {
+		      if (e.getClickCount() == 2) {
+		         JTable target = (JTable)e.getSource();
+		         int row = target.getSelectedRow();
+		         int column = target.getSelectedColumn();
+		         
+		         String value = (String)target.getValueAt(row, 0);
+		         System.out.println("row " + row + " value="+value);
+		         
+		         
+		         // do some action
+		         }
+		   }
+		 				
+	}
+	
+	
+	
 
 	
 	public class CloseListener implements WindowListener, ActionListener {
@@ -183,20 +214,27 @@ public class ActionController {
 		private void handleCloseAction(){
 			System.out.println("ich wurde geschlossen");
 			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			try {
 				dh.saveUserProfile(currentUser);
 			} catch (SQLException | SQLQueryException e1) {
 				mView.showError("Fehler beim Speichern! das ist nicht gut!");
 				e1.printStackTrace();
 			}
+			
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 	    	finally{
 	    		mView.setVisible(false);
+	    		try {
+					dh.cleanUp();
+				} catch (SQLConnectionException e) {
+					e.printStackTrace();
+				}
 	    		System.exit(0);	    		
 	    	}
 			
