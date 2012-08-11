@@ -484,6 +484,7 @@ public class DataHandler {
 	 * @throws SQLException
 	 */
 	public ArrayList<Workout> loadUserWorkouts(int profileId)throws SQLException {
+		System.out.println("Loading Workouts from UserId: " + profileId);
 		Statement st = dbCon.createStatement();
 		ArrayList<Workout> workout = new ArrayList<Workout>();
 		

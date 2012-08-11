@@ -82,6 +82,15 @@ public class UserProfile {
 	public void setUserWeightHistorie(ArrayList<UserWeight> userWeightHistorie) {
 		this.weightHistorie = userWeightHistorie;
 	}
+	
+	/**
+	 * adding new UserWeight object to ArrayList
+	 * @param uw
+	 */
+	public void addUserWeight(UserWeight uw){
+		this.weightHistorie.add(uw);
+	}
+	
 	/**
 	 * @return the workouts
 	 */
@@ -95,6 +104,17 @@ public class UserProfile {
 		this.workouts = workouts;
 	}
 
+	/**
+	 * not jet implemented
+	 * FIXME
+	 * @param w
+	 */
+	public void addWorkout(Workout w){
+		w.setUid(this.id);
+		w.setConsumedCalories(w.calculateConsumedCalories());
+		
+	}
+	
 	/**
 	 * @return the gender
 	 */

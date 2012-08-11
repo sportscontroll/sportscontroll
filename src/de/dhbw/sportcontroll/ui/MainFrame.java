@@ -3,11 +3,13 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.Desktop;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.EventListener;
 
 import javax.swing.AbstractAction;
@@ -28,6 +30,7 @@ import javax.swing.WindowConstants;
 import org.jfree.ui.RefineryUtilities;
 
 import de.dhbw.sportcontroll.controller.Calculate;
+import de.dhbw.sportcontroll.dataobjects.Workout;
 
 /**
 * This is the Mainframe from here the user work. 
@@ -98,6 +101,10 @@ public class MainFrame extends JFrame {
 	private JLabel B_TBF_Clock;
 	private JPanel contentPanel;
 	
+	WorkoutTable panelWorkoutTable;
+	Calc panelCalculator;
+	ConfigProfil panelProfile;
+	
 	
 //	/**
 //	* Auto-generated main method to display this JFrame
@@ -120,9 +127,9 @@ public class MainFrame extends JFrame {
 	private void initGUI() {
 		
 		
-		WorkoutTable panelWorkoutTable = new WorkoutTable();
-		Calc panelCalculator = new Calc();
-		ConfigProfil panelProfile = new ConfigProfil();
+		panelWorkoutTable = new WorkoutTable();
+		panelCalculator = new Calc();
+		panelProfile = new ConfigProfil();
 		
 		
 		try {
@@ -473,6 +480,16 @@ public class MainFrame extends JFrame {
 		B_TBF_Clock.setVisible(true);
 	}
 	
+	/**
+	 * set Entries in Table
+	 * @param workouts
+	 */
+	public void addDataToTable(ArrayList<Workout> workouts) {
+		panelWorkoutTable.setTableData(workouts);
+		
+	}
+	
+	
 	
 	/**
 	 * addActionlistener to CloseButton 
@@ -509,7 +526,7 @@ public class MainFrame extends JFrame {
 	
 	public void addButtonConfigProfileActionListener(ActionListener al){
 		I_ProfilConfig.addActionListener(al);
-		B_TBMStatistic.addActionListener(al);		
+	//	B_TBMStatistic.addActionListener(al);		
 		I_ProfilConfig.setAccelerator(KeyStroke.getKeyStroke("pressed N"));
 	}
 	
@@ -526,6 +543,8 @@ public class MainFrame extends JFrame {
 		CardLayout cl = (CardLayout)(contentPanel.getLayout());
         cl.show(contentPanel, "calculator");		
 	}
+
+	
 		
 	
 	
