@@ -6,6 +6,8 @@ import java.awt.Desktop;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +30,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import org.jfree.ui.RefineryUtilities;
+
 
 import de.dhbw.sportcontroll.controller.Calculate;
 import de.dhbw.sportcontroll.dataobjects.Workout;
@@ -485,11 +488,17 @@ public class MainFrame extends JFrame {
 	 * @param workouts
 	 */
 	public void addDataToTable(ArrayList<Workout> workouts) {
-		panelWorkoutTable.setTableData(workouts);
+		panelWorkoutTable.setTableData(workouts);		
 		
 	}
 	
-	
+	/**
+	 * adding Mouselistener to JTable
+	 * @param ml
+	 */
+	public void addTableMouseAdapter(MouseAdapter ma) {
+		panelWorkoutTable.addTableMouseAdapter(ma);
+	}
 	
 	/**
 	 * addActionlistener to CloseButton 

@@ -9,6 +9,9 @@ import java.util.EventListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import de.dhbw.sportcontroll.dataobjects.Date;
 import de.dhbw.sportcontroll.dataobjects.UserProfile;
@@ -80,6 +83,7 @@ public class ActionController {
 		mView.addButtonConfigProfileActionListener(new ButtonProfileListener());
 		mView.addButtonCalculatorActionListener(new ButtonCalculatorListener());
 		mView.addSaveListener(new SaveActionListener());
+		mView.addTableMouseAdapter(new TableMouseAdapter());
 		
 		//add Date to buttom of MainFrame
 		mView.showDateinMainFrame((new Date(System.currentTimeMillis()).getDateGreLiEnd()));
@@ -177,8 +181,32 @@ public class ActionController {
 		
 	}
 	
+	/**
+	 * TableMouseAdapter is used to determine wicht row is clicked to load and edit the selected 
+	 * Workout
+	 * @author schoko
+	 *
+	 */	
+	class TableMouseAdapter extends MouseAdapter{
+		
+		public void mouseClicked(MouseEvent e) {
+		      if (e.getClickCount() == 2) {
+		         JTable target = (JTable)e.getSource();
+		         int row = target.getSelectedRow();
+		         int column = target.getSelectedColumn();
+		         
+		         String value = (String)target.getValueAt(row, 0);
+		         System.out.println("row " + row + " value="+value);
+		         
+		         
+		         // do some action
+		         }
+		   }
+		 				
+	}
 	
-
+	
+	
 
 	
 	public class CloseListener implements WindowListener, ActionListener {

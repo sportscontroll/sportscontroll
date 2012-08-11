@@ -1,16 +1,32 @@
 package de.dhbw.sportcontroll.ui;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.EventObject;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.CellEditorListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 
 import de.dhbw.sportcontroll.dataobjects.Workout;
 import de.dhbw.sportcontroll.main.Test;
@@ -29,14 +45,15 @@ public class WorkoutTable extends JPanel {
 	 */
     private boolean DEBUG = false;
     
-    TableModel tableModel;
+    private TableModel tableModel;
+    private JTable table;
 
     public WorkoutTable() {
         super(new GridLayout(1,0));
 
         this.tableModel = new TableModel ();
+        table = new JTable(new TableModel());
         
-        JTable table = new JTable(new TableModel());
         table.setPreferredScrollableViewportSize(new Dimension(800,500));
         table.setFillsViewportHeight(true);
         // TableRowSorter sort table
@@ -47,10 +64,20 @@ public class WorkoutTable extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
         //Add the scroll pane to this panel.
         add(scrollPane);
+         
+        
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        
     }
 
     class TableModel extends AbstractTableModel {
-        private String[] columnNames = Test.GETColumnName();
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 3479829496492026281L;
+
+		private String[] columnNames = Test.GETColumnName();
         
         private Object [][] data = Test.GETWorkout();
         	
@@ -124,6 +151,7 @@ public class WorkoutTable extends JPanel {
             }
             System.out.println("--------------------------");
         }
+        
     }
 
     /**
@@ -160,4 +188,13 @@ public class WorkoutTable extends JPanel {
 		}
 		
 	}
+	
+	
+	public void addTableMouseAdapter(MouseAdapter ma){
+		table.addMouseListener(ma);
+	}
+	
+	
+	
+	
 }
