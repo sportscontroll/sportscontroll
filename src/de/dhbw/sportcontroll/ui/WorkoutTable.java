@@ -156,7 +156,7 @@ public class WorkoutTable extends JPanel {
 	public void setTableData(ArrayList<Workout> workouts) {
 		int i = 1;
 		for(Workout w : workouts){
-			//tableModel.setValueAt(value, row, col)
+			//.tableModel.setValueAt(value, row, col)
 		}
 		
 	}

@@ -171,7 +171,7 @@ public class MainFrame extends JFrame {
 					B_TBMSave = new JButton();
 					ToolBarMain.add(B_TBMSave);
 					B_TBMSave.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
-					//B_TBMSave.setAction(getSaveAction1());
+					
 					B_TBMSave.setPreferredSize(new java.awt.Dimension(46, 52));
 				}
 				{
@@ -498,6 +498,15 @@ public class MainFrame extends JFrame {
 	public void addCloseListener( de.dhbw.sportcontroll.controller.ActionController.CloseListener closeListener){
 		I_DataClose.addActionListener(closeListener);
 		this.addWindowListener(closeListener);
+	}
+	
+	/**
+	 * addActionlistener to Save Button 
+	 * @param al
+	 */
+	public void addSaveListener( ActionListener al){
+		B_TBMSave.addActionListener(al);
+		I_DataSave.addActionListener(al);
 	}
 	
 	/**

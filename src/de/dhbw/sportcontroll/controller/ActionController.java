@@ -79,6 +79,7 @@ public class ActionController {
 		mView.addButtonWorkoutTableActionListener(new ButtonWorkoutTableListener());
 		mView.addButtonConfigProfileActionListener(new ButtonProfileListener());
 		mView.addButtonCalculatorActionListener(new ButtonCalculatorListener());
+		mView.addSaveListener(new SaveActionListener());
 		
 		//add Date to buttom of MainFrame
 		mView.showDateinMainFrame((new Date(System.currentTimeMillis()).getDateGreLiEnd()));
@@ -111,6 +112,8 @@ public class ActionController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		
 		
 		
@@ -154,11 +157,22 @@ public class ActionController {
 	
 	
 	class ButtonCalculatorListener implements ActionListener {
-		private static final long serialVersionUID = -4327610667106708501L;
-
 		public void actionPerformed(ActionEvent evt) {
 			System.out.println("shwo calc");
 			mView.showPanelClaculator();			
+		}
+		
+	}
+	
+	class SaveActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent evt) {
+			System.out.println("Save Data");
+			try {
+				dh.saveUserProfile(currentUser);
+			} catch (SQLException | SQLQueryException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
 		}
 		
 	}
