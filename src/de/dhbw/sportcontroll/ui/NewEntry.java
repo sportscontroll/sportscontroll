@@ -626,7 +626,7 @@ public class NewEntry extends javax.swing.JDialog {
 					String eDiscipline = TB_Discipline.getText();
 					String eEnergyFactor = TB_CaloryConsumption.getText();					
 					
-					Test.SetNewSportDiscipline(eDiscipline, eEnergyFactor);
+					Test.setNewSportDiscipline(eDiscipline, eEnergyFactor);
 				}
 			};
 		}

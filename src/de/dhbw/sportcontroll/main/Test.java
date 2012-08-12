@@ -21,6 +21,48 @@ import de.dhbw.sportcontroll.db.DataHandler.*;
 public class Test {
 
 	    
+	  
+	    
+	    public static String getUserSize(int UsId)
+	    {
+	    	String sUserSize= "198";
+	    	
+	    	return sUserSize;
+	    }
+	    
+	    public static void setNewSportDiscipline (String eDiscipline, String eEnergyFactor)
+	    {
+	    	
+	    	double dEnergyFactor = Checker.checkEnergyfactor(eEnergyFactor);
+	    	String sDiscipline =Checker.checkDiscipline(eDiscipline);
+	    	SportDiscipline sdNew = new SportDiscipline(0, eDiscipline, dEnergyFactor);
+	    	System.out.println("Sportart gespeichert!!!");
+	    	
+	    	
+	    }
+	    
+	    public static void setNewUserWeight(String eweight, String edate){
+	    	//TODO Speichern in Datenbank
+	    	//Date Format Date(1987, 8 ,1)
+	    	Double dweight = Checker.checkWeight(eweight);
+	    	//Date daDate = Checker.CheckDate(edate);
+	    	//DataHandler.saveUserWeight(dweight);    	
+	    	// DataHandler.saveUserWeight(UserWeight uw);
+	    	
+	    }
+	    public static void setNewEntry(String ediscipline,String eduration, String edate, String edistance,String elocation, String eHeardRate,String eNote){
+	    	String sdiscipline = Checker.checkDiscipline(ediscipline);
+	    	
+	    	Double dduration = Checker.checkDuration(eduration);
+	    	//Date daDate = Checker.CheckDate(edate);
+	    	Double sdistance = Checker.checkDistance(edistance) ;
+	    	String slocation = Checker.checkLocation(elocation);
+	    	Double dHeardRate = Checker.checkHeartRate(eHeardRate);
+	    	String sNote = Checker.checkNote(eNote);
+	    	
+	   // 	Workout wnew = new  Workout(0, uid, did, dadate, dduration, dHeartRate, slocation, sNote)
+		    	
+	    }
 	    public static String[][] exampleWorkout(){
 	    	/**
 	    	 * Create a ExampleWorkout for Test with Charts or table
@@ -57,7 +99,7 @@ public class Test {
 				}
 	}
 	      
-	    public static String [] GETColumnName()
+	    public static String [] getcolumnName()
 	    {
 	    	/**
 	    	 * Get the Columnname for Workouttable
@@ -73,7 +115,7 @@ public class Test {
 			             };
 			return cn;
 	    }
-	    public static String GetUsername(){
+	    public static String getUsername(){
 	    /**
 	     * @return Username as String
 	     * TODO GET USERNAME
@@ -83,7 +125,7 @@ public class Test {
 	    	return username;
 	    }
 	    
-	    public static String [] GetDisciplines(){	
+	    public static String [] exampleDisciplines(){	
 	    /**
 	     * @return
 	     *  
@@ -101,46 +143,6 @@ public class Test {
 	   // 	  CB_discipline.setItems(sdiscipline);
 	    	
 	    	return sdiscipline;
-	    }
-	    public static String GetUserSize(int UsId)
-	    {
-	    	String sUserSize= "198";
-	    	
-	    	return sUserSize;
-	    }
-	    
-	    public static void SetNewSportDiscipline (String eDiscipline, String eEnergyFactor)
-	    {
-	    	
-	    	double dEnergyFactor = Checker.checkEnergyfactor(eEnergyFactor);
-	    	String sDiscipline =Checker.checkDiscipline(eDiscipline);
-	    	SportDiscipline sdNew = new SportDiscipline(0, eDiscipline, dEnergyFactor);
-	    	System.out.println("Sportart gespeichert!!!");
-	    	
-	    	
-	    }
-	    
-	    public static void SetNewUserWeight(String eweight, String edate){
-	    	//TODO Speichern in Datenbank
-	    	//Date Format Date(1987, 8 ,1)
-	    	Double dweight = Checker.checkWeight(eweight);
-	    	//Date daDate = Checker.CheckDate(edate);
-	    	//DataHandler.saveUserWeight(dweight);    	
-	    	// DataHandler.saveUserWeight(UserWeight uw);
-	    	
-	    }
-	    public static void SetNewEntry(String ediscipline,String eduration, String edate, String edistance,String elocation, String eHeardRate,String eNote){
-	    	String sdiscipline = Checker.checkDiscipline(ediscipline);
-	    	
-	    	Double dduration = Checker.checkDuration(eduration);
-	    	//Date daDate = Checker.CheckDate(edate);
-	    	Double sdistance = Checker.checkDistance(edistance) ;
-	    	String slocation = Checker.checkLocation(elocation);
-	    	Double dHeardRate = Checker.checkHeartRate(eHeardRate);
-	    	String sNote = Checker.checkNote(eNote);
-	    	
-	   // 	Workout wnew = new  Workout(0, uid, did, dadate, dduration, dHeartRate, slocation, sNote)
-		    	
 	    }
 }
 	
