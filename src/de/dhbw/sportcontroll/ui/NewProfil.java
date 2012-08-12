@@ -14,18 +14,12 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
 
-
-/**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+/** GUI for New Profile
+ * @author Katja.Kaiser
+ * 
+ *
+*  Not implement
+* 
 */
 public class NewProfil extends javax.swing.JFrame {
 	private JButton B_OK;

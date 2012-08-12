@@ -4,10 +4,14 @@ import java.awt.*;
 import java.awt.font.*;
 import java.awt.geom.*;
 import javax.swing.*;
+import javax.xml.datatype.Duration;
  
 /**
  * This Panel draw Chart with Line2D
  * @author Katja.Kaiser
+ * @input duration, Date, discipline
+ * @return Chart
+ * NOT IMPLEMENT
  */
 public class GraphingData extends JPanel {
 	//test data
