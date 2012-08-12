@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import de.dhbw.sportcontroll.ui.MainFrame;
 
 /** In this Class are all Methods to Check the User input
+ *  and to convert in other format
  * @author Katja.Kaiser
  *
  */
