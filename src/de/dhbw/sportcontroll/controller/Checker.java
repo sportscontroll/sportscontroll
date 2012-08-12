@@ -51,7 +51,7 @@ public class Checker {
 					   if (dweight < MIN)
 							JOptionPane.showMessageDialog(null, "Das eingegebene Gewicht muss größer als 20 Kilogramm sein!", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
 					   else if (dweight > MAX)
-						    JOptionPane.showMessageDialog(null, "Das eingegebene Gewicht muss kleiner als 300 Kilogram sein!", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
+						    JOptionPane.showMessageDialog(null, "Das eingegebene Gewicht muss kleiner als 300 Kilogramm sein!", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
 					   else if (dweight < MIN && dweight >MAX)
 							return  dweight;
 				
@@ -67,7 +67,7 @@ public class Checker {
 		 *  @return size as double 
 		 */
 		
-		final int MIN = 20;
+		final int MIN = 100;
 		final int MAX = 299;
 		double dsize = 0;
 		
@@ -81,13 +81,13 @@ public class Checker {
 				   
 				}
 				catch (NumberFormatException nfe) {
-					JOptionPane.showMessageDialog(null, "Bitte, geben Sie Ihre Größe nur mit Zahlen ein! \n Vewenden sie einen Punkt statt Komma!!!", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Bitte geben Sie Ihre Größe nur mit Zahlen ein! \n Vewenden sie einen Punkt statt Komma!!!", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
 				}	
 		if (dsize < MIN)
-				JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein Größe, größer als 100 Zentimeter ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie eine Größe, größer als 100 Zentimeter ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
 				
 		else if (dsize > MAX)
-				JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein Größe, kleiner als 300 Zentimeter ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie eine Größe, kleiner als 300 Zentimeter ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
 
 		else if (dsize < MIN || dsize >MAX)
 				return  dsize = 0;
@@ -199,6 +199,8 @@ public class Checker {
 				else if(elocation.equals("") ) {
 					JOptionPane.showMessageDialog(null, "Geben Sie einen Ortsnamen ein", "Ortsnahme fehlt", JOptionPane.ERROR_MESSAGE);	
 					}
+				
+				
 		 slocation = elocation;
 		return slocation;
 		

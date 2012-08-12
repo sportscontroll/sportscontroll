@@ -263,6 +263,7 @@ public class Calc extends JPanel {
 			RB_gender_m.setText("männlich");
 			RB_gender_m.setPreferredSize(new java.awt.Dimension(107, 44));
 			RB_gender_m.isSelected();
+			RB_gender_m.setSelected(true);
 			getOB_Gender().add(RB_gender_m);
 		}
 		return RB_gender_m;

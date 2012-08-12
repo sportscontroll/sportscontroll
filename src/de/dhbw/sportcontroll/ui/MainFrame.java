@@ -408,7 +408,7 @@ public class MainFrame extends JFrame {
 				public void actionPerformed(ActionEvent evt) {
 					
 					try {
-		                Desktop.getDesktop().open(new File("doc/Hilfe.pdf"));
+		                Desktop.getDesktop().open(new File("picture/Hilfe.pdf"));
 		            } catch (IOException e1) {
 		            	System.out.print("Datei nicht gefunden");
 		                e1.printStackTrace();
