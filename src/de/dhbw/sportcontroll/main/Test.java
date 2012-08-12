@@ -11,7 +11,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 
+import de.dhbw.sportcontroll.controller.Checker;
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
+import de.dhbw.sportcontroll.dataobjects.UserWeight;
 import de.dhbw.sportcontroll.dataobjects.Workout;
 import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.db.DataHandler.*;
@@ -98,7 +100,7 @@ public class Test {
 	    public static String [] GetDisciplines(){	
 	    /**
 	     * @return
-	     * TODO GetDiscipline 
+	     *  
 	     */
 	    	String[] sdiscipline = {	"Laufen",
 	    					"Rennen",
@@ -113,6 +115,32 @@ public class Test {
 	   // 	  CB_discipline.setItems(sdiscipline);
 	    	
 	    	return sdiscipline;
+	    }
+	    public static String GetUserSize(int UsId)
+	    {
+	    	String sUserSize= "198";
+	    	
+	    	return sUserSize;
+	    }
+	    
+	    public static void SetNewSportDiscipline (String eDiscipline, String eEnergyFactor)
+	    {
+	    	
+	    	double dEnergyFactor = Checker.CheckEnergyfactor(eEnergyFactor);
+	    	String sDiscipline =Checker.CheckeDiscipline(eDiscipline);
+	    	SportDiscipline sdNew = new SportDiscipline(0, eDiscipline, dEnergyFactor);
+	    	System.out.println("Sportart gespeichert!!!");
+	    	
+	    	
+	    }
+	    
+	    public static void SetNewUserWeight(String eweight, String edate){
+	    	//TODO Speichern in Datenbank
+	    	//Date Format Date(1987, 8 ,1)
+	    	Double dweight = Checker.CheckWeight(eweight);
+	    	//Date daDate = Checker.CheckDate(edate);
+	    	//DataHandler.saveUserWeight(dweight);    	
+	    	
 	    }
 }
 	
