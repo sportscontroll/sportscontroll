@@ -126,8 +126,8 @@ public class Test {
 	    public static void SetNewSportDiscipline (String eDiscipline, String eEnergyFactor)
 	    {
 	    	
-	    	double dEnergyFactor = Checker.CheckEnergyfactor(eEnergyFactor);
-	    	String sDiscipline =Checker.CheckeDiscipline(eDiscipline);
+	    	double dEnergyFactor = Checker.checkEnergyfactor(eEnergyFactor);
+	    	String sDiscipline =Checker.checkDiscipline(eDiscipline);
 	    	SportDiscipline sdNew = new SportDiscipline(0, eDiscipline, dEnergyFactor);
 	    	System.out.println("Sportart gespeichert!!!");
 	    	
@@ -137,21 +137,21 @@ public class Test {
 	    public static void SetNewUserWeight(String eweight, String edate){
 	    	//TODO Speichern in Datenbank
 	    	//Date Format Date(1987, 8 ,1)
-	    	Double dweight = Checker.CheckWeight(eweight);
+	    	Double dweight = Checker.checkWeight(eweight);
 	    	//Date daDate = Checker.CheckDate(edate);
 	    	//DataHandler.saveUserWeight(dweight);    	
 	    	// DataHandler.saveUserWeight(UserWeight uw);
 	    	
 	    }
 	    public static void SetNewEntry(String ediscipline,String eduration, String edate, String edistance,String elocation, String eHeardRate,String eNote){
-	    	String sdiscipline = Checker.CheckeDiscipline(ediscipline);
+	    	String sdiscipline = Checker.checkDiscipline(ediscipline);
 	    	
-	    	Double dduration = Checker.CheckDuration(eduration);
+	    	Double dduration = Checker.checkDuration(eduration);
 	    	//Date daDate = Checker.CheckDate(edate);
-	    	Double sdistance = Checker.CheckDistance(edistance) ;
-	    	String slocation = Checker.CheckLocation(elocation);
-	    	Double dHeardRate = Checker.CheckHeartRate(eHeardRate);
-	    	String sNote = Checker.CheckNote(eNote);
+	    	Double sdistance = Checker.checkDistance(edistance) ;
+	    	String slocation = Checker.checkLocation(elocation);
+	    	Double dHeardRate = Checker.checkHeartRate(eHeardRate);
+	    	String sNote = Checker.checkNote(eNote);
 	    	
 	   // 	Workout wnew = new  Workout(0, uid, did, dadate, dduration, dHeartRate, slocation, sNote)
 		    	

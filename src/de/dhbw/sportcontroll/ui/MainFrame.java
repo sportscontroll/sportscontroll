@@ -264,7 +264,7 @@ public class MainFrame extends JFrame {
 					{
 						I_DataClose = new JMenuItem();
 						M_File.add(I_DataClose);
-						I_DataClose.setText("Schlie�en");
+						I_DataClose.setText("Schließen");
 						
 					}
 				}
@@ -326,9 +326,8 @@ public class MainFrame extends JFrame {
 			e.printStackTrace();
 		}
 	}
-
 	
-//	
+
 //	private AbstractAction getNewWeightAction() {
 //		if(newWeightAction == null) {
 //			newWeightAction = new AbstractAction("Gewicht", null) {
@@ -344,8 +343,7 @@ public class MainFrame extends JFrame {
 //		}
 //		return newWeightAction;
 //	}
-//	
-//	
+
 //	private AbstractAction getNewDisciplineAction() {
 //		if(newDisciplineAction == null) {
 //			newDisciplineAction = new AbstractAction("Sportart", null) {
@@ -496,6 +494,7 @@ public class MainFrame extends JFrame {
 		
 	}
 	
+	
 	/**
 	 * adding Mouselistener to JTable
 	 * @param ml
@@ -573,6 +572,7 @@ public class MainFrame extends JFrame {
         cl.show(contentPanel, "calculator");		
 	}
 
+
 	public void refreshTableData(ArrayList<Workout> workouts) {
 		panelWorkoutTable.refreshTableData(workouts);
 		
@@ -582,6 +582,12 @@ public class MainFrame extends JFrame {
 		
 		return panelProfile;
 	}
+
+
+	public void fireTableChange() {
+		panelWorkoutTable.fireTableChange();		
+	}
+	
 
 	
 		

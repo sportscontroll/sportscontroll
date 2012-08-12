@@ -166,7 +166,7 @@ public class ActionController {
 			currentUser.setName(cp.getTF_Name().getText());
 						
 			try {
-				currentUser.setBirthday(Checker.CheckDate(cp.getTF_Birthdate().getText()));
+				currentUser.setBirthday(Checker.checkDate(cp.getTF_Birthdate().getText()));
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

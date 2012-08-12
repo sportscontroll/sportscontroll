@@ -35,16 +35,12 @@ import javax.swing.SwingUtilities;
 
 
 /**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+ * @author Katja.Kaiser
+ * GUI of Calc for BMI, BasicCalorie and Calorie per Discipline
+* This code was edited using CloudGarden's Jigloo
+* SWT/Swing GUI Builder.
+* 
+* 
 */
 public class Calc extends JPanel {
 	
@@ -98,13 +94,14 @@ public class Calc extends JPanel {
 			//getContentPane().setLayout(thisLayout);
 			//this.setTitle("Rechner");
 			{
+			
 				L_Output = new JLabel();
 				getContentPane().add(getL_CalcPic(), new AnchorConstraint(75, 966, 658, 725, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				this.add(getCB_Discipline(), new AnchorConstraint(708, 669, 782, 320, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+					this.add(getCB_Discipline(), new AnchorConstraint(708, 669, 782, 320, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				getContentPane().add(getL_discipline(), new AnchorConstraint(715, 289, 778, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				this.add(getTF_duration(), new AnchorConstraint(584, 669, 661, 320, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+					this.add(getTF_duration(), new AnchorConstraint(584, 669, 661, 320, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				getContentPane().add(getL_duration(), new AnchorConstraint(605, 289, 668, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				this.add(L_Output, new AnchorConstraint(457, 917, 534, 695, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+					this.add(L_Output, new AnchorConstraint(457, 917, 534, 695, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				L_Output.setPreferredSize(new java.awt.Dimension(126, 26));
 
 			}
@@ -208,7 +205,7 @@ public class Calc extends JPanel {
 					// TODO Auto-generated method stub
 					String esize = TF_Size.getText();
 					String eweight = TF_Weight.getText();
-					double BMI = Calculate.BodyMassIndex(eweight, esize);		
+					Calculate.bodyMassIndex(eweight, esize);		
 				    
 				}  
 				
@@ -224,7 +221,7 @@ public class Calc extends JPanel {
 					String esize = TF_Size.getText();
 					String eweight = TF_Weight.getText();
 					String ebirthdate = TF_Birthdate.getText();	   					
-					double BasicCalorie= Calculate.BasicCalorie(eweight, esize, ebirthdate, RB_gender_w, RB_gender_m);//, OB_gender_m);
+					Calculate.basicCalorie(eweight, esize, ebirthdate, RB_gender_w, RB_gender_m);//, OB_gender_m);
 				}
 			};
 		}
@@ -237,11 +234,8 @@ public class Calc extends JPanel {
 				public void actionPerformed(ActionEvent evt) {
 					String eweight = TF_Weight.getText();
 					String eduration = TF_duration.getText();
-					// String esize = TF_Size.getText();
-					// String ebirthdate = TF_Birthdate.getText();
 					String ediscipline = (String)CB_Discipline.getSelectedItem();
-				
-					double BasicCalorie = Calculate.calconsumption(eduration, ediscipline, eweight);
+					Calculate.calconsumption(eduration, ediscipline, eweight);
 					
 				}
 			};
@@ -312,8 +306,7 @@ public class Calc extends JPanel {
 			CB_Discipline = new JComboBox();
 			CB_Discipline.setModel(CB_DisciplineModel);
 			CB_Discipline.setPreferredSize(new java.awt.Dimension(198, 25));
-			
-			//Load Date from Database
+		
 			ArrayList<SportDiscipline> sdList = DataHandler.getInstance().loadAllSportDisciplines();
 			
 			for (SportDiscipline sd : sdList) {
@@ -327,6 +320,7 @@ public class Calc extends JPanel {
 	}
 	
 	private JLabel getL_CalcPic() {
+	
 		if(L_CalcPic == null) {
 			L_CalcPic = new JLabel();
 			L_CalcPic.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/calculator.gif")));
