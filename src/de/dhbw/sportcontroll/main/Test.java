@@ -140,6 +140,7 @@ public class Test {
 	    	Double dweight = Checker.CheckWeight(eweight);
 	    	//Date daDate = Checker.CheckDate(edate);
 	    	//DataHandler.saveUserWeight(dweight);    	
+	    	// DataHandler.saveUserWeight(UserWeight uw);
 	    	
 	    }
 	    public static void SetNewEntry(String ediscipline,String eduration, String edate, String edistance,String elocation, String eHeardRate,String eNote){

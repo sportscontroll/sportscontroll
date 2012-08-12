@@ -326,35 +326,35 @@ public class MainFrame extends JFrame {
 	
 	
 	
-	private AbstractAction getNewWeightAction() {
-		if(newWeightAction == null) {
-			newWeightAction = new AbstractAction("Gewicht", null) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 8282796218256968278L;
-
-				public void actionPerformed(ActionEvent evt) {
-					NewEntry.main(null);
-				}
-			};
-		}
-		return newWeightAction;
-	}
-	
-	private AbstractAction getNewDisciplineAction() {
-		if(newDisciplineAction == null) {
-			newDisciplineAction = new AbstractAction("Sportart", null) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1082007504429534923L;
-
-				public void actionPerformed(ActionEvent evt) {
-					NewEntry.main(null);
-				}
-			};
-		}
+//	private AbstractAction getNewWeightAction() {
+//		if(newWeightAction == null) {
+//			newWeightAction = new AbstractAction("Gewicht", null) {
+//				/**
+//				 * 
+//				 */
+//				private static final long serialVersionUID = 8282796218256968278L;
+//
+//				public void actionPerformed(ActionEvent evt) {
+//					NewEntry.main(null);
+//				}
+//			};
+//		}
+//		return newWeightAction;
+//	}
+//	
+//	private AbstractAction getNewDisciplineAction() {
+//		if(newDisciplineAction == null) {
+//			newDisciplineAction = new AbstractAction("Sportart", null) {
+//				/**
+//				 * 
+//				 */
+//				private static final long serialVersionUID = 1082007504429534923L;
+//
+//				public void actionPerformed(ActionEvent evt) {
+//					NewEntry.main(null);
+//				}
+//			};
+//		}
 		return newDisciplineAction;
 	}
 	
