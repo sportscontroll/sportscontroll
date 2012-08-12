@@ -8,7 +8,7 @@ public class SportControll {
 
 	/**
 	 * Hauptklasse
-	 * 
+	 *     
 	 * @param args Aufrufparameter
 	 * @author schoko
 	 * @return 
