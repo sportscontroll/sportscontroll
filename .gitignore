@@ -8,3 +8,4 @@
 bin
 *.war
 *.ear
+scProfiles.sqlite
