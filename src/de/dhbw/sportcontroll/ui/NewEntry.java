@@ -329,7 +329,7 @@ public class NewEntry extends javax.swing.JDialog {
 	private JLabel getL_Duration() {
 		if(L_Duration == null) {
 			L_Duration = new JLabel();
-			L_Duration.setText("Dauer:");
+			L_Duration.setText("Dauer in Stunden:");
 			L_Duration.setPreferredSize(new java.awt.Dimension(187, 30));
 		}
 		return L_Duration;
@@ -445,7 +445,7 @@ public class NewEntry extends javax.swing.JDialog {
 	private JLabel getL_Weight() {
 		if(L_Weight == null) {
 			L_Weight = new JLabel();
-			L_Weight.setText("Gewicht:");
+			L_Weight.setText("Gewicht in kg:");
 			L_Weight.setPreferredSize(new java.awt.Dimension(193, 59));
 		}
 		return L_Weight;
