@@ -60,7 +60,7 @@ public class Calc extends JPanel {
 	private JLabel L_Gender;
 	private JLabel L_Output;
 	private JLabel L_Age;
-	private JComboBox CB_Discipline;
+	private JComboBox<SportDiscipline> CB_Discipline;
 	private JLabel L_discipline;
 	private JTextField TF_duration;
 	private JLabel L_duration;
@@ -248,7 +248,7 @@ public class Calc extends JPanel {
 				public void actionPerformed(ActionEvent evt) {
 					String eweight = TF_Weight.getText();
 					String eduration = TF_duration.getText();
-					String ediscipline = (String)CB_Discipline.getSelectedItem();
+					SportDiscipline ediscipline = (SportDiscipline)CB_Discipline.getSelectedItem();
 					Calculate.calconsumption(eduration, ediscipline, eweight);
 					
 				}
@@ -314,12 +314,11 @@ public class Calc extends JPanel {
 		return L_discipline;
 	}
 	
-	private JComboBox getCB_Discipline() throws SQLException, SQLDriverNotFoundException, SQLConnectionException {
+	private JComboBox<SportDiscipline> getCB_Discipline() throws SQLException, SQLDriverNotFoundException, SQLConnectionException {
 		if(CB_Discipline == null) {
-			ComboBoxModel CB_DisciplineModel = 
-					new DefaultComboBoxModel(
-							new String[] { "Auswählen" });
-			CB_Discipline = new JComboBox();
+			ComboBoxModel<SportDiscipline> CB_DisciplineModel =	new DefaultComboBoxModel<SportDiscipline>();
+			
+			CB_Discipline = new JComboBox<SportDiscipline>();
 			CB_Discipline.setModel(CB_DisciplineModel);
 			CB_Discipline.setPreferredSize(new java.awt.Dimension(198, 25));
 		
@@ -327,7 +326,7 @@ public class Calc extends JPanel {
 			
 			for (SportDiscipline sd : sdList) {
 				
-			     CB_Discipline.addItem(sd.getName());			 
+			     CB_Discipline.addItem(sd);			 
 			}			 
 			//ArrayList sDiscipline = DataHandler.loadAllSportDisciplines();
 	
