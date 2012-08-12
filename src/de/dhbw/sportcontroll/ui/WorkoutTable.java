@@ -195,7 +195,8 @@ public class WorkoutTable extends JPanel {
 				break;
 
 			case COLUM_IDX_DATE:
-				 data.elementAt(row).getDate().setDateString((String)value);
+				
+				//	 data.elementAt(row).getDate().setDateString((String)value);
 				break;
 			case COLUM_IDX_DISCIPLIN:
 				 data.elementAt(row).getDisciplin().setName((String) value);
@@ -220,7 +221,7 @@ public class WorkoutTable extends JPanel {
 	public void setTableData(ArrayList<Workout> workouts) {
 		int i = 1;
 		for(Workout w : workouts){
-			//.tableModel.setValueAt(value, row, col)
+			//tableModel.setValueAt(value, row, col)
 		}
 		
 	}

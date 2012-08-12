@@ -597,6 +597,8 @@ public class NewEntry extends javax.swing.JDialog {
 					String eHeardRate = TF_HeartRate.getText();
 					String eNote = TA_Note.getText();
 					
+					Test.SetNewEntry(ediscipline, eduration, edate,	edistance, elocation,
+					eHeardRate,eNote);
 					
 					
 				}
