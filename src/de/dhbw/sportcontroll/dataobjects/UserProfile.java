@@ -94,7 +94,7 @@ public class UserProfile {
 	/**
 	 * @return the workouts
 	 */
-	public ArrayList<Workout> getWorkouts() {
+	public ArrayList<Workout> getWorkouts() {		
 		return workouts;
 	}
 	/**

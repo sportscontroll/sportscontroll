@@ -360,22 +360,6 @@ public class MainFrame extends JFrame {
 		}
 		return newDisciplineAction;
 	}
-
-	private AbstractAction getNewDisciplineAction() {
-		if(newDisciplineAction == null) {
-			newDisciplineAction = new AbstractAction("Sportart", null) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1082007504429534923L;
-
-				public void actionPerformed(ActionEvent evt) {
-					NewEntry.main(null);
-				}
-			};
-		}
-		return newDisciplineAction;
-	}
 	
 	
 	
@@ -507,7 +491,7 @@ public class MainFrame extends JFrame {
 	 * @param workouts
 	 */
 	public void addDataToTable(ArrayList<Workout> workouts) {
-		panelWorkoutTable.setTableData(workouts);		
+		panelWorkoutTable.refreshTableData(workouts);		
 		
 	}
 	
@@ -568,7 +552,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	public void showPanelWorkoutTable(ArrayList<Workout> workouts) {
-		panelWorkoutTable.setTableData(workouts);
+		panelWorkoutTable.refreshTableData(workouts);
 		CardLayout cl = (CardLayout)(contentPanel.getLayout());
         cl.show(contentPanel, "workout");
 		

@@ -3,6 +3,7 @@ package de.dhbw.sportcontroll.ui;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableRowSorter;
@@ -19,6 +21,9 @@ import javax.swing.table.TableRowSorter;
 import de.dhbw.sportcontroll.dataobjects.Date;
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
 import de.dhbw.sportcontroll.dataobjects.Workout;
+import de.dhbw.sportcontroll.db.DataHandler;
+import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
+import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
 import de.dhbw.sportcontroll.main.Test;
 
 public class WorkoutTable extends JPanel {
@@ -92,12 +97,13 @@ public class WorkoutTable extends JPanel {
 			this.data = new Vector<Workout>();
 			
 			for(Workout w : wList){
-				this.data.add(w);
+				this.data.add(w);				
 			}
 			fireTableChanged(null);
-			System.out.println("data size = " + data.size());
+			
 			
 		}
+		
         	
         public int getColumnCount() {
         	/*
@@ -135,7 +141,16 @@ public class WorkoutTable extends JPanel {
 				return data.elementAt(row).getDate().getDateGreLiEnd();
 			//	break;
 			case COLUM_IDX_DISCIPLIN:
-				return data.elementAt(row).getDisciplin().getName();
+				if(data.elementAt(row).getDisciplin() == null)
+					try {
+						return DataHandler.getInstance().loadSportDiscipline(data.elementAt(row).getDid());
+					} catch (SQLException | SQLDriverNotFoundException
+							| SQLConnectionException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				else
+					return data.elementAt(row).getDisciplin().getName();
 			default:
 				return null;
 			//	break;
@@ -191,6 +206,7 @@ public class WorkoutTable extends JPanel {
            
         	switch (col) {
 			case COLUM_IDX_ID:
+				System.out.println("setting col ID " + value);
 				data.elementAt(row).setId((int)value);				
 				break;
 
@@ -204,10 +220,19 @@ public class WorkoutTable extends JPanel {
 			default:
 				
         	}
+        	fireTableChanged(null);
 				
 			       
         }
-
+        
+        public void resetTableData(ArrayList<Workout> wList){
+	        this.data = new Vector<Workout>();
+			
+			for(Workout w : wList){
+				this.data.add(w);				
+			}
+			fireTableChanged(null);
+        }
        
     }
 
@@ -218,17 +243,24 @@ public class WorkoutTable extends JPanel {
      * sets all Workouts to the Table
      * @param workouts
      */
-	public void setTableData(ArrayList<Workout> workouts) {
-		int i = 1;
-		for(Workout w : workouts){
-			//tableModel.setValueAt(value, row, col)
-		}
-		
+
+	public void refreshTableData(ArrayList<Workout> workouts) {
+		tableModel.resetTableData(workouts);
+		fireTableChange();
 	}
 	
 	
 	public void addTableMouseAdapter(MouseAdapter ma){
 		table.addMouseListener(ma);
+	}
+
+
+	public void fireTableChange() {
+		System.out.println("repaint");
+		tableModel.fireTableChanged(new TableModelEvent(tableModel));
+		tableModel.fireTableDataChanged();
+		table.repaint();
+		this.repaint();
 	}
 	
 	

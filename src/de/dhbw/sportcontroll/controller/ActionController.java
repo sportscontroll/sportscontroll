@@ -5,10 +5,12 @@ package de.dhbw.sportcontroll.controller;
 
 import java.awt.event.*;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.EventListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -44,6 +46,9 @@ public class ActionController {
 	private DataHandler dh;
 	
 	private UserProfile currentUser;
+	private Workout selectedWorkout;
+	
+	NewEntry newEntryFrame;
 	
 	public ActionController( MainFrame view){		
 		
@@ -94,6 +99,8 @@ public class ActionController {
 		mView.addButtonCalculatorActionListener(new ButtonCalculatorListener());
 		mView.addSaveListener(new SaveActionListener());
 		mView.addTableMouseAdapter(new TableMouseAdapter());
+		
+		
 		
 		//add Date to buttom of MainFrame
 		mView.showDateinMainFrame((new Date(System.currentTimeMillis()).getDateGreLiEnd()));
@@ -161,6 +168,7 @@ public class ActionController {
 		public void actionPerformed(ActionEvent e) {	
 			System.out.println("neuer eintrag!!");
 			NewEntry newEntryFrame = new NewEntry(mView);
+			newEntryFrame.addSaveEntryActionListener(new SaveNewEntryActionListener(newEntryFrame));
 			newEntryFrame.setVisible(true);	
 		}			
 	}
@@ -213,7 +221,7 @@ public class ActionController {
 		
 		public void mouseClicked(MouseEvent e) {
 		      if (e.getClickCount() == 2) {
-		    	  Workout clickedWorkout = null;
+		    	  
 		         JTable target = (JTable)e.getSource();
 		         int row = target.getSelectedRow();
 		         int column = target.getSelectedColumn();
@@ -221,26 +229,56 @@ public class ActionController {
 		         int value = (Integer)target.getValueAt(row, 0);
 		         System.out.println("row " + row + " value="+value);
 		         try {
-					 clickedWorkout = dh.loadUserWorkout(value);
+					 selectedWorkout = dh.loadUserWorkout(value);
 				} catch (SQLException e1) {
 					mView.showError("Can't open This Workout, ERROR");
 					e1.printStackTrace();
 				}
 		        System.out.println("openDialog");
-		        NewEntry newEntryFrame = new NewEntry(mView, clickedWorkout);
+		        
+		        newEntryFrame = new NewEntry(mView, selectedWorkout);
+		        newEntryFrame.addSaveEntryActionListener(new SaveNewEntryActionListener(newEntryFrame));
 				newEntryFrame.setVisible(true);	
-		         
-		         
-		         // do some action
-		         }
+
+		        }
 		   }
 		 				
 	}
 	
 	
-	
+	public class  SaveNewEntryActionListener implements ActionListener{
+		NewEntry newEntryFrame;
+		public SaveNewEntryActionListener(NewEntry newEntryFrame) {
+			this.newEntryFrame = newEntryFrame;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent evt) {
+			int newIdx = 0;
 
-	
+			if (newEntryFrame != null) {
+				selectedWorkout = newEntryFrame.getNewWorkoutEntry();
+
+				try {
+					System.out.println("save");
+
+					newIdx = DataHandler.getInstance().saveWorkout(
+							selectedWorkout);
+					currentUser.setWorkouts(dh.loadUserWorkouts(currentUser
+							.getId()));
+
+					selectedWorkout = null;
+				} catch (SQLException | SQLQueryException
+						| SQLDriverNotFoundException | SQLConnectionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				mView.refreshTableData(currentUser.getWorkouts());
+			}
+		}
+
+	}
+
 	public class CloseListener implements WindowListener, ActionListener {
 	    		
 		private void handleCloseAction(){

@@ -52,7 +52,9 @@ public class SportDiscipline {
 		this.energyfactor = energyfactor;
 	}
 	
-	
+	public String toString() {
+		return name;		
+	}
 	
 	
 }
