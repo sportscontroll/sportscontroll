@@ -14,6 +14,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import de.dhbw.sportcontroll.dataobjects.Date;
+import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
 import de.dhbw.sportcontroll.dataobjects.UserProfile;
 import de.dhbw.sportcontroll.dataobjects.UserWeight;
 import de.dhbw.sportcontroll.dataobjects.Workout;
@@ -54,6 +55,8 @@ public class ActionController {
 			view.showError("fehler in der DatenBank! ");
 			e.printStackTrace();
 		}
+		
+		
 		// load DEFAULT User
 		try {
 			currentUser = dh.loadUserProfile(USER_ID);
@@ -61,6 +64,11 @@ public class ActionController {
 			System.out.println("Error loading user");
 			e.printStackTrace();
 		}
+		
+		//add some DummyData
+		//addDummyData();
+				
+		
 		if(currentUser.getWorkouts() == null)
 			try {
 				currentUser.setWorkouts(dh.loadUserWorkouts(currentUser.getId()));
@@ -69,12 +77,14 @@ public class ActionController {
 				e.printStackTrace();
 			}
 		
-					
-		//add some DummyData
-		//addDummyData();
+				
+		System.out.println("Workouts = " +currentUser.getWorkouts().size());
+		
 		
 		//load View
 		mView = view;
+		mView.initGUI(currentUser.getWorkouts());
+	
 		
 		//add actionlisteners		
 		mView.addCloseListener(new CloseListener());
@@ -102,6 +112,22 @@ public class ActionController {
 		currentUser.setName("Daniel");
 		currentUser.setBirthday(new Date(1987, 8, 1));
 		currentUser.addUserWeight(new UserWeight(new Date(2012,  8, 11), 76));
+		
+		
+		SportDiscipline sd1 = new SportDiscipline(0, "Schwimmen", Math.PI);
+		SportDiscipline sd2 = new SportDiscipline(0, "Radfahren", 2 *Math.PI);
+		SportDiscipline sd3 = new SportDiscipline(0, "Laufen", 3*Math.PI);
+		SportDiscipline sd4 = new SportDiscipline(0, "BettSport", 20*Math.PI);
+		
+		try {
+			dh.SaveSportDiscipline(sd1);
+			dh.SaveSportDiscipline(sd2);
+			dh.SaveSportDiscipline(sd3);
+			dh.SaveSportDiscipline(sd4);
+		} catch (SQLException | SQLQueryException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		
 		Workout w1 = new Workout(0, currentUser.getId(), 1,  new Date(), 60*30, 180, "da hoim", "voll gut1");
@@ -143,11 +169,7 @@ public class ActionController {
 		
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Show WorkoutTabl e" + e.getActionCommand());
-			WorkoutTable wt = new WorkoutTable();
-			wt.setVisible(true);
-			wt.setOpaque(true);
-			//mView.addToMainPanel(wt, "workouttable");
-			mView.showPanelWorkoutTable();		
+			mView.showPanelWorkoutTable(currentUser.getWorkouts());		
 		}
 	}
 	
@@ -191,12 +213,22 @@ public class ActionController {
 		
 		public void mouseClicked(MouseEvent e) {
 		      if (e.getClickCount() == 2) {
+		    	  Workout clickedWorkout = null;
 		         JTable target = (JTable)e.getSource();
 		         int row = target.getSelectedRow();
 		         int column = target.getSelectedColumn();
 		         
-		         String value = (String)target.getValueAt(row, 0);
+		         int value = (Integer)target.getValueAt(row, 0);
 		         System.out.println("row " + row + " value="+value);
+		         try {
+					 clickedWorkout = dh.loadUserWorkout(value);
+				} catch (SQLException e1) {
+					mView.showError("Can't open This Workout, ERROR");
+					e1.printStackTrace();
+				}
+		        System.out.println("openDialog");
+		        NewEntry newEntryFrame = new NewEntry(mView, clickedWorkout);
+				newEntryFrame.setVisible(true);	
 		         
 		         
 		         // do some action

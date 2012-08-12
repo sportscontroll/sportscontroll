@@ -25,6 +25,10 @@ public class Workout {
 	private String comment;
 	//private enum rating{"sehr gut", };
 	
+	public Workout() {
+		
+	}
+	
 	public Workout(int id, int uid, int did, SportDiscipline disciplin, Date date, int duration, int heartRate, String location, int consumedCalories, String comment){
 		this.id = id;
 		this.uid = uid;

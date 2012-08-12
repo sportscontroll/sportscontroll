@@ -173,10 +173,10 @@ public class DataHandler {
 		Statement st = dbCon.createStatement();
 		ArrayList<UserWeight> weight = new ArrayList<UserWeight>();
 		
-		ResultSet rsWeight = st.executeQuery("SELECT * FROM weight WHERE uid = " + profileId	+ " ;");
+		ResultSet rsWeight = st.executeQuery("SELECT rowid, uid, date, weight FROM weight WHERE uid = " + profileId	+ " ;");
 		
 		while (rsWeight.next()) {			
-			UserWeight uw = new UserWeight(rsWeight.getInt("date"),
+			UserWeight uw = new UserWeight(rsWeight.getInt("rowid"), rsWeight.getInt("date"),
 					rsWeight.getDouble("weight"));
 			weight.add(uw);
 		}
@@ -204,6 +204,7 @@ public class DataHandler {
 	
 		//new UserProfile
 		if(uw.getId() == 0) {
+			System.out.println("add new UserWeight");
 			pst = dbCon.prepareStatement("INSERT INTO weight ('uid', 'date', 'weight') values (?, ?, ?) ;");
 			pst.setInt(1, uw.getUserId());
 			pst.setLong(2, uw.getDate().getTimeInMillis());
@@ -226,6 +227,7 @@ public class DataHandler {
 	        }
 	   	}
 		else {
+			System.out.println("uodate UserWeight");
 		//Workout exists just an Update
 		
 			pst = dbCon.prepareStatement("UPDATE weight SET 'uid' = ?, 'date' = ? , 'weight' = ? WHERE rowid = ? ;");
