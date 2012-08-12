@@ -34,6 +34,12 @@ import javax.swing.SwingUtilities;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
+
+/**
+ * GUI ConfigProfile Change Name, Gender, size, birthdate, 
+ * @author Katja.Kaiser
+ * 
+ */
 public class ConfigProfil extends JPanel {
 	private JButton B_OK;
 	private JLabel L_Gender;
@@ -68,8 +74,7 @@ public class ConfigProfil extends JPanel {
 			{		
 				
 				L_Age = new JLabel();
-				L_Age.setText("$age$");
-					
+
 				RB_gender_w = new JRadioButton();
 				this.add(L_Age, new AnchorConstraint(175, 831, 235, 751, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				L_Age.setPreferredSize(new java.awt.Dimension(32, 18));
