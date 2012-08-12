@@ -2,6 +2,7 @@ package de.dhbw.sportcontroll.ui;
 
 import javax.swing.JFrame;
 
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -12,6 +13,13 @@ import org.jfree.util.Rotation;
 
 
 public class PieChart extends JFrame {
+	/**
+	 * @author Katja.Kaiser
+	 * @input data
+	 * @return a Piechart
+	*  Not implement
+	* 
+	*/
 
 	private static final long serialVersionUID = 1L;
 

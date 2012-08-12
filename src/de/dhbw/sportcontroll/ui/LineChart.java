@@ -18,7 +18,10 @@ import org.jfree.ui.RefineryUtilities;
 
 /**
  * Line Chart with jfree
+ * 
  * @author Katja.Kaiser
+ * @input Data discipline1 Data discipline2 Data discipline3
+ * @return LineChart
  */
 public class LineChart extends ApplicationFrame {
 // Testdata 
