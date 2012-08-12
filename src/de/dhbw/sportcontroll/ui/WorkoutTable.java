@@ -32,10 +32,15 @@ public class WorkoutTable extends JPanel {
 	 */
 	private static final long serialVersionUID = -8773616597956968154L;
 	
-	private static final String[] COLUM_NAMES = {"ID", "Sportart", "Datum"};
+	private static final String[] COLUM_NAMES = {"ID", "Sportart", "Datum", "Dauer", "Herzfrequenz", "Ort", "Kalorien", "Notiz"};
 	private static final int COLUM_IDX_ID = 0;
 	private static final int COLUM_IDX_DISCIPLIN = 1;
 	private static final int COLUM_IDX_DATE = 2;
+	private static final int COLUM_IDX_DURATION = 3;
+	private static final int COLUM_IDX_HEART = 4;
+	private static final int COLUM_IDX_LOC = 5;
+	private static final int COLUM_IDX_CALO = 6;
+	private static final int COLUM_IDX_NOTE = 7;
 	
 	
 
@@ -134,12 +139,9 @@ public class WorkoutTable extends JPanel {
         public Object getValueAt(int row, int col) {
         	switch (col) {
 			case COLUM_IDX_ID:
-				return data.elementAt(row).getId();				
-			//	break;
-
+				return data.elementAt(row).getId();	
 			case COLUM_IDX_DATE:
 				return data.elementAt(row).getDate().getDateGreLiEnd();
-			//	break;
 			case COLUM_IDX_DISCIPLIN:
 				if(data.elementAt(row).getDisciplin() == null)
 					try {
@@ -150,7 +152,17 @@ public class WorkoutTable extends JPanel {
 						e.printStackTrace();
 					}
 				else
-					return data.elementAt(row).getDisciplin().getName();
+					return data.elementAt(row).getDisciplin().getName();				
+			case COLUM_IDX_CALO:
+				return data.elementAt(row).getConsumedCalories();
+			case COLUM_IDX_DURATION:
+				return data.elementAt(row).getDuration();
+			case COLUM_IDX_HEART:
+				return data.elementAt(row).getHeartRate();
+			case COLUM_IDX_LOC:
+				return data.elementAt(row).getLocation();
+			case COLUM_IDX_NOTE:
+				return data.elementAt(row).getComment();
 			default:
 				return null;
 			//	break;
@@ -182,13 +194,10 @@ public class WorkoutTable extends JPanel {
             for (int row = 0; row < getRowCount(); row++)
             {
                 Object o = getValueAt(row, column);
-
-                if (o != null)
-                {
+                if (o != null)  {
                     return o.getClass();
                 }
             }
-
             return Object.class;
         }
 
@@ -209,13 +218,27 @@ public class WorkoutTable extends JPanel {
 				System.out.println("setting col ID " + value);
 				data.elementAt(row).setId((int)value);				
 				break;
-
 			case COLUM_IDX_DATE:
 				 data.elementAt(row).getDate().setDateString((String)value);
 				break;
 			case COLUM_IDX_DISCIPLIN:
 				 data.elementAt(row).getDisciplin().setName((String) value);
 				 break;
+			case COLUM_IDX_CALO:
+				 data.elementAt(row).setConsumedCalories((int) value);
+				break;
+			case COLUM_IDX_DURATION:
+				 data.elementAt(row).setDuration((int)value);
+				break;
+			case COLUM_IDX_HEART:
+				 data.elementAt(row).setHeartRate((int) value);
+				break;
+			case COLUM_IDX_LOC:
+				 data.elementAt(row).setLocation((String)value);
+				break;
+			case COLUM_IDX_NOTE:
+				 data.elementAt(row).setComment((String)value);
+				break;
 			default:
 				
         	}
