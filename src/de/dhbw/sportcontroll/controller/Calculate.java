@@ -32,11 +32,12 @@ import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
 
 public class Calculate {
 
-			public static double BodyMassIndex( String sweight, String ssize )
+			public static void bodyMassIndex( String sweight, String ssize )
 			{
 				/**
+				 * Calculate BMI only Dialog
 				 * @input weight, size
-				 * @return returns BMIvalue
+				 * 
 				 * 
 				 */
 				double BMIvalue = 0;
@@ -49,54 +50,58 @@ public class Calculate {
 				
 					if (dweight>19 && dweight<300 && dsize>1.00 && dsize<3.00)	{					
 							BMIvalue = dweight/(dsize*dsize);
-							JOptionPane.showMessageDialog(null, "Der Bmi beträgt "+BMIvalue+" ! ", "Berechneter BMI", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Der Bmi beträgt "+BMIvalue+" ! ", "Berechneter BMI", JOptionPane.INFORMATION_MESSAGE);
 					 }
-				return BMIvalue;
-				//Should BMI show in calc or statistic?
+					
 			} 
 
-			public static double BasicCalorie(String sweight, String ssize, String sbirthdate, JRadioButton genderw, JRadioButton genderm )
+			public static void basicCalorie(String sweight, String ssize, String sbirthdate, JRadioButton genderw, JRadioButton genderm )
 			{
+				/**
+				 * Calculate BMI only Dialog
+				 * @input weight, size, birthdate, genderm genderw
+				 * 
+				 * 
+				 */
 				// Inizial
 			
 				double dsize= 0;
 				double dweight= 0;
 				
-				int iage = CalcAge(sbirthdate);
+				int iage = calcAge(sbirthdate);
 				
 				dsize = Checker.checkSize(ssize);
 				dweight = Checker.checkWeight(sweight);
 					
 				//Check Man or Women
-				if (genderm.isSelected()==true)
-				{
+				if(dsize>0 && dweight > 0){
+					
+					if (genderm.isSelected()==true)
+					{
 					//term for Man
 						double ccvalue = (66.5+13.7* dweight+5*dsize-6.8*iage);
 							
-						JOptionPane.showMessageDialog(null, ccvalue , "Grundumsatz", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, ccvalue , "Grundumsatz", JOptionPane.INFORMATION_MESSAGE);
 								
 						}
-				if (genderw.isSelected() == true)
+					if (genderw.isSelected() == true)
 						{
 					//term for Woman
-						double ccvalue = (665+9.6* dweight+1.8*dsize-4.7*iage);
-						
-						
-				JOptionPane.showMessageDialog(null, ccvalue , "Grundumsatz", JOptionPane.ERROR_MESSAGE);
+						double ccvalue = (665+9.6* dweight+1.8*dsize-4.7*iage);			
+				JOptionPane.showMessageDialog(null, ccvalue , "Grundumsatz", JOptionPane.INFORMATION_MESSAGE);
 						}
+				}
 				
-				return 0;
 				}
 			
-			public static double calconsumption (String sduration, String sdiscipline, String sweight)
+			public static void calconsumption (String sduration, String sdiscipline, String sweight)
 			
 			{
 				/**Calc the calconsumption while train
 				 * 1 MET is the calconsumption  1 calorie per kilo weight per hour
 				 *
 				 * @input duration, discipline, weight, from Calc.java
-				 * @input Energyfactor from SportDiscipline via discipline
-				 * @return returns the calocon
+				 * @input Energyfactor from SportDiscipline via discipline 
 				 *
 				 */
 				// 
@@ -114,16 +119,17 @@ public class Calculate {
 //				double met = SportDiscipline.getEnergyfactor();
 //			
 				double calocon = met*dweight*dduration ;
-				JOptionPane.showMessageDialog(null, calocon , "Kalorie", JOptionPane.ERROR_MESSAGE);
-				return calocon;
+				JOptionPane.showMessageDialog(null, calocon , "Kalorie", JOptionPane.INFORMATION_MESSAGE);
+				
 				
 			}
 				
-			public static int CalcAge(String sbirthdate)
+			public static int calcAge(String sbirthdate)
 			{
-				/** Calc the age
+				/** Calc the age 
 				 * @input birthdate as string
 				 * @return return the age as int
+				 * 
 				 * 
 				 */
 					int iage= 0;

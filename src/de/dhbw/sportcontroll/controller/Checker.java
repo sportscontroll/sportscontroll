@@ -21,12 +21,6 @@ import de.dhbw.sportcontroll.dataobjects.Date;
  */
 public class Checker {
 	
-
-	public static void main(String[] args) {
-		
-		Double Bla =checkWeight("85");
-	}
-		
 		
 		
 	public static double checkWeight(String sweight)
@@ -95,8 +89,8 @@ public class Checker {
 		else if (dsize > MAX)
 				JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein Größe, kleiner als 300 Zentimeter ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
 
-		else if (dsize < MIN && dsize >MAX)
-				return  dsize;
+		else if (dsize < MIN || dsize >MAX)
+				return  dsize = 0;
 		return dsize;
 	}
 	public static double checkDuration(String sduration)
@@ -241,25 +235,6 @@ public class Checker {
 				
 		return iheardRate;
 	}
-	
-//	public double CheckDuration (String sduration){
-//		Double dduration = 0.0;
-//		
-//		
-//		if(sduration == null || sduration.trim().length() == 0)	{
-//			JOptionPane.showMessageDialog(null, "Bitte, geben Sie die zurückgelegte Strecke ein Eigabefeld ein", "Streckeneingabe fehlt", JOptionPane.ERROR_MESSAGE);
-//		}
-//		else
-//			try {
-//				dduration = Double.parseDouble(sduration);
-//				   
-//				}
-//				catch (NumberFormatException nfe) {
-//					JOptionPane.showMessageDialog(null, "Bitte, geben Sie ihre zurückgelegte Strecke nur mit Zahlen ein! \n Vewenden Sie einen Punkt statt Komma!!!", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
-//				}	
-//						
-//		return dduration;
-//	}
 
 	public static String checkNote (String enote){
 		/**
@@ -349,6 +324,12 @@ public class Checker {
 		
 	
 	public static String checkDiscipline (String ediscipline){
+		/**
+		 * @author Katja.Kaiser
+		 * @input Sportdiscipline as String
+		 * @return Discipline as String
+		 * 
+		 */
 		String sdiscipline;
 		
 		
