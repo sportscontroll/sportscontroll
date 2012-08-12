@@ -4,6 +4,7 @@ import com.cloudgarden.layout.AnchorLayout;
 
 import de.dhbw.sportcontroll.dataobjects.Date;
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
+import de.dhbw.sportcontroll.dataobjects.Workout;
 import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
 import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
@@ -96,25 +97,36 @@ public class NewEntry extends javax.swing.JDialog {
 	private AbstractAction OKAction;
 	private AbstractAction closeAction;
 
-	/**
-	* Auto-generated main method to display this JDialog
-	*/
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				JFrame frame = new JFrame();
-				NewEntry inst = new NewEntry(frame);
-				inst.setVisible(true);
-		
-			}
-		});
-	}
+
 	
 	public NewEntry(JFrame frame) {
 		super(frame);
 		initGUI();
 	}
 	
+	public NewEntry(MainFrame mView, Workout w) {
+		super(mView);
+		
+		 TF_DateW = new JTextField(w.getDate().getDateGreLiEnd());
+//	 JTextField TB_Distance;
+//	
+//		 JTextField TB_CaloryConsumption;
+//	
+//		 JTextArea TA_Note;
+//		 JTextField TF_HeartRate;
+//	
+//		 JTextField TB_Sportart;
+//	
+//		 JTextField TF_Date;
+//	
+//		 JTextField TF_Duration;
+//		 JTextField TF_Location;
+		
+		
+		// TODO Auto-generated constructor stub
+		 initGUI();
+	}
+
 	private void initGUI() {
 		try {
 			AnchorLayout thisLayout = new AnchorLayout();

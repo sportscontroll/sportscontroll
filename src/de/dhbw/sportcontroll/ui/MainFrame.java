@@ -124,13 +124,13 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame() {
 		super();
-		initGUI();
+		
 	}
 	
-	private void initGUI() {
+	public void initGUI(ArrayList<Workout> wList) {
 		
 		
-		panelWorkoutTable = new WorkoutTable();
+		panelWorkoutTable = new WorkoutTable(wList);
 		panelCalculator = new Calc();
 		panelProfile = new ConfigProfil();
 		
@@ -242,13 +242,13 @@ public class MainFrame extends JFrame {
 							I_NewWeight = new JMenuItem();
 							MI_DataNew.add(I_NewWeight);
 							I_NewWeight.setText("Gewicht");
-							I_NewWeight.setAction(getNewWeightAction());
+							//I_NewWeight.setAction(getNewWeightAction());
 						}
 						{
 							I_NewDiscipline = new JMenuItem();
 							MI_DataNew.add(I_NewDiscipline);
 							I_NewDiscipline.setText("Sportart");
-							I_NewDiscipline.setAction(getNewDisciplineAction());
+							//I_NewDiscipline.setAction(getNewDisciplineAction());
 						}
 					}
 					{
@@ -326,37 +326,37 @@ public class MainFrame extends JFrame {
 	
 	
 	
-	private AbstractAction getNewWeightAction() {
-		if(newWeightAction == null) {
-			newWeightAction = new AbstractAction("Gewicht", null) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 8282796218256968278L;
-
-				public void actionPerformed(ActionEvent evt) {
-					NewEntry.main(null);
-				}
-			};
-		}
-		return newWeightAction;
-	}
+//	private AbstractAction getNewWeightAction() {
+//		if(newWeightAction == null) {
+//			newWeightAction = new AbstractAction("Gewicht", null) {
+//				/**
+//				 * 
+//				 */
+//				private static final long serialVersionUID = 8282796218256968278L;
+//
+//				public void actionPerformed(ActionEvent evt) {
+//					NewEntry.main(null);
+//				}
+//			};
+//		}
+//		return newWeightAction;
+//	}
 	
-	private AbstractAction getNewDisciplineAction() {
-		if(newDisciplineAction == null) {
-			newDisciplineAction = new AbstractAction("Sportart", null) {
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1082007504429534923L;
-
-				public void actionPerformed(ActionEvent evt) {
-					NewEntry.main(null);
-				}
-			};
-		}
-		return newDisciplineAction;
-	}
+//	private AbstractAction getNewDisciplineAction() {
+//		if(newDisciplineAction == null) {
+//			newDisciplineAction = new AbstractAction("Sportart", null) {
+//				/**
+//				 * 
+//				 */
+//				private static final long serialVersionUID = 1082007504429534923L;
+//
+//				public void actionPerformed(ActionEvent evt) {
+//					NewEntry.main(null);
+//				}
+//			};
+//		}
+//		return newDisciplineAction;
+//	}
 	
 	
 	
@@ -548,7 +548,8 @@ public class MainFrame extends JFrame {
 		I_ProfilConfig.setAccelerator(KeyStroke.getKeyStroke("pressed N"));
 	}
 	
-	public void showPanelWorkoutTable() {
+	public void showPanelWorkoutTable(ArrayList<Workout> workouts) {
+		panelWorkoutTable.setTableData(workouts);
 		CardLayout cl = (CardLayout)(contentPanel.getLayout());
         cl.show(contentPanel, "workout");
 		

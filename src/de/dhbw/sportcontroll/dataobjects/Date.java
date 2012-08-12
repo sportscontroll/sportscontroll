@@ -23,6 +23,19 @@ public class Date extends GregorianCalendar {
 	 */
 	private static final long serialVersionUID = 1207186785567218449L;
 
+	private String dateString;
+	/**
+	 * @return the dateString
+	 */
+	public String getDateString() {
+		return dateString;
+	}
+	/**
+	 * @param dateString the dateString to set
+	 */
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
 	/**
 	 * 
 	 */
