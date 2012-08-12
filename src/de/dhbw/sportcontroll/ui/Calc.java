@@ -34,6 +34,19 @@ import javax.swing.SwingUtilities;
 
 
 
+
+/**
+* This code was edited or generated using CloudGarden's Jigloo
+* SWT/Swing GUI Builder, which is free for non-commercial
+* use. If Jigloo is being used commercially (ie, by a corporation,
+* company or business for any purpose whatever) then you
+* should purchase a license for each developer using Jigloo.
+* Please visit www.cloudgarden.com for details.
+* Use of Jigloo implies acceptance of these licensing terms.
+* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
+* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
+* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
+*/
 /**
  * @author Katja.Kaiser
  * GUI of Calc for BMI, BasicCalorie and Calorie per Discipline
@@ -96,7 +109,7 @@ public class Calc extends JPanel {
 			{
 			
 				L_Output = new JLabel();
-				getContentPane().add(getL_CalcPic(), new AnchorConstraint(75, 966, 658, 725, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
+				this.add(getL_CalcPic(), new AnchorConstraint(102, 956, 684, 716, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 					this.add(getCB_Discipline(), new AnchorConstraint(708, 669, 782, 320, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				getContentPane().add(getL_discipline(), new AnchorConstraint(715, 289, 778, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 					this.add(getTF_duration(), new AnchorConstraint(584, 669, 661, 320, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
@@ -117,12 +130,13 @@ public class Calc extends JPanel {
 				TF_Weight = new JTextField();
 				getContentPane().add(TF_Weight, new AnchorConstraint(75, 665, 161, 316, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				TF_Weight.setPreferredSize(new java.awt.Dimension(192, 26));
+				TF_Weight.setText("80");
 				//double iweight = Double.parseDouble(TF_Weight.getText());
 			}
 			{
 				L_Weight = new JLabel();
 				getContentPane().add(L_Weight, new AnchorConstraint(85, 289, 145, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				L_Weight.setText("Gewicht:");
+				L_Weight.setText("Gewicht in kg:");
 				L_Weight.setPreferredSize(new java.awt.Dimension(121, 18));
 			}
 			{
@@ -162,7 +176,7 @@ public class Calc extends JPanel {
 			{
 				L_Size = new JLabel();
 				getContentPane().add(L_Size, new AnchorConstraint(348, 289, 411, 69, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
-				L_Size.setText("Körpergröße:");
+				L_Size.setText("Körpergröße in cm:");
 				L_Size.setPreferredSize(new java.awt.Dimension(121, 19));
 			}
 			{
@@ -275,7 +289,7 @@ public class Calc extends JPanel {
 	private JLabel getL_duration() {
 		if(L_duration == null) {
 			L_duration = new JLabel();
-			L_duration.setText("Dauer:");
+			L_duration.setText("Dauer in Stunden:");
 			L_duration.setPreferredSize(new java.awt.Dimension(121, 19));
 		}
 		return L_duration;
@@ -285,6 +299,7 @@ public class Calc extends JPanel {
 		if(TF_duration == null) {
 			TF_duration = new JTextField();
 			TF_duration.setPreferredSize(new java.awt.Dimension(198, 26));
+			TF_duration.setText("2");
 		}
 		return TF_duration;
 	}
@@ -324,7 +339,7 @@ public class Calc extends JPanel {
 		if(L_CalcPic == null) {
 			L_CalcPic = new JLabel();
 			L_CalcPic.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/calculator.gif")));
-			L_CalcPic.setPreferredSize(new java.awt.Dimension(133, 175));
+			L_CalcPic.setPreferredSize(new java.awt.Dimension(136, 197));
 		}
 		return L_CalcPic;
 	}

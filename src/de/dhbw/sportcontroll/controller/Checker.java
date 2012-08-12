@@ -168,7 +168,7 @@ public class Checker {
 				JOptionPane.showMessageDialog(null, "Der MET sollte größer als 0 sein", "Energyfaktor MET zu klein", JOptionPane.ERROR_MESSAGE);
 				
 		else if (dMet > MAX)
-				JOptionPane.showMessageDialog(null, "Der MET sollte größer als 0 sein", "Energyfaktor MET zu groß", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Der MET sollte kleiner als 30 sein", "Energyfaktor MET zu groß", JOptionPane.ERROR_MESSAGE);
 
 		else if (dMet < MIN && dMet >MAX)
 				return  dMet;
