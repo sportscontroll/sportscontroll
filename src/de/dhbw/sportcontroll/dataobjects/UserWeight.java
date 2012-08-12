@@ -20,7 +20,17 @@ public class UserWeight implements Comparable<UserWeight>{
 		this.weight = weight;
 		this.date = date;
 	}
+	public UserWeight(int id, Date date, double weight){
+		this.id = id;
+		this.weight = weight;
+		this.date = date;
+	}
 	
+	public UserWeight(int id, int date, double weight) {
+		this.id = id;
+		this.weight = weight;
+		this.date = new Date(date);
+	}
 	/**
 	 * @return the id
 	 */

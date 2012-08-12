@@ -173,10 +173,10 @@ public class DataHandler {
 		Statement st = dbCon.createStatement();
 		ArrayList<UserWeight> weight = new ArrayList<UserWeight>();
 		
-		ResultSet rsWeight = st.executeQuery("SELECT * FROM weight WHERE uid = " + profileId	+ " ;");
+		ResultSet rsWeight = st.executeQuery("SELECT rowid, date, weight FROM weight WHERE uid = " + profileId	+ " ;");
 		
 		while (rsWeight.next()) {			
-			UserWeight uw = new UserWeight(rsWeight.getInt("date"),
+			UserWeight uw = new UserWeight(rsWeight.getInt("rowid"),rsWeight.getInt("date"),
 					rsWeight.getDouble("weight"));
 			weight.add(uw);
 		}
@@ -659,5 +659,19 @@ public class DataHandler {
 		}
 		return w.getId();		
 	}
+	public void deleteWorkout(Workout w) throws SQLException {
+		
+		PreparedStatement pst = null;
+		
+		if(w != null && w.getId() > 0) {
+			System.out.println("delete Wokout " + w.getId());
+			pst = dbCon.prepareStatement("DELETE FROM workout WHERE rowid = ? ;");			
+			pst.setInt(1, w.getId());
+			pst.execute();
+		}
+		w = null;
+		pst.close();	
+	}
+	
 
 }

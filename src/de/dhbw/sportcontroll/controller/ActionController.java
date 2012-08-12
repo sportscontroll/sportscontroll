@@ -71,7 +71,7 @@ public class ActionController {
 		}
 		
 		//add some DummyData
-		//addDummyData();
+		addDummyData();
 				
 		
 		if(currentUser.getWorkouts() == null)
@@ -100,7 +100,7 @@ public class ActionController {
 		mView.addSaveListener(new SaveActionListener());
 		mView.addTableMouseAdapter(new TableMouseAdapter());
 		
-		
+		mView.addSaveProfileListener(new SaveProfileButtonListener());
 		
 		//add Date to buttom of MainFrame
 		mView.showDateinMainFrame((new Date(System.currentTimeMillis()).getDateGreLiEnd()));
@@ -156,7 +156,43 @@ public class ActionController {
 		
 	}
 	
-	
+	class SaveProfileButtonListener implements ActionListener {		
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Hallo");
+			ConfigProfil cp = mView.getProfilePanel();
+			System.out.println("Hallo");
+			currentUser.setName(cp.getTF_Name().getText());
+						
+			try {
+				currentUser.setBirthday(Checker.checkDate(cp.getTF_Birthdate().getText()));
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			if(cp.getRB_gender_m().isEnabled()){
+				currentUser.setGender("male");
+			}
+			else {
+				currentUser.setGender("female");
+			}
+			//String genderFemale = cp.getRB_gender_w().getName();
+			
+			currentUser.setHeight(Integer.parseInt(cp.getTF_Size().getText()));
+			//currentUser.setUserWeightHistorie(null);
+			try {
+				dh.saveUserProfile(currentUser);
+			} catch (SQLException | SQLQueryException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+			
+		}
+	}
 	
 	/**
 	 * NewEntryListener implements ActionListener for opening the NewEnty Dialog
@@ -169,6 +205,7 @@ public class ActionController {
 			System.out.println("neuer eintrag!!");
 			NewEntry newEntryFrame = new NewEntry(mView);
 			newEntryFrame.addSaveEntryActionListener(new SaveNewEntryActionListener(newEntryFrame));
+			
 			newEntryFrame.setVisible(true);	
 		}			
 	}
@@ -185,7 +222,7 @@ public class ActionController {
 		
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Show Profile e" + e.getActionCommand());			
-			mView.showPanelProfile();			
+			mView.showPanelProfile(currentUser);			
 		}
 	}
 	
@@ -207,6 +244,33 @@ public class ActionController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			
+		}
+		
+	}
+	
+	class ButtonDeleteWorkoutActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			newEntryFrame.setVisible(false);
+			newEntryFrame = null;
+			try {
+				dh.deleteWorkout(selectedWorkout);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			System.out.println(currentUser.getWorkouts().size());
+			
+			try {
+				currentUser.setWorkouts(dh.loadUserWorkouts(currentUser.getId()));
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			mView.refreshTableData(currentUser.getWorkouts());
+			
 		}
 		
 	}
@@ -238,6 +302,7 @@ public class ActionController {
 		        
 		        newEntryFrame = new NewEntry(mView, selectedWorkout);
 		        newEntryFrame.addSaveEntryActionListener(new SaveNewEntryActionListener(newEntryFrame));
+		        newEntryFrame.addButtonDeleteWorkoutActionList(new ButtonDeleteWorkoutActionListener());
 				newEntryFrame.setVisible(true);	
 
 		        }
