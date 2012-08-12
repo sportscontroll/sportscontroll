@@ -20,28 +20,11 @@ import de.dhbw.sportcontroll.db.DataHandler.*;
 
 public class Test {
 
-	
-	    public static String GregorianCalendarDate() {
-	        GregorianCalendar now = new GregorianCalendar();
-	        DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);   // 08.08.12
-//	        df = DateFormat.getDateInstance(DateFormat.MEDIUM);             // 08.08.2012
-//	        df = DateFormat.getDateInstance(DateFormat.LONG);               // 08. August 2012
-//	        df = DateFormat.getTimeInstance(DateFormat.SHORT);              // 08:21
-//	        df = DateFormat.getTimeInstance(DateFormat.MEDIUM);             // 08:21:12
-//	        df = DateFormat.getTimeInstance(DateFormat.LONG);               // 08:21:12 MESZ
-	        df = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.LONG); // 08.08.12 08:35:00 MESZ
-//	        System.out.println(df.format(now.getTime()));
-	        
-	        /*
-	         * Change DataFormat to String for Output
-	         */
-	        String sdf = df.format(new Date());
-	        return sdf;
 	    
-	        	
-	        }
-	    
-	    public static String[][] GETWorkout(){
+	    public static String[][] exampleWorkout(){
+	    	/**
+	    	 * Create a ExampleWorkout for Test with Charts or table
+	    	 */
 	        
 	    	String[][] wo={
 	                {"1","Schwimmen","30", "20.07.12","10","Lörrach"},
@@ -64,6 +47,9 @@ public class Test {
 	    }
 		
 	    public void setTableData(ArrayList<Workout> workouts) {
+	    	/**
+	    	 * 
+	    	 */
 			int i = 1;
 			for(Workout w : workouts){
 				w.getId();
