@@ -325,7 +325,7 @@ public class Checker {
 				
 			}
 		}
-		else JOptionPane.showMessageDialog(null, "Sie können kein Gewicht eintragen das länger als" + MAXdif + " Tage zurückliegt. Oder in der Zukunftliegt! Überprüfen Sie Ihre Datums eingabe!", "Eintrag falsches Datum", JOptionPane.ERROR_MESSAGE);	
+		//else JOptionPane.showMessageDialog(null, "Sie können kein Gewicht eintragen das länger als" + MAXdif + " Tage zurückliegt. Oder in der Zukunftliegt! Überprüfen Sie Ihre Datums eingabe!", "Eintrag falsches Datum", JOptionPane.ERROR_MESSAGE);	
 		 
 		try{
              SimpleDateFormat sdfToDate = new SimpleDateFormat( "dd.MM.yyyy" );

@@ -71,7 +71,7 @@ public class ActionController {
 		}
 		
 		//add some DummyData
-		//addDummyData();
+		addDummyData();
 				
 		
 		if(currentUser.getWorkouts() == null)
@@ -100,7 +100,7 @@ public class ActionController {
 		mView.addSaveListener(new SaveActionListener());
 		mView.addTableMouseAdapter(new TableMouseAdapter());
 		
-		
+		mView.addSaveProfileListener(new SaveProfileButtonListener());
 		
 		//add Date to buttom of MainFrame
 		mView.showDateinMainFrame((new Date(System.currentTimeMillis()).getDateGreLiEnd()));
@@ -156,7 +156,43 @@ public class ActionController {
 		
 	}
 	
-	
+	class SaveProfileButtonListener implements ActionListener {		
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Hallo");
+			ConfigProfil cp = mView.getProfilePanel();
+			System.out.println("Hallo");
+			currentUser.setName(cp.getTF_Name().getText());
+						
+			try {
+				currentUser.setBirthday(Checker.CheckDate(cp.getTF_Birthdate().getText()));
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			if(cp.getRB_gender_m().isEnabled()){
+				currentUser.setGender("male");
+			}
+			else {
+				currentUser.setGender("female");
+			}
+			//String genderFemale = cp.getRB_gender_w().getName();
+			
+			currentUser.setHeight(Integer.parseInt(cp.getTF_Size().getText()));
+			//currentUser.setUserWeightHistorie(null);
+			try {
+				dh.saveUserProfile(currentUser);
+			} catch (SQLException | SQLQueryException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+			
+		}
+	}
 	
 	/**
 	 * NewEntryListener implements ActionListener for opening the NewEnty Dialog
@@ -186,7 +222,7 @@ public class ActionController {
 		
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Show Profile e" + e.getActionCommand());			
-			mView.showPanelProfile();			
+			mView.showPanelProfile(currentUser);			
 		}
 	}
 	

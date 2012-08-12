@@ -574,7 +574,7 @@ public class NewEntry extends javax.swing.JDialog {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		selectedWorkout.setLocation(TF_Duration.getText());
+		selectedWorkout.setLocation(TF_Location.getText());
 		selectedWorkout.setHeartRate(Integer.parseInt(TF_HeartRate.getText()));
 		selectedWorkout.setComment(TA_Note.getText());
 		return selectedWorkout;

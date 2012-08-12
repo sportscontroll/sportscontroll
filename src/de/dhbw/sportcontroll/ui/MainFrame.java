@@ -33,6 +33,7 @@ import org.jfree.ui.RefineryUtilities;
 
 
 import de.dhbw.sportcontroll.controller.Calculate;
+import de.dhbw.sportcontroll.dataobjects.UserProfile;
 import de.dhbw.sportcontroll.dataobjects.Workout;
 
 /**
@@ -521,6 +522,10 @@ public class MainFrame extends JFrame {
 		I_DataSave.addActionListener(al);
 	}
 	
+	public void addSaveProfileListener(ActionListener al) {
+		panelProfile.AddSaveProfileListener(al);		
+	}
+	
 	/**
 	 * adds ActionListener to NewEntryListener
 	 * @param al
@@ -557,9 +562,11 @@ public class MainFrame extends JFrame {
         cl.show(contentPanel, "workout");
 		
 	}
-	public void showPanelProfile() {
+	public void showPanelProfile(UserProfile p) {
+		panelProfile.setData(p);
 		CardLayout cl = (CardLayout)(contentPanel.getLayout());
-        cl.show(contentPanel, "profile");		
+        cl.show(contentPanel, "profile");
+        
 	}
 	public void showPanelClaculator() {
 		CardLayout cl = (CardLayout)(contentPanel.getLayout());
@@ -569,6 +576,11 @@ public class MainFrame extends JFrame {
 	public void refreshTableData(ArrayList<Workout> workouts) {
 		panelWorkoutTable.refreshTableData(workouts);
 		
+	}
+
+	public ConfigProfil getProfilePanel() {
+		
+		return panelProfile;
 	}
 
 	

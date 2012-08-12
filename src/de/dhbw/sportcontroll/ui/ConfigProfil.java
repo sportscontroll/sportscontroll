@@ -1,9 +1,15 @@
 package de.dhbw.sportcontroll.ui;
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
+
+import de.dhbw.sportcontroll.dataobjects.UserProfile;
+
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -45,18 +51,7 @@ public class ConfigProfil extends JPanel {
 	private JTextField TF_Birthdate;
 	
 	
-//	/**
-//	* Auto-generated main method to display this JFrame
-//	*/
-//	public static void main(String[] args) {
-//		SwingUtilities.invokeLater(new Runnable() {
-//			public void run() {
-//				ConfigProfil inst = new ConfigProfil();
-//				inst.setLocation(null);
-//				inst.setVisible(true);
-//			}
-//		});
-//	}
+
 	
 	public ConfigProfil() {
 		super(new AnchorLayout());
@@ -70,8 +65,7 @@ public class ConfigProfil extends JPanel {
 			this.setLayout(thisLayout);
 			
 			
-			{
-				
+			{		
 				
 				L_Age = new JLabel();
 				L_Age.setText("$age$");
@@ -108,7 +102,7 @@ public class ConfigProfil extends JPanel {
 				this.add(B_OK, new AnchorConstraint(878, 958, 965, 686, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				B_OK.setText("OK");
 				B_OK.setPreferredSize(new java.awt.Dimension(109, 26));
-				B_OK.setAction(getOKAction());
+				//B_OK.setAction(getOKAction());
 			}
 			{
 				TF_Birthdate = new JTextField();
@@ -138,9 +132,9 @@ public class ConfigProfil extends JPanel {
 
 				
 				
-				L_Age = new JLabel();
-				L_Age.setText("Alter:");
-				L_Age.setPreferredSize(new java.awt.Dimension(88, 18));
+				//L_Age = new JLabel();
+				//L_Age.setText("Alter:");
+				//L_Age.setPreferredSize(new java.awt.Dimension(88, 18));
 					
 				
 				
@@ -162,16 +156,49 @@ public class ConfigProfil extends JPanel {
 		}
 	}
 // begin Actions
-	private AbstractAction getOKAction() {
-		if(OKAction == null) {
-			OKAction = new AbstractAction("OK", null) {
-				public void actionPerformed(ActionEvent evt) {
-					setVisible(false);
-				}
-			};
-		}
-		return OKAction;
+
+	
+	/**
+	 * @return the tF_Name
+	 */
+	public JTextField getTF_Name() {
+		return TF_Name;
 	}
+
+	/**
+	 * @return the rB_gender_w
+	 */
+	public JRadioButton getRB_gender_w() {
+		return RB_gender_w;
+	}
+
+	/**
+	 * @return the rB_gender_m
+	 */
+	public JRadioButton getRB_gender_m() {
+		return RB_gender_m;
+	}
+
+	/**
+	 * @return the tF_Size
+	 */
+	public JTextField getTF_Size() {
+		return TF_Size;
+	}
+
+	/**
+	 * @return the tF_Birthdate
+	 */
+	public JTextField getTF_Birthdate() {
+		return TF_Birthdate;
+	}
+
+	public void AddSaveProfileListener(ActionListener al){
+		B_OK.addActionListener(al);
+	}	
+	
+	
+	
 	
 	private AbstractAction getCloseAction() {
 		if(closeAction == null) {
@@ -189,10 +216,28 @@ public class ConfigProfil extends JPanel {
 	private ButtonGroup getOB_Gender() {
 		if(OB_Gender == null) {
 			OB_Gender = new ButtonGroup();
-			
-
 		}
 		return OB_Gender;
+	}
+
+	public void setData(UserProfile p) {
+		
+		
+		TF_Name.setText(p.getName());
+		if(p.getGender() == "female"){
+			RB_gender_m.setSelected(true);
+			RB_gender_w.setSelected(false);			
+		}
+		else {
+			RB_gender_m.setSelected(false);
+			RB_gender_w.setSelected(true);
+		}
+		ButtonModel model = RB_gender_m.getModel();
+		OB_Gender.setSelected(model, true);
+		TF_Size.setText(String.valueOf(p.getHeight()));
+		TF_Birthdate.setText(p.getBirthday().getDateGreLiEnd());
+		this.repaint();
+		
 	}
 	
 	

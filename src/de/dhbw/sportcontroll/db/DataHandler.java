@@ -173,10 +173,10 @@ public class DataHandler {
 		Statement st = dbCon.createStatement();
 		ArrayList<UserWeight> weight = new ArrayList<UserWeight>();
 		
-		ResultSet rsWeight = st.executeQuery("SELECT * FROM weight WHERE uid = " + profileId	+ " ;");
+		ResultSet rsWeight = st.executeQuery("SELECT rowid, date, weight FROM weight WHERE uid = " + profileId	+ " ;");
 		
 		while (rsWeight.next()) {			
-			UserWeight uw = new UserWeight(rsWeight.getInt("date"),
+			UserWeight uw = new UserWeight(rsWeight.getInt("rowid"),rsWeight.getInt("date"),
 					rsWeight.getDouble("weight"));
 			weight.add(uw);
 		}
