@@ -659,5 +659,19 @@ public class DataHandler {
 		}
 		return w.getId();		
 	}
+	public void deleteWorkout(Workout w) throws SQLException {
+		
+		PreparedStatement pst = null;
+		
+		if(w != null && w.getId() > 0) {
+			System.out.println("delete Wokout " + w.getId());
+			pst = dbCon.prepareStatement("DELETE FROM workout WHERE rowid = ? ;");			
+			pst.setInt(1, w.getId());
+			pst.execute();
+		}
+		w = null;
+		pst.close();	
+	}
+	
 
 }

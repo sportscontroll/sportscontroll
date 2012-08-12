@@ -169,6 +169,7 @@ public class ActionController {
 			System.out.println("neuer eintrag!!");
 			NewEntry newEntryFrame = new NewEntry(mView);
 			newEntryFrame.addSaveEntryActionListener(new SaveNewEntryActionListener(newEntryFrame));
+			
 			newEntryFrame.setVisible(true);	
 		}			
 	}
@@ -211,6 +212,33 @@ public class ActionController {
 		
 	}
 	
+	class ButtonDeleteWorkoutActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			newEntryFrame.setVisible(false);
+			newEntryFrame = null;
+			try {
+				dh.deleteWorkout(selectedWorkout);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			System.out.println(currentUser.getWorkouts().size());
+			
+			try {
+				currentUser.setWorkouts(dh.loadUserWorkouts(currentUser.getId()));
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			mView.refreshTableData(currentUser.getWorkouts());
+			
+		}
+		
+	}
+	
 	/**
 	 * TableMouseAdapter is used to determine wicht row is clicked to load and edit the selected 
 	 * Workout
@@ -238,6 +266,7 @@ public class ActionController {
 		        
 		        newEntryFrame = new NewEntry(mView, selectedWorkout);
 		        newEntryFrame.addSaveEntryActionListener(new SaveNewEntryActionListener(newEntryFrame));
+		        newEntryFrame.addButtonDeleteWorkoutActionList(new ButtonDeleteWorkoutActionListener());
 				newEntryFrame.setVisible(true);	
 
 		        }

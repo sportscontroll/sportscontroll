@@ -114,6 +114,9 @@ public class NewEntry extends javax.swing.JDialog {
 		selectedWorkout = new Workout();
 		selectedWorkout.setId(0);
 		initGUI();
+
+		B_Cancel = null;
+		
 	}
 	
 	public NewEntry(MainFrame mView, Workout w) {
@@ -136,10 +139,15 @@ public class NewEntry extends javax.swing.JDialog {
 		 
 		// TB_Distance = new JTextField(String.valueOf(w.get))
 		 
-		 
-		 
+		 	 
 		 
 		 initGUI();
+
+			B_Cancel = new JButton();
+			P_NewEntry.add(B_Cancel);
+			B_Cancel.setText("Loeschen");
+			//B_Cancel.setAction(getCloseAction());
+			B_Cancel.setPreferredSize(new java.awt.Dimension(160, 50));
 	}
 
 	private void initGUI() {
@@ -183,11 +191,6 @@ public class NewEntry extends javax.swing.JDialog {
 					P_NewEntry.add(getSP_Note());
 					P_NewEntry.add(getB_SaveNewWork());
 					{
-						B_Cancel = new JButton();
-						P_NewEntry.add(B_Cancel);
-						B_Cancel.setText("Abbrechen");
-						B_Cancel.setAction(getCloseAction());
-						B_Cancel.setPreferredSize(new java.awt.Dimension(160, 50));
 					}
 				}
 				{
@@ -634,6 +637,8 @@ public class NewEntry extends javax.swing.JDialog {
 		B_SaveNewWork.addActionListener(al);
 	}
 	
-	
+	public void addButtonDeleteWorkoutActionList(ActionListener al) {
+		B_Cancel.addActionListener(al);		
+	}
 
 }
