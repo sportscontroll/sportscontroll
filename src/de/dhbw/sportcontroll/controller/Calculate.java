@@ -11,6 +11,7 @@ package de.dhbw.sportcontroll.controller;
 
 
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -21,7 +22,10 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
+import sun.security.action.GetBooleanAction;
+
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
+import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
 import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
 
@@ -39,8 +43,8 @@ public class Calculate {
 				double dweight= 0;
 				
 				//Change String into double for calc
-				dweight = CheckWeight(sweight);
-				dsize = CheckSize(ssize)/100;
+				dweight = Checker.CheckWeight(sweight);
+				dsize = Checker.CheckSize(ssize)/100;
 				
 					if (dweight>19 && dweight<300 && dsize>1.00 && dsize<3.00)	{					
 							BMIvalue = dweight/(dsize*dsize);
@@ -59,8 +63,8 @@ public class Calculate {
 				
 				int iage = CalcAge(sbirthdate);
 				
-				dsize = CheckSize(ssize);
-				dweight = CheckWeight(sweight);
+				dsize = Checker.CheckSize(ssize);
+				dweight = Checker.CheckWeight(sweight);
 					
 				//Check Man or Women
 				if (genderm.isSelected()==true)
@@ -84,7 +88,7 @@ public class Calculate {
 				return 0;
 				}
 			
-			public static double calconsumption (String sduration, String sDiscipline, String sweight)
+			public static double calconsumption (String sduration, String sdiscipline, String sweight)
 			
 			{
 				/**Calc the calconsumption while train
@@ -100,12 +104,17 @@ public class Calculate {
 				double dweight= 0;
 				double dduration= 0;
 				
-				dweight = CheckWeight(sweight);
+				dweight = Checker.CheckWeight(sweight);
+				//TODO
 				//Met = //Search sDiscipline gebe MET ZUR�CK
 				// test met = 2
 				double met = 2 ;
-			//	double met = SportDiscipline.getEnergyfactor(sDiscipline);
-				
+				int id = 1;
+
+			//	SportDiscipline sdList = DataHandler.getInstance().loadSportDiscipline(1);	
+			 
+			//	double met = SportDiscipline.getEnergyfactor();
+			
 				double calocon = met*dweight*dduration ;
 				JOptionPane.showMessageDialog(null, calocon , "Kalorie", JOptionPane.ERROR_MESSAGE);
 				
@@ -144,80 +153,7 @@ public class Calculate {
 				return iage;
 			}
 			
-			public static double CheckWeight(String sweight)
-			{
-				final int MIN = 20;
-				final int MAX = 299;
-				double dweight = 0;
-						
-				if(sweight == null || sweight.trim().length() == 0)
-					JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein richtiges Gewicht ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
-				else 
-					dweight = Double.parseDouble(sweight);
-
-				if (dweight < MIN)
-						JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein Gewicht gr��er als 20 Kilogram ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
-						
-				if (dweight > MAX)
-						JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein Gewicht kleiner als 300 Kilogram ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
-
-				else if (dweight < MIN && dweight >MAX)
-						return  dweight;
-				return dweight;
-			}
-			
-			public static double CheckSize(String ssize)
-			{
-				final int MIN = 20;
-				final int MAX = 299;
-				double dsize = 0;
-						
-				if(ssize == null || ssize.trim().length() == 0)
-					JOptionPane.showMessageDialog(null, "Bitte, geben Sie eine richtige Gr��e in Zentimetern ein:", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
-				else 
-					dsize = Double.parseDouble(ssize);
-
-				if (dsize < MIN)
-						JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein Gr��e, gr��er als 100 Zentimeter ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
-						
-				if (dsize > MAX)
-						JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein Gr��e, kleiner als 300 Zentimeter ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
-
-				else if (dsize < MIN && dsize >MAX)
-						return  dsize;
-				return dsize;
-			}
-			public static double CheckDuration(String sduration)
-			{
-				double dduration = 0;
-				if(sduration == null || sduration.trim().length() == 0)
-					JOptionPane.showMessageDialog(null, "Bitte, geben Sie eine Dauer ein", "Dauer falsch", JOptionPane.ERROR_MESSAGE);
-				 else 
-					dduration = Double.parseDouble(sduration);
-				if (dduration < 0)
-					JOptionPane.showMessageDialog(null, "Bitte, geben Sie eine Dauer gr��er als 0 ein.", "Dauer falsch", JOptionPane.ERROR_MESSAGE);
-				return dduration;
-			}
-			public static boolean CheckGender (boolean genderw , boolean genderm)
-			{
-				// CheckGender not implement
-				boolean bgender = false;
-				
-				if (bgender = false)
-					JOptionPane.showMessageDialog(null, "W�hlen sie das Geschlecht aus:", "Geschlecht", JOptionPane.ERROR_MESSAGE);
-				
-				return bgender;				
-			}
-			
-			public static int CheckEnergyfactor (int emet)
-			{
-				// CheckEnergyfactor not implement
-				int imet= 0;
-				
-				
-				return imet;				
-			}
-	}
+}
 	
 
 

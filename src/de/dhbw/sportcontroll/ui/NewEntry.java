@@ -2,6 +2,7 @@ package de.dhbw.sportcontroll.ui;
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
 
+import de.dhbw.sportcontroll.controller.Calculate;
 import de.dhbw.sportcontroll.dataobjects.Date;
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
 import de.dhbw.sportcontroll.dataobjects.Workout;
@@ -67,6 +68,8 @@ public class NewEntry extends javax.swing.JDialog {
 	private JLabel L_Distance;
 	private JTextField TB_CaloryConsumption;
 	private JLabel L_Weather;
+	private AbstractAction SaveNewSDAction;
+	private AbstractAction SaveNewEntryAction;
 	private JLabel L_MET;
 	private JScrollPane SP_Note;
 	private AbstractAction DisciplineAction;
@@ -81,7 +84,7 @@ public class NewEntry extends javax.swing.JDialog {
 	private JLabel L_HeartRate;
 	private JTextField TF_HeartRate;
 	private JLabel L_caloryConsumption;
-	private JTextField TB_Sportart;
+	private JTextField TB_Discipline;
 	private JLabel jLabel1;
 	private JTextField TF_Date;
 	private JLabel L_Date;
@@ -172,7 +175,7 @@ public class NewEntry extends javax.swing.JDialog {
 					TP_New.addTab("Sportart", null, P_NewDiscipline, null);
 					P_NewDiscipline.setPreferredSize(new java.awt.Dimension(379, 188));
 					P_NewDiscipline.add(getJLabel1());
-					P_NewDiscipline.add(getTB_Sportart());
+					P_NewDiscipline.add(getTB_Discipline());
 					P_NewDiscipline.add(getL_caloryConsumption());
 					P_NewDiscipline.add(getTB_CaloryConsumption());
 					P_NewDiscipline.add(getCB_DistanceSport());
@@ -334,12 +337,12 @@ public class NewEntry extends javax.swing.JDialog {
 		return jLabel1;
 	}
 	
-	private JTextField getTB_Sportart() {
-		if(TB_Sportart == null) {
-			TB_Sportart = new JTextField();
-			TB_Sportart.setPreferredSize(new java.awt.Dimension(169, 50));
+	private JTextField getTB_Discipline() {
+		if(TB_Discipline == null) {
+			TB_Discipline = new JTextField();
+			TB_Discipline.setPreferredSize(new java.awt.Dimension(169, 50));
 		}
-		return TB_Sportart;
+		return TB_Discipline;
 	}
 	
 	private JLabel getL_caloryConsumption() {
@@ -503,6 +506,7 @@ public class NewEntry extends javax.swing.JDialog {
 			B_SaveNewWork.setText("Speichern");
 			B_SaveNewWork.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
 			B_SaveNewWork.setPreferredSize(new java.awt.Dimension(160, 50));
+			B_SaveNewWork.setAction(getSaveNewEntryAction());
 			}
 		return B_SaveNewWork;
 	}
@@ -513,6 +517,7 @@ public class NewEntry extends javax.swing.JDialog {
 			B_SaveNewDis.setText("Speichern");
 			B_SaveNewDis.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
 			B_SaveNewDis.setPreferredSize(new java.awt.Dimension(160, 50));
+			B_SaveNewDis.setAction(getSaveNewSDAction());
 		}
 		return B_SaveNewDis;
 	}
@@ -533,7 +538,6 @@ public class NewEntry extends javax.swing.JDialog {
 				public void actionPerformed(ActionEvent evt) {
 					String str = (String)CB_Discipline.getSelectedItem();
 				 	 System.out.println(str);
-				 	 //TODO output in Übergabe
 				}
 			};
 		}
@@ -565,6 +569,40 @@ public class NewEntry extends javax.swing.JDialog {
 			L_MET.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/info.gif")));
 		}
 		return L_MET;
+	}
+	
+	private AbstractAction getSaveNewSDAction() {
+		if(SaveNewSDAction == null) {
+			SaveNewSDAction = new AbstractAction("Speichern", new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif"))) {
+				public void actionPerformed(ActionEvent evt) {
+					String eDiscipline = TB_Discipline.getText();
+					String eEnergyFactor = TB_CaloryConsumption.getText();					
+					
+					Test.SetNewSportDiscipline(eDiscipline, eEnergyFactor);
+				}
+			};
+		}
+		return SaveNewSDAction;
+	}
+	
+	private AbstractAction getSaveNewEntryAction() {
+		if(SaveNewEntryAction == null) {
+			SaveNewEntryAction = new AbstractAction("Speichern", new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif"))) {
+				public void actionPerformed(ActionEvent evt) {
+					String ediscipline = CB_Discipline.getToolTipText();
+					String eduration = TF_Duration.getText();
+					String edate = TF_Date.getText();
+					String edistance = TB_Distance.getText();
+					String elocation = TF_Location.getText();
+					String eHeardRate = TF_HeartRate.getText();
+					String eNote = TA_Note.getText();
+					
+					
+					
+				}
+			};
+		}
+		return SaveNewEntryAction;
 	}
 
 }

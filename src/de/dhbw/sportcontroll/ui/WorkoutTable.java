@@ -62,6 +62,9 @@ public class WorkoutTable extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
         //Add the scroll pane to this panel.
         add(scrollPane);
+
+        table.getTableHeader().setReorderingAllowed(false);
+
          
         
         

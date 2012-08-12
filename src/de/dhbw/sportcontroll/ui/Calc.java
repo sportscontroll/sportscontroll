@@ -181,7 +181,7 @@ public class Calc extends JPanel {
 				getContentPane().add(getRB_gender_w(), new AnchorConstraint(428, 665, 575, 530, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				TF_Birthdate.setText("20.12.1985");
 				TF_Birthdate.setPreferredSize(new java.awt.Dimension(134,23));
-	//			double ibirtdate = Double.parseDouble(TF_Birthdate.getText());
+
 			}
 			
 			this.setSize(567, 338);

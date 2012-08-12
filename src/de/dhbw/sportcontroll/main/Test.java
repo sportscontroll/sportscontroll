@@ -11,7 +11,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 
+import de.dhbw.sportcontroll.controller.Checker;
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
+import de.dhbw.sportcontroll.dataobjects.UserWeight;
 import de.dhbw.sportcontroll.dataobjects.Workout;
 import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.db.DataHandler.*;
@@ -60,7 +62,15 @@ public class Test {
 	    	
 			return wo;
 	    }
-	    
+		
+	    public void setTableData(ArrayList<Workout> workouts) {
+			int i = 1;
+			for(Workout w : workouts){
+				w.getId();
+				System.out.println(w.getId());
+				}
+	}
+	      
 	    public static String [] GETColumnName()
 	    {
 	    	/**
@@ -90,7 +100,7 @@ public class Test {
 	    public static String [] GetDisciplines(){	
 	    /**
 	     * @return
-	     * TODO GetDiscipline 
+	     *  
 	     */
 	    	String[] sdiscipline = {	"Laufen",
 	    					"Rennen",
@@ -105,6 +115,45 @@ public class Test {
 	   // 	  CB_discipline.setItems(sdiscipline);
 	    	
 	    	return sdiscipline;
+	    }
+	    public static String GetUserSize(int UsId)
+	    {
+	    	String sUserSize= "198";
+	    	
+	    	return sUserSize;
+	    }
+	    
+	    public static void SetNewSportDiscipline (String eDiscipline, String eEnergyFactor)
+	    {
+	    	
+	    	double dEnergyFactor = Checker.CheckEnergyfactor(eEnergyFactor);
+	    	String sDiscipline =Checker.CheckeDiscipline(eDiscipline);
+	    	SportDiscipline sdNew = new SportDiscipline(0, eDiscipline, dEnergyFactor);
+	    	System.out.println("Sportart gespeichert!!!");
+	    	
+	    	
+	    }
+	    
+	    public static void SetNewUserWeight(String eweight, String edate){
+	    	//TODO Speichern in Datenbank
+	    	//Date Format Date(1987, 8 ,1)
+	    	Double dweight = Checker.CheckWeight(eweight);
+	    	//Date daDate = Checker.CheckDate(edate);
+	    	//DataHandler.saveUserWeight(dweight);    	
+	    	
+	    }
+	    public static void SetNewEntry(String ediscipline,String eduration, String edate, String edistance,String elocation, String eHeardRate,String eNote){
+	    	String sdiscipline = Checker.CheckeDiscipline(ediscipline);
+	    	
+	    	Double dduration = Checker.CheckDuration(eduration);
+	    	//Date daDate = Checker.CheckDate(edate);
+	    	Double sdistance = Checker.CheckDistance(edistance) ;
+	    	String slocation = Checker.CheckLocation(elocation);
+	    	Double dHeardRate = Checker.CheckHeartRate(eHeardRate);
+	    	String sNote = Checker.CheckNote(eNote);
+	    	
+	   // 	Workout wnew = new  Workout(0, uid, did, dadate, dduration, dHeartRate, slocation, sNote)
+		    	
 	    }
 }
 	

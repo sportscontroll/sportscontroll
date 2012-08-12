@@ -81,7 +81,7 @@ public class DBTest {
 		
 		sd1.setEnergyfactor(42.23);
 		dh.SaveSportDiscipline(sd1);
-										
+	
 		SportDiscipline sd2 = dh.loadSportDiscipline(1);
 		System.out.println("Sport " + sd2.getName());
 		
