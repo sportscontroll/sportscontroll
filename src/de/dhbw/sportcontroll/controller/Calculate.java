@@ -94,7 +94,7 @@ public class Calculate {
 				
 				}
 			
-			public static void calconsumption (String sduration, String sdiscipline, String sweight)
+			public static void calconsumption (String sduration, SportDiscipline ediscipline, String sweight)
 			
 			{
 				/**Calc the calconsumption while train
@@ -110,7 +110,8 @@ public class Calculate {
 				double dduration= 0;
 				
 				dweight = Checker.checkWeight(sweight);
-				double met = 1.9; //= Checker.checkEnergyfactor(sdiscipline);
+				double met = 1.9; ediscipline.getEnergyfactor();
+				
 				dduration =Checker.checkDuration(sduration);
 				int id = 1;
 		        
