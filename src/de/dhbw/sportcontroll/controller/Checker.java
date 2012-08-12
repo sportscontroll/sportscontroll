@@ -24,12 +24,12 @@ public class Checker {
 
 	public static void main(String[] args) {
 		
-		Double Bla =CheckWeight("85");
+		Double Bla =checkWeight("85");
 	}
 		
 		
 		
-	public static double CheckWeight(String sweight)
+	public static double checkWeight(String sweight)
 	{
 		/**
 		 * @author Katja.Kaiser
@@ -64,7 +64,7 @@ public class Checker {
 		return dweight;
 		}
 		
-	public static double CheckSize(String ssize)
+	public static double checkSize(String ssize)
 	{
 		/**
 		 * @author Katja.Kaiser
@@ -87,7 +87,7 @@ public class Checker {
 				   
 				}
 				catch (NumberFormatException nfe) {
-					JOptionPane.showMessageDialog(null, "Bitte, geben Sie ihr Gewicht nur mit Zahlen ein! \n Vewenden sie einen Punkt statt Komma!!!", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Bitte, geben Sie Ihre Größe nur mit Zahlen ein! \n Vewenden sie einen Punkt statt Komma!!!", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
 				}	
 		if (dsize < MIN)
 				JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein Größe, größer als 100 Zentimeter ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
@@ -99,7 +99,7 @@ public class Checker {
 				return  dsize;
 		return dsize;
 	}
-	public static double CheckDuration(String sduration)
+	public static double checkDuration(String sduration)
 	/**
 	 * @author Katja.Kaiser
 	 *  Check duration input: Entry not emty bigger than 0 and without letters.
@@ -124,7 +124,7 @@ public class Checker {
 			JOptionPane.showMessageDialog(null, "Bitte, geben Sie eine Dauer größer als 0 ein.", "Dauer falsch", JOptionPane.ERROR_MESSAGE);
 		return dduration;
 	}
-	public static boolean CheckGender (boolean genderw , boolean genderm)
+	public static boolean checkGender (boolean genderw , boolean genderm)
 	{
 		/**
 		 * @author Katja.Kaiser
@@ -135,13 +135,17 @@ public class Checker {
 		// CheckGender not implement
 		boolean bgender = false;
 		
-		if (bgender = false)
+		if (genderw == false && genderm == false)
 			JOptionPane.showMessageDialog(null, "Wählen sie das Geschlecht aus:", "Geschlecht", JOptionPane.ERROR_MESSAGE);
+		if (genderw == true)
+			return false;
+		if (genderm == true)
+			return genderm;
 		
 		return bgender;				
 	}
 	
-	public static double CheckEnergyfactor (String sMet)
+	public static double checkEnergyfactor (String sMet)
 	{
 		/**
 		 * @author Katja.Kaiser
@@ -149,13 +153,13 @@ public class Checker {
 		 *  @param emet as double
 		 *  @return imet as double 
 		 */
-		// CheckEnergyfactor not implement
-		final int MIN = 20;
-		final int MAX = 299;
+		
+		final int MIN = 1;
+		final int MAX = 30;
 		double dMet = 0;
 		
 		
-				
+		
 		if(sMet == null || sMet.trim().length() == 0)
 			JOptionPane.showMessageDialog(null, "Bitte, geben Sie einen MET ein: MET Wert unbekannt vielleicht werden sie hier fündig http://www.startblog-f.de/2008/12/23/tabelle-kalorienverbrauch-laufen/", "Energyfaktor MET nicht eingegeben", JOptionPane.ERROR_MESSAGE);
 		else
@@ -170,7 +174,7 @@ public class Checker {
 				JOptionPane.showMessageDialog(null, "Der MET sollte größer als 0 sein", "Energyfaktor MET zu klein", JOptionPane.ERROR_MESSAGE);
 				
 		else if (dMet > MAX)
-				JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein Größe, kleiner als 300 Zentimeter ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Der MET sollte größer als 0 sein", "Energyfaktor MET zu groß", JOptionPane.ERROR_MESSAGE);
 
 		else if (dMet < MIN && dMet >MAX)
 				return  dMet;
@@ -178,7 +182,7 @@ public class Checker {
 		return dMet;			
 	}
 
-	public static String CheckLocation(String elocation){
+	public static String checkLocation(String elocation){
 		/**
 		 * @author Katja.Kaiser
 		 *  Check Location input: Entry between min(2) and max(20) chars
@@ -195,7 +199,7 @@ public class Checker {
 				if (elocation.length()> Max){
 					JOptionPane.showMessageDialog(null, "Der Ortsname darf nur " + Max + " Zeichen beinhalten", "Ortsnahme zu lange", JOptionPane.ERROR_MESSAGE);	
 				}
-				else if (elocation.length()> Min){
+				else if (elocation.length()< Min){
 					JOptionPane.showMessageDialog(null, "Der Ortsname muss " + Min + " Zeichen beinhalten", "Ortsnahme zu lange", JOptionPane.ERROR_MESSAGE);	
 				}
 				else if(elocation.equals("") ) {
@@ -205,7 +209,7 @@ public class Checker {
 		return slocation;
 		
 	}
-	public static double CheckHeartRate (String sheardRate){
+	public static double checkHeartRate (String sheardRate){
 		/**
 		 * @author Katja.Kaiser
 		 *  Check HeartRate input: Entry between Min and Max, without letters.
@@ -256,7 +260,8 @@ public class Checker {
 //						
 //		return dduration;
 //	}
-	public static String CheckNote (String enote){
+
+	public static String checkNote (String enote){
 		/**
 		 * @author Katja.Kaiser
 		 *  Check Note input: Entry between Min and Max chars
@@ -284,7 +289,7 @@ public class Checker {
 		
 	}
 	
-	public static Date CheckDate (String edate) throws ParseException{
+	public static Date checkDate (String edate) throws ParseException{
 		/**
 		 * @author Katja.Kaiser
 		 *  Check Date input: Entry not after Today and older than 6 Month, the entry without letters.
@@ -343,7 +348,7 @@ public class Checker {
 	
 		
 	
-	public static String CheckeDiscipline (String ediscipline){
+	public static String checkDiscipline (String ediscipline){
 		String sdiscipline;
 		
 		
@@ -353,7 +358,7 @@ public class Checker {
 				if (ediscipline.length()> Max){
 					JOptionPane.showMessageDialog(null, "Die Sportart darf nur " + Max + " Zeichen beinhalten", "Name der Sportart zu lange", JOptionPane.ERROR_MESSAGE);	
 				}
-				else if (ediscipline.length()> Min){
+				else if (ediscipline.length()< Min){
 					JOptionPane.showMessageDialog(null, "Die Sportart muss " + Min + " Zeichen beinhalten", "Name der Sportart zu lange", JOptionPane.ERROR_MESSAGE);	
 				}
 				else if(ediscipline.equals("") ) {
@@ -369,7 +374,7 @@ public class Checker {
 
 
 
-	public static Double CheckDistance(String edistance) {
+	public static Double checkDistance(String edistance) {
 		/**
 		 * @author Katja.Kaiser
 		 *  Check size input: Entry not emty between a Min and Max, and without letters
@@ -401,8 +406,7 @@ public class Checker {
 	
 	
 	}
-	
-	
+
 }
 
 

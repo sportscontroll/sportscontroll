@@ -14,6 +14,7 @@ package de.dhbw.sportcontroll.controller;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
 
 import java.util.Calendar;
@@ -43,8 +44,8 @@ public class Calculate {
 				double dweight= 0;
 				
 				//Change String into double for calc
-				dweight = Checker.CheckWeight(sweight);
-				dsize = Checker.CheckSize(ssize)/100;
+				dweight = Checker.checkWeight(sweight);
+				dsize = Checker.checkSize(ssize)/100;
 				
 					if (dweight>19 && dweight<300 && dsize>1.00 && dsize<3.00)	{					
 							BMIvalue = dweight/(dsize*dsize);
@@ -63,8 +64,8 @@ public class Calculate {
 				
 				int iage = CalcAge(sbirthdate);
 				
-				dsize = Checker.CheckSize(ssize);
-				dweight = Checker.CheckWeight(sweight);
+				dsize = Checker.checkSize(ssize);
+				dweight = Checker.checkWeight(sweight);
 					
 				//Check Man or Women
 				if (genderm.isSelected()==true)
@@ -84,7 +85,6 @@ public class Calculate {
 				JOptionPane.showMessageDialog(null, ccvalue , "Grundumsatz", JOptionPane.ERROR_MESSAGE);
 						}
 				
-				JOptionPane.showMessageDialog(null, "RETURN" , "Grundumsatz", JOptionPane.ERROR_MESSAGE);
 				return 0;
 				}
 			
@@ -104,21 +104,19 @@ public class Calculate {
 				double dweight= 0;
 				double dduration= 0;
 				
-				dweight = Checker.CheckWeight(sweight);
-				//TODO
-				//Met = //Search sDiscipline gebe MET ZUR�CK
-				// test met = 2
-				double met = 2 ;
+				dweight = Checker.checkWeight(sweight);
+				double met = 1.9; //= Checker.checkEnergyfactor(sdiscipline);
+				dduration =Checker.checkDuration(sduration);
 				int id = 1;
-
-			//	SportDiscipline sdList = DataHandler.getInstance().loadSportDiscipline(1);	
-			 
-			//	double met = SportDiscipline.getEnergyfactor();
-			
+		        
+//			    SportDiscipline sdList = DataHandler.getInstance().loadSportDiscipline(1);	
+//			 
+//				double met = SportDiscipline.getEnergyfactor();
+//			
 				double calocon = met*dweight*dduration ;
 				JOptionPane.showMessageDialog(null, calocon , "Kalorie", JOptionPane.ERROR_MESSAGE);
-				
 				return calocon;
+				
 			}
 				
 			public static int CalcAge(String sbirthdate)

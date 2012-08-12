@@ -566,7 +566,7 @@ public class NewEntry extends javax.swing.JDialog {
 		selectedWorkout.setDid(selectedWorkout.getDisciplin().getId());
 		selectedWorkout.setDuration(Integer.parseInt(TF_Duration.getText()));
 		try {
-			selectedWorkout.setDate(Checker.CheckDate(TF_Date.getText()));
+			selectedWorkout.setDate(Checker.checkDate(TF_Date.getText()));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
