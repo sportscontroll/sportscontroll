@@ -276,6 +276,8 @@ public class MainFrame extends JFrame {
 						I_ProfilConfig = new JMenuItem();
 						M_Profil.add(I_ProfilConfig);
 						I_ProfilConfig.setText("Einstellungen");
+					//	I_HelpHelp.setAccelerator(KeyStroke.getKeyStroke("ctrl shift E"));
+						
 						
 					}
 //					{
@@ -310,7 +312,7 @@ public class MainFrame extends JFrame {
 					{
 						I_HelpAbout = new JMenuItem();
 						M_Help.add(I_HelpAbout);
-						I_HelpAbout.setText("�ber");
+						I_HelpAbout.setText("Über");
 						I_HelpAbout.setAction(getAboutAction());
 						I_HelpAbout.setAccelerator(KeyStroke.getKeyStroke("ctrl shift A"));
 						

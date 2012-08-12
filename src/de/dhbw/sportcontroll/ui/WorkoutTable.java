@@ -24,7 +24,6 @@ import de.dhbw.sportcontroll.dataobjects.Workout;
 import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
 import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
-import de.dhbw.sportcontroll.main.Test;
 
 public class WorkoutTable extends JPanel {
 	/**
