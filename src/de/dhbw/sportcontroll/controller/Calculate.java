@@ -110,10 +110,10 @@ public class Calculate {
 				double dduration= 0;
 				
 				dweight = Checker.checkWeight(sweight);
-				double met = 1.9; ediscipline.getEnergyfactor();
+				double met = ediscipline.getEnergyfactor();
 				
 				dduration =Checker.checkDuration(sduration);
-				int id = 1;
+				
 		        
 //			    SportDiscipline sdList = DataHandler.getInstance().loadSportDiscipline(1);	
 //			 
