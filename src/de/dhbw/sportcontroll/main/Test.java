@@ -142,6 +142,19 @@ public class Test {
 	    	//DataHandler.saveUserWeight(dweight);    	
 	    	
 	    }
+	    public static void SetNewEntry(String ediscipline,String eduration, String edate, String edistance,String elocation, String eHeardRate,String eNote){
+	    	String sdiscipline = Checker.CheckeDiscipline(ediscipline);
+	    	
+	    	Double dduration = Checker.CheckDuration(eduration);
+	    	//Date daDate = Checker.CheckDate(edate);
+	    	Double sdistance = Checker.CheckDistance(edistance) ;
+	    	String slocation = Checker.CheckLocation(elocation);
+	    	Double dHeardRate = Checker.CheckHeartRate(eHeardRate);
+	    	String sNote = Checker.CheckNote(eNote);
+	    	
+	   // 	Workout wnew = new  Workout(0, uid, did, dadate, dduration, dHeartRate, slocation, sNote)
+		    	
+	    }
 }
 	
 

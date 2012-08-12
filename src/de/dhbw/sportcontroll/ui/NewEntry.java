@@ -69,6 +69,7 @@ public class NewEntry extends javax.swing.JDialog {
 	private JTextField TB_CaloryConsumption;
 	private JLabel L_Weather;
 	private AbstractAction SaveNewSDAction;
+	private AbstractAction SaveNewEntryAction;
 	private JLabel L_MET;
 	private JScrollPane SP_Note;
 	private AbstractAction DisciplineAction;
@@ -505,6 +506,7 @@ public class NewEntry extends javax.swing.JDialog {
 			B_SaveNewWork.setText("Speichern");
 			B_SaveNewWork.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
 			B_SaveNewWork.setPreferredSize(new java.awt.Dimension(160, 50));
+			B_SaveNewWork.setAction(getSaveNewEntryAction());
 			}
 		return B_SaveNewWork;
 	}
@@ -581,6 +583,26 @@ public class NewEntry extends javax.swing.JDialog {
 			};
 		}
 		return SaveNewSDAction;
+	}
+	
+	private AbstractAction getSaveNewEntryAction() {
+		if(SaveNewEntryAction == null) {
+			SaveNewEntryAction = new AbstractAction("Speichern", new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif"))) {
+				public void actionPerformed(ActionEvent evt) {
+					String ediscipline = CB_Discipline.getToolTipText();
+					String eduration = TF_Duration.getText();
+					String edate = TF_Date.getText();
+					String edistance = TB_Distance.getText();
+					String elocation = TF_Location.getText();
+					String eHeardRate = TF_HeartRate.getText();
+					String eNote = TA_Note.getText();
+					
+					
+					
+				}
+			};
+		}
+		return SaveNewEntryAction;
 	}
 
 }

@@ -130,7 +130,7 @@ public class MainFrame extends JFrame {
 	private void initGUI() {
 		
 		
-		panelWorkoutTable = new WorkoutTable();
+		//panelWorkoutTable = new WorkoutTable();
 		panelCalculator = new Calc();
 		panelProfile = new ConfigProfil();
 		

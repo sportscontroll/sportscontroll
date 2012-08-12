@@ -203,7 +203,7 @@ public class Checker {
 		return slocation;
 		
 	}
-	public int CheckHeartRate (String sheardRate){
+	public static double CheckHeartRate (String sheardRate){
 		/**
 		 * @author Katja.Kaiser
 		 *  Check HeartRate input: Entry between Min and Max, without letters.
@@ -211,7 +211,7 @@ public class Checker {
 		 *  @param HeardRate as String
 		 *  @return HeardRate as double 
 		 */
-		int iheardRate = 0;
+		double iheardRate = 0;
 		final int MIN = 20;
 		final int MAX = 220;
 		
@@ -254,7 +254,7 @@ public class Checker {
 //						
 //		return dduration;
 //	}
-	public String CheckNote (String enote){
+	public static String CheckNote (String enote){
 		/**
 		 * @author Katja.Kaiser
 		 *  Check Note input: Entry between Min and Max chars
@@ -362,6 +362,41 @@ public class Checker {
 
 		return sdiscipline;
 		
+	
+	}
+
+
+
+	public static Double CheckDistance(String edistance) {
+		/**
+		 * @author Katja.Kaiser
+		 *  Check size input: Entry not emty between a Min and Max, and without letters
+		 *  @param size as String
+		 *  @return size as double 
+		 */
+		
+		
+		final int MAX = 299;
+		double ddistance = 0;
+		
+		
+				
+		if(edistance == null || edistance.trim().length() == 0)
+			JOptionPane.showMessageDialog(null, "Bitte, geben Sie die Distanz/Strecke in Metern ein! Oder 0", "Distanz falsch", JOptionPane.ERROR_MESSAGE);
+		else
+			try {
+				   ddistance = Double.parseDouble(edistance);
+				   
+				}
+				catch (NumberFormatException nfe) {
+					JOptionPane.showMessageDialog(null, "Bitte, geben Sie ihre Distanz/Strecke nur mit Zahlen ein! \n Vewenden sie einen Punkt statt Komma!!!", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
+				}	
+	
+		if (ddistance > MAX)
+				JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein Distanz/Strecke , kleiner als 300 Meter ein", "Distanz falsch", JOptionPane.ERROR_MESSAGE);
+
+		return ddistance;
+	
 	
 	}
 	
