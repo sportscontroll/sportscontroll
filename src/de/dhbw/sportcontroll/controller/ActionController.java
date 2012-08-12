@@ -72,7 +72,7 @@ public class ActionController {
 		}
 		
 		//add some DummyData
-		//addDummyData();
+		addDummyData();
 				
 		
 		if(currentUser.getWorkouts() == null)
