@@ -263,7 +263,7 @@ public class MainFrame extends JFrame {
 					{
 						I_DataClose = new JMenuItem();
 						M_File.add(I_DataClose);
-						I_DataClose.setText("Schlie�en");
+						I_DataClose.setText("Schließen");
 						
 					}
 				}

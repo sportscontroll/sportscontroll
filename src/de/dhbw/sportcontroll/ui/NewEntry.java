@@ -419,7 +419,7 @@ public class NewEntry extends javax.swing.JDialog {
 		if(TF_DateW == null) {
 			TF_DateW = new JTextField();
 			TF_DateW.setText(new Date(System.currentTimeMillis()).getDateGreLiEnd());
-			TF_DateW.setPreferredSize(new java.awt.Dimension(193, 59));
+			TF_DateW.setPreferredSize(new java.awt.Dimension(243, 59));
 		}
 		return TF_DateW;
 	}
@@ -445,7 +445,7 @@ public class NewEntry extends javax.swing.JDialog {
 	private JTextField getTB_Weight() {
 		if(TB_Weight == null) {
 			TB_Weight = new JTextField();
-			TB_Weight.setPreferredSize(new java.awt.Dimension(193, 59));
+			TB_Weight.setPreferredSize(new java.awt.Dimension(242, 59));
 		}
 		return TB_Weight;
 	}
