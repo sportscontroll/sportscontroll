@@ -3,6 +3,12 @@
  */
 package de.dhbw.sportcontroll.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.regex.Pattern;
+
 import javax.swing.JOptionPane;
 
 import de.dhbw.sportcontroll.ui.MainFrame;
@@ -61,8 +67,8 @@ public class Checker {
 		/**
 		 * @author Katja.Kaiser
 		 *  Check size input: Entry not emty between a Min and Max, and without letters
-		 *  @param weight as String
-		 *  @return weight as double 
+		 *  @param size as String
+		 *  @return size as double 
 		 */
 		
 		final int MIN = 20;
@@ -133,7 +139,7 @@ public class Checker {
 		return bgender;				
 	}
 	
-	public static double CheckEnergyfactor (int emet)
+	public static double CheckEnergyfactor (String sMet)
 	{
 		/**
 		 * @author Katja.Kaiser
@@ -142,11 +148,32 @@ public class Checker {
 		 *  @return imet as double 
 		 */
 		// CheckEnergyfactor not implement
+		final int MIN = 20;
+		final int MAX = 299;
+		double dMet = 0;
 		
-		double imet= 0;
 		
+				
+		if(sMet == null || sMet.trim().length() == 0)
+			JOptionPane.showMessageDialog(null, "Bitte, geben Sie einen MET ein: MET Wert unbekannt vielleicht werden sie hier fündig http://www.startblog-f.de/2008/12/23/tabelle-kalorienverbrauch-laufen/", "Energyfaktor MET nicht eingegeben", JOptionPane.ERROR_MESSAGE);
+		else
+			try {
+				   dMet = Double.parseDouble(sMet);
+				   
+				}
+				catch (NumberFormatException nfe) {
+					JOptionPane.showMessageDialog(null, "Bitte, geben Sie den MET nur mit Zahlen ein! \n Vewenden sie einen Punkt statt Komma!!!", "MET/ Energyfaktoreingabe falsch", JOptionPane.ERROR_MESSAGE);
+				}	
+		if (dMet < MIN)
+				JOptionPane.showMessageDialog(null, "Der MET sollte größer als 0 sein", "Energyfaktor MET zu klein", JOptionPane.ERROR_MESSAGE);
+				
+		else if (dMet > MAX)
+				JOptionPane.showMessageDialog(null, "Bitte, geben Sie ein Größe, kleiner als 300 Zentimeter ein", "Gewichtseingabe falsch", JOptionPane.ERROR_MESSAGE);
+
+		else if (dMet < MIN && dMet >MAX)
+				return  dMet;
 		
-		return imet;				
+		return dMet;			
 	}
 
 	public static String CheckLocation(String elocation){
@@ -255,7 +282,7 @@ public class Checker {
 		
 	}
 	
-	public String CheckDate (String edate){
+	public Date CheckDate (String edate) throws ParseException{
 		/**
 		 * @author Katja.Kaiser
 		 *  Check Date input: Entry not after Today and older than 6 Month, the entry without letters.
@@ -264,12 +291,80 @@ public class Checker {
 		 *  @return Date as DATE? 
 		 */
 		
-		String sdate= "LEER";
-		return sdate;
+	 
+		int MAXdif = 20;
+	
+		String[] date = edate.split("\\.");
+		 
+		int eDay = Integer.parseInt(date[0]);
+		int eMonth = Integer.parseInt(date[1]);
+		int eYear = Integer.parseInt(date[2]);
 		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date()); //Today
+		int year = cal.get(Calendar.YEAR); 
+		int month = cal.get(Calendar.MONTH); 
+		int day = cal.get(Calendar.DAY_OF_MONTH); 
 		
-		
+		if(eYear==year){
+			if(eMonth==month){
+				if((day-eDay)==MAXdif){
+					//TODO Ausabe in Datum
+					//Date dadate =New Date(eDay, eMonth, eYear);
+				    try{
+	                    SimpleDateFormat sdfToDate = new SimpleDateFormat( "dd.MM.yyyy" );
+	                    Date dadate = sdfToDate.parse(edate);
+	                    
+	                }catch(ParseException ex2){
+	                    System.out.println("Fehler");
+	                   
+	                }
+				}
+				
+			}
+		}
+		else JOptionPane.showMessageDialog(null, "Sie können kein Gewicht eintragen das länger als" + MAXdif + " Tage zurückliegt. Oder in der Zukunftliegt! Überprüfen Sie Ihre Datums eingabe!", "Eintrag falsches Datum", JOptionPane.ERROR_MESSAGE);	
+		 
+		try{
+             SimpleDateFormat sdfToDate = new SimpleDateFormat( "dd.MM.yyyy" );
+             Date dadate = sdfToDate.parse(edate);
+             
+         }catch(ParseException ex2){
+             System.out.println("Fehler");
+         }
+		SimpleDateFormat sdfToDate = new SimpleDateFormat( "dd.MM.yyyy" );
+        Date dadate = sdfToDate.parse(edate);
+        
+	 return dadate;
 	}
+		
+	
+		
+	
+	public static String CheckeDiscipline (String ediscipline){
+		String sdiscipline;
+		
+		
+		int Max = 20;
+		int Min = 2;
+		
+				if (ediscipline.length()> Max){
+					JOptionPane.showMessageDialog(null, "Die Sportart darf nur " + Max + " Zeichen beinhalten", "Name der Sportart zu lange", JOptionPane.ERROR_MESSAGE);	
+				}
+				else if (ediscipline.length()> Min){
+					JOptionPane.showMessageDialog(null, "Die Sportart muss " + Min + " Zeichen beinhalten", "Name der Sportart zu lange", JOptionPane.ERROR_MESSAGE);	
+				}
+				else if(ediscipline.equals("") ) {
+					JOptionPane.showMessageDialog(null, "Geben Sie eine Sportart ein", "Name der Sportart fehlt", JOptionPane.ERROR_MESSAGE);	
+					}
+		 sdiscipline = ediscipline;
+		
+
+		return sdiscipline;
+		
+	
+	}
+	
 	
 }
 

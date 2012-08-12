@@ -76,7 +76,7 @@ public class Calculate {
 								
 						}
 				if (genderw.isSelected() == true)
-						{
+						{0
 					//term for Woman
 						double ccvalue = (665+9.6* dweight+1.8*dsize-4.7*iage);
 						
