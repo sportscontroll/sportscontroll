@@ -10,6 +10,7 @@ import java.util.EventListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
@@ -71,7 +72,7 @@ public class ActionController {
 		}
 		
 		//add some DummyData
-		addDummyData();
+		//addDummyData();
 				
 		
 		if(currentUser.getWorkouts() == null)
@@ -93,7 +94,7 @@ public class ActionController {
 		
 		//add actionlisteners		
 		mView.addCloseListener(new CloseListener());
-		mView.addNewEntryListener(new NewEntryListener());
+		mView.addNewEntryListener(new ButtonSaveNewEntryListener());
 		mView.addButtonWorkoutTableActionListener(new ButtonWorkoutTableListener());
 		mView.addButtonConfigProfileActionListener(new ButtonProfileListener());
 		mView.addButtonCalculatorActionListener(new ButtonCalculatorListener());
@@ -160,6 +161,7 @@ public class ActionController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
 			System.out.println("Hallo");
 			ConfigProfil cp = mView.getProfilePanel();
 			System.out.println("Hallo");
@@ -199,12 +201,15 @@ public class ActionController {
 	 * @author Daniel
 	 *
 	 */
-	class NewEntryListener implements ActionListener {
+	class ButtonSaveNewEntryListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {	
 			System.out.println("neuer eintrag!!");
 			NewEntry newEntryFrame = new NewEntry(mView);
 			newEntryFrame.addSaveEntryActionListener(new SaveNewEntryActionListener(newEntryFrame));
+			newEntryFrame.addSaveNewSDActionListener(new SaveNewEntryActionListener(newEntryFrame));
+			newEntryFrame.addSaveNewWEntryActionListener(new SaveNewEntryActionListener(newEntryFrame));
+			
 			
 			newEntryFrame.setVisible(true);	
 		}			
@@ -319,26 +324,52 @@ public class ActionController {
 		
 		@Override
 		public void actionPerformed(ActionEvent evt) {
-			int newIdx = 0;
+			
 
 			if (newEntryFrame != null) {
-				selectedWorkout = newEntryFrame.getNewWorkoutEntry();
-
-				try {
-					System.out.println("save");
-
-					newIdx = DataHandler.getInstance().saveWorkout(
-							selectedWorkout);
-					currentUser.setWorkouts(dh.loadUserWorkouts(currentUser
-							.getId()));
-
-					selectedWorkout = null;
-				} catch (SQLException | SQLQueryException
-						| SQLDriverNotFoundException | SQLConnectionException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				JPanel panel = newEntryFrame.getSelectedPanel();
+				
+				System.out.println(panel.getName());
+				if(panel.getName().equals("workout")){
+					System.out.println("workout");
+					selectedWorkout = newEntryFrame.getNewWorkoutEntry();
+	
+					try {
+						System.out.println("save");
+	
+						int newIdx = DataHandler.getInstance().saveWorkout(
+								selectedWorkout);
+						currentUser.setWorkouts(dh.loadUserWorkouts(currentUser
+								.getId()));
+	
+						selectedWorkout = null;
+					} catch (SQLException | SQLQueryException
+							| SQLDriverNotFoundException | SQLConnectionException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					mView.refreshTableData(currentUser.getWorkouts());
 				}
-				mView.refreshTableData(currentUser.getWorkouts());
+				else if(panel.getName().equals("weight")){
+					System.out.println("weight");
+					try {
+						currentUser.addUserWeight(newEntryFrame.getNewUserWeight());
+					} catch (NumberFormatException | ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}else if(panel.getName().equals("sportdisciplin")){
+					System.out.println("sport");
+					try {
+						dh.SaveSportDiscipline(newEntryFrame.getNewSportDiscipline());
+					} catch (SQLException | SQLQueryException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				newEntryFrame.setVisible(false);
+				newEntryFrame = null;
 			}
 		}
 
