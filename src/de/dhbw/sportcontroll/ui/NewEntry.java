@@ -7,6 +7,8 @@ import de.dhbw.sportcontroll.controller.Calculate;
 import de.dhbw.sportcontroll.controller.Checker;
 import de.dhbw.sportcontroll.dataobjects.Date;
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
+import de.dhbw.sportcontroll.dataobjects.UserProfile;
+import de.dhbw.sportcontroll.dataobjects.UserWeight;
 import de.dhbw.sportcontroll.dataobjects.Workout;
 import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
@@ -16,6 +18,7 @@ import de.dhbw.sportcontroll.main.Test;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -162,6 +165,7 @@ public class NewEntry extends javax.swing.JDialog {
 				{
 					P_NewEntry = new JPanel(new GridLayout(0, 2));
 					TP_New.addTab("Eintrag", null, P_NewEntry, null);
+					P_NewEntry.setName("workout");
 					P_NewEntry.setPreferredSize(new java.awt.Dimension(517, 488));
 					P_NewEntry.add(getL_Discipline());
 					P_NewEntry.add(getCB_Discipline());
@@ -196,6 +200,7 @@ public class NewEntry extends javax.swing.JDialog {
 				{
 					P_NewDiscipline = new JPanel();
 					TP_New.addTab("Sportart", null, P_NewDiscipline, null);
+					P_NewDiscipline.setName("sportdisciplin");
 					P_NewDiscipline.setPreferredSize(new java.awt.Dimension(379, 188));
 					P_NewDiscipline.add(getJLabel1());
 					P_NewDiscipline.add(getTB_Discipline());
@@ -208,6 +213,7 @@ public class NewEntry extends javax.swing.JDialog {
 				{
 					P_NewWeight = new JPanel();
 					TP_New.addTab("Gewicht", null, P_NewWeight, null);
+					P_NewWeight.setName("weight");
 					P_NewWeight.add(getJLabel2());
 					P_NewWeight.add(getJTextField1());
 					P_NewWeight.add(getL_Weight());
@@ -312,7 +318,7 @@ public class NewEntry extends javax.swing.JDialog {
 			}
 			if (selectedSD != null){
 				System.out.println(selectedSD.getName());
-				CB_Discipline.setSelectedItem(selectedSD.getName());
+				CB_Discipline.setSelectedItem(selectedSD);
 			}				
 		}
 		return CB_Discipline;
@@ -547,7 +553,7 @@ public class NewEntry extends javax.swing.JDialog {
 			B_SaveNewDis.setText("Speichern");
 			B_SaveNewDis.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
 			B_SaveNewDis.setPreferredSize(new java.awt.Dimension(160, 50));
-			B_SaveNewDis.setAction(getSaveNewSDAction());
+			//B_SaveNewDis.setAction(getSaveNewSDAction());
 		}
 		return B_SaveNewDis;
 	}
@@ -579,6 +585,17 @@ public class NewEntry extends javax.swing.JDialog {
 		selectedWorkout.setComment(TA_Note.getText());
 		return selectedWorkout;
 	}
+	
+	public SportDiscipline getNewSportDiscipline(){
+		
+		return new SportDiscipline(0, TB_Discipline.getText(), Double.parseDouble(TB_CaloryConsumption.getText())); 
+	}
+	
+	public UserWeight getNewUserWeight() throws NumberFormatException, ParseException{
+		return new UserWeight(Checker.checkDate(TF_DateW.getText()), Double.parseDouble(TB_Weight.getText()));
+	}
+
+	
 	
 	private AbstractAction getDisciplineAction() {
 		if(DisciplineAction == null) {
@@ -635,10 +652,22 @@ public class NewEntry extends javax.swing.JDialog {
 	
 	public void addSaveEntryActionListener(ActionListener al){
 		B_SaveNewWork.addActionListener(al);
+		
 	}
+	public void addSaveNewSDActionListener(ActionListener al){		
+		B_SaveNewDis.addActionListener(al);
+
+	}
+	public void addSaveNewWEntryActionListener(ActionListener al){		
+		B_SaveNewWei.addActionListener(al);
+	}
+	
 	
 	public void addButtonDeleteWorkoutActionList(ActionListener al) {
 		B_Cancel.addActionListener(al);		
+	}
+	public JPanel getSelectedPanel(){
+		return (JPanel)TP_New.getSelectedComponent();
 	}
 
 }
