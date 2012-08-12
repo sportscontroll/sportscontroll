@@ -112,12 +112,13 @@ public class Date extends GregorianCalendar {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
 	/**
 	 * 
 	 * @return
 	 */
 	public String getDateGreLiEnd() {
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 		return df.format(this.getTime());
 	}
 	

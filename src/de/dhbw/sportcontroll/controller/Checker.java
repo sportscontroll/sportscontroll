@@ -6,12 +6,13 @@ package de.dhbw.sportcontroll.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+//import java.util.Date;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
 import de.dhbw.sportcontroll.ui.MainFrame;
+import de.dhbw.sportcontroll.dataobjects.Date;
 
 /** In this Class are all Methods to Check the User input
  *  and to convert in other format
@@ -283,7 +284,7 @@ public class Checker {
 		
 	}
 	
-	public Date CheckDate (String edate) throws ParseException{
+	public static Date CheckDate (String edate) throws ParseException{
 		/**
 		 * @author Katja.Kaiser
 		 *  Check Date input: Entry not after Today and older than 6 Month, the entry without letters.
@@ -301,8 +302,8 @@ public class Checker {
 		int eMonth = Integer.parseInt(date[1]);
 		int eYear = Integer.parseInt(date[2]);
 		
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date()); //Today
+		Date cal = new Date();
+		//cal.setTime(new Date()); //Today
 		int year = cal.get(Calendar.YEAR); 
 		int month = cal.get(Calendar.MONTH); 
 		int day = cal.get(Calendar.DAY_OF_MONTH); 
@@ -314,7 +315,7 @@ public class Checker {
 					//Date dadate =New Date(eDay, eMonth, eYear);
 				    try{
 	                    SimpleDateFormat sdfToDate = new SimpleDateFormat( "dd.MM.yyyy" );
-	                    Date dadate = sdfToDate.parse(edate);
+	                    Date dadate = new Date(sdfToDate.parse(edate).getTime());
 	                    
 	                }catch(ParseException ex2){
 	                    System.out.println("Fehler");
@@ -328,13 +329,13 @@ public class Checker {
 		 
 		try{
              SimpleDateFormat sdfToDate = new SimpleDateFormat( "dd.MM.yyyy" );
-             Date dadate = sdfToDate.parse(edate);
+             Date dadate = new Date(sdfToDate.parse(edate).getTime());
              
          }catch(ParseException ex2){
              System.out.println("Fehler");
          }
 		SimpleDateFormat sdfToDate = new SimpleDateFormat( "dd.MM.yyyy" );
-        Date dadate = sdfToDate.parse(edate);
+		 Date dadate = new Date(sdfToDate.parse(edate).getTime());
         
 	 return dadate;
 	}

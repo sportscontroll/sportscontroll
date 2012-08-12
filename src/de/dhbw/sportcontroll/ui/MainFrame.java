@@ -492,9 +492,10 @@ public class MainFrame extends JFrame {
 	 * @param workouts
 	 */
 	public void addDataToTable(ArrayList<Workout> workouts) {
-		panelWorkoutTable.setTableData(workouts);		
+		panelWorkoutTable.refreshTableData(workouts);		
 		
 	}
+	
 	
 	/**
 	 * adding Mouselistener to JTable
@@ -553,7 +554,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	public void showPanelWorkoutTable(ArrayList<Workout> workouts) {
-		panelWorkoutTable.setTableData(workouts);
+		panelWorkoutTable.refreshTableData(workouts);
 		CardLayout cl = (CardLayout)(contentPanel.getLayout());
         cl.show(contentPanel, "workout");
 		
@@ -566,6 +567,16 @@ public class MainFrame extends JFrame {
 		CardLayout cl = (CardLayout)(contentPanel.getLayout());
         cl.show(contentPanel, "calculator");		
 	}
+
+	public void fireTableChange() {
+		panelWorkoutTable.fireTableChange();		
+	}
+	
+	public void refreshTableData(ArrayList<Workout> wList){
+		panelWorkoutTable.refreshTableData(wList);
+	}
+
+	
 
 	
 		

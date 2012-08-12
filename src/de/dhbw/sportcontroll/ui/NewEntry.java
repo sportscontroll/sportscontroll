@@ -2,20 +2,26 @@ package de.dhbw.sportcontroll.ui;
 import com.cloudgarden.layout.AnchorConstraint;
 import com.cloudgarden.layout.AnchorLayout;
 
+import de.dhbw.sportcontroll.controller.ActionController;
 import de.dhbw.sportcontroll.controller.Calculate;
+import de.dhbw.sportcontroll.controller.Checker;
 import de.dhbw.sportcontroll.dataobjects.Date;
 import de.dhbw.sportcontroll.dataobjects.SportDiscipline;
 import de.dhbw.sportcontroll.dataobjects.Workout;
 import de.dhbw.sportcontroll.db.DataHandler;
 import de.dhbw.sportcontroll.exceptions.SQLConnectionException;
 import de.dhbw.sportcontroll.exceptions.SQLDriverNotFoundException;
+import de.dhbw.sportcontroll.exceptions.SQLQueryException;
 import de.dhbw.sportcontroll.main.Test;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -24,6 +30,7 @@ import javax.swing.JComboBox;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -78,8 +85,8 @@ public class NewEntry extends javax.swing.JDialog {
 	private JButton B_SaveNewWork;
 	private JTextArea TA_Note;
 	private JLabel L_Note;
-	private JComboBox CB_Weather;
-	private JComboBox CB_Feeling;
+	private JComboBox<?> CB_Weather;
+	private JComboBox<?> CB_Feeling;
 	private JLabel L_Feeling;
 	private JLabel L_HeartRate;
 	private JTextField TF_HeartRate;
@@ -89,7 +96,7 @@ public class NewEntry extends javax.swing.JDialog {
 	private JTextField TF_Date;
 	private JLabel L_Date;
 	private JTextField TF_Duration;
-	private JComboBox CB_Discipline;
+	private JComboBox<SportDiscipline> CB_Discipline;
 	private JLabel L_Discipline;
 	private JTextField TF_Location;
 	private JLabel L_Location;
@@ -100,33 +107,38 @@ public class NewEntry extends javax.swing.JDialog {
 	private AbstractAction OKAction;
 	private AbstractAction closeAction;
 
-
+	private Workout selectedWorkout = null;
 	
 	public NewEntry(JFrame frame) {
 		super(frame);
+		selectedWorkout = new Workout();
+		selectedWorkout.setId(0);
 		initGUI();
 	}
 	
 	public NewEntry(MainFrame mView, Workout w) {
 		super(mView);
+		selectedWorkout = w;
 		
+		
+		 try {
+			CB_Discipline = getCB_Discipline(w.getDisciplin());
+		} catch (SQLException | SQLDriverNotFoundException
+				| SQLConnectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		TF_Duration = new JTextField(String.valueOf(w.getDuration()));
 		 TF_DateW = new JTextField(w.getDate().getDateGreLiEnd());
-//	 JTextField TB_Distance;
-//	
-//		 JTextField TB_CaloryConsumption;
-//	
-//		 JTextArea TA_Note;
-//		 JTextField TF_HeartRate;
-//	
-//		 JTextField TB_Sportart;
-//	
-//		 JTextField TF_Date;
-//	
-//		 JTextField TF_Duration;
-//		 JTextField TF_Location;
-		
-		
-		// TODO Auto-generated constructor stub
+		 TF_Location = new JTextField(w.getLocation());
+		 TF_HeartRate = new JTextField(String.valueOf(w.getHeartRate()));
+		TA_Note = new JTextArea(w.getComment());
+		 
+		// TB_Distance = new JTextField(String.valueOf(w.get))
+		 
+		 
+		 
+		 
 		 initGUI();
 	}
 
@@ -140,7 +152,7 @@ public class NewEntry extends javax.swing.JDialog {
 				getContentPane().add(TP_New, new AnchorConstraint(1, 1001, 906, 1, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL, AnchorConstraint.ANCHOR_REL));
 				TP_New.setPreferredSize(new java.awt.Dimension(384, 237));
 				{
-					P_NewEntry = new JPanel();
+					P_NewEntry = new JPanel(new GridLayout(0, 2));
 					TP_New.addTab("Eintrag", null, P_NewEntry, null);
 					P_NewEntry.setPreferredSize(new java.awt.Dimension(517, 488));
 					P_NewEntry.add(getL_Discipline());
@@ -149,16 +161,24 @@ public class NewEntry extends javax.swing.JDialog {
 					P_NewEntry.add(getTF_Duration());
 					P_NewEntry.add(getL_Date());
 					P_NewEntry.add(getTF_Date());
-					P_NewEntry.add(getL_Distance());
-					P_NewEntry.add(getTB_Distance());
+					//P_NewEntry.add(getL_Distance());
+					//P_NewEntry.add(getTB_Distance());
+					P_NewEntry.add(new JLabel());
+					P_NewEntry.add(new JLabel());
+					
 					P_NewEntry.add(getL_Location());
 					P_NewEntry.add(getTF_Location());
 					P_NewEntry.add(getL_HeartRate());
 					P_NewEntry.add(getTF_HeartRate());
-					P_NewEntry.add(getL_Feeling());
-					P_NewEntry.add(getCB_Feeling());
-					P_NewEntry.add(getL_Weather());
-					P_NewEntry.add(getCB_Weather());
+					//P_NewEntry.add(getL_Feeling());
+					//P_NewEntry.add(getCB_Feeling());
+					//P_NewEntry.add(getL_Weather());
+					//P_NewEntry.add(getCB_Weather());
+					P_NewEntry.add(new JLabel());
+					P_NewEntry.add(new JLabel());
+					P_NewEntry.add(new JLabel());
+					P_NewEntry.add(new JLabel());
+					
 					P_NewEntry.add(getL_Note());
 					P_NewEntry.add(getSP_Note());
 					P_NewEntry.add(getB_SaveNewWork());
@@ -267,23 +287,30 @@ public class NewEntry extends javax.swing.JDialog {
 	}
 	//ComboBox erhält Ihnalte aus DB :)
 	
-	private JComboBox getCB_Discipline() throws SQLException, SQLDriverNotFoundException, SQLConnectionException {
+	private JComboBox<SportDiscipline> getCB_Discipline() throws SQLException, SQLDriverNotFoundException, SQLConnectionException {
+		
+		return getCB_Discipline(null); 
+		
+	}
+	private JComboBox<SportDiscipline> getCB_Discipline(SportDiscipline selectedSD) throws SQLException, SQLDriverNotFoundException, SQLConnectionException {
+		
 		if(CB_Discipline == null) {
-			ComboBoxModel CB_DisciplineModel = 
-					new DefaultComboBoxModel(
-							new String[] { "Auswahl" });							
-			CB_Discipline = new JComboBox();
+			ComboBoxModel<SportDiscipline> CB_DisciplineModel =	new DefaultComboBoxModel<SportDiscipline>();
+			
+			CB_Discipline = new JComboBox<SportDiscipline>();
 			CB_Discipline.setModel(CB_DisciplineModel);
 			CB_Discipline.setPreferredSize(new java.awt.Dimension(187, 30));
 			CB_Discipline.setAction(getDisciplineAction());
 
 			ArrayList<SportDiscipline> sdList = DataHandler.getInstance().loadAllSportDisciplines();
-			
-			for (SportDiscipline sd : sdList) {
-				
-			     CB_Discipline.addItem(sd.getName());			 
-			}			 
-					
+			CB_Discipline.addItem(new SportDiscipline(0, "Auswahl", 0.0d));
+			for (SportDiscipline sd : sdList) {				
+			     CB_Discipline.addItem(sd);				 
+			}
+			if (selectedSD != null){
+				System.out.println(selectedSD.getName());
+				CB_Discipline.setSelectedItem(selectedSD.getName());
+			}				
 		}
 		return CB_Discipline;
 			 
@@ -440,48 +467,48 @@ public class NewEntry extends javax.swing.JDialog {
 		return L_HeartRate;
 	}
 	
-	private JLabel getL_Feeling() {
-		if(L_Feeling == null) {
-			L_Feeling = new JLabel();
-			L_Feeling.setText("Zustand:");
-			L_Feeling.setPreferredSize(new java.awt.Dimension(187, 30));
-		}
-		return L_Feeling;
-	}
+//	private JLabel getL_Feeling() {
+//		if(L_Feeling == null) {
+//			L_Feeling = new JLabel();
+//			L_Feeling.setText("Zustand:");
+//			L_Feeling.setPreferredSize(new java.awt.Dimension(187, 30));
+//		}
+//		return L_Feeling;
+//	}
+//	
+//	private JComboBox<?> getCB_Feeling() {
+//		if(CB_Feeling == null) {
+//			ComboBoxModel<?> CB_FeelingModel = 
+//					new DefaultComboBoxModel<Object>(
+//							new String[] { "Item One", "Item Two" });
+//			CB_Feeling = new JComboBox<Object>();
+//			CB_Feeling.setModel(CB_FeelingModel);
+//			CB_Feeling.setPreferredSize(new java.awt.Dimension(187, 30));
+//		}
+//		return CB_Feeling;
+//	}
 	
-	private JComboBox getCB_Feeling() {
-		if(CB_Feeling == null) {
-			ComboBoxModel CB_FeelingModel = 
-					new DefaultComboBoxModel(
-							new String[] { "Item One", "Item Two" });
-			CB_Feeling = new JComboBox();
-			CB_Feeling.setModel(CB_FeelingModel);
-			CB_Feeling.setPreferredSize(new java.awt.Dimension(187, 30));
-		}
-		return CB_Feeling;
-	}
-	
-	private JLabel getL_Weather() {
-		if(L_Weather == null) {
-			L_Weather = new JLabel();
-			L_Weather.setText("Wetter:");
-			L_Weather.setPreferredSize(new java.awt.Dimension(187, 30));
-		}
-		return L_Weather;
-	}
-	
-	private JComboBox getCB_Weather() {
-		if(CB_Weather == null) {
-			ComboBoxModel CB_WeatherModel = 
-					new DefaultComboBoxModel(
-							new String[] { "Item One", "Item Two" });
-			CB_Weather = new JComboBox();
-			CB_Weather.setModel(CB_WeatherModel);
-			CB_Weather.setPreferredSize(new java.awt.Dimension(187, 30));
-		}
-		return CB_Weather;
-	}
-	
+//	private JLabel getL_Weather() {
+//		if(L_Weather == null) {
+//			L_Weather = new JLabel();
+//			L_Weather.setText("Wetter:");
+//			L_Weather.setPreferredSize(new java.awt.Dimension(187, 30));
+//		}
+//		return L_Weather;
+//	}
+//	
+//	private JComboBox<?> getCB_Weather() {
+//		if(CB_Weather == null) {
+//			ComboBoxModel<?> CB_WeatherModel = 
+//					new DefaultComboBoxModel<Object>(
+//							new String[] { "Item One", "Item Two" });
+//			CB_Weather = new JComboBox<Object>();
+//			CB_Weather.setModel(CB_WeatherModel);
+//			CB_Weather.setPreferredSize(new java.awt.Dimension(187, 30));
+//		}
+//		return CB_Weather;
+//	}
+//	
 	private JLabel getL_Note() {
 		if(L_Note == null) {
 			L_Note = new JLabel();
@@ -506,7 +533,7 @@ public class NewEntry extends javax.swing.JDialog {
 			B_SaveNewWork.setText("Speichern");
 			B_SaveNewWork.setIcon(new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif")));
 			B_SaveNewWork.setPreferredSize(new java.awt.Dimension(160, 50));
-			B_SaveNewWork.setAction(getSaveNewEntryAction());
+			//B_SaveNewWork.setAction(getSaveNewEntryAction());
 			}
 		return B_SaveNewWork;
 	}
@@ -532,12 +559,30 @@ public class NewEntry extends javax.swing.JDialog {
 		return B_SaveNewWei;
 	}		
 	
+	public Workout getNewWorkoutEntry() {
+		 
+		selectedWorkout.setUid(ActionController.USER_ID);
+		selectedWorkout.setDisciplin((SportDiscipline)CB_Discipline.getSelectedItem());
+		selectedWorkout.setDid(selectedWorkout.getDisciplin().getId());
+		selectedWorkout.setDuration(Integer.parseInt(TF_Duration.getText()));
+		try {
+			selectedWorkout.setDate(Checker.CheckDate(TF_Date.getText()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		selectedWorkout.setLocation(TF_Duration.getText());
+		selectedWorkout.setHeartRate(Integer.parseInt(TF_HeartRate.getText()));
+		selectedWorkout.setComment(TA_Note.getText());
+		return selectedWorkout;
+	}
+	
 	private AbstractAction getDisciplineAction() {
 		if(DisciplineAction == null) {
 			DisciplineAction = new AbstractAction("Aktion", null) {
 				public void actionPerformed(ActionEvent evt) {
-					String str = (String)CB_Discipline.getSelectedItem();
-				 	 System.out.println(str);
+					SportDiscipline str = (SportDiscipline)CB_Discipline.getSelectedItem();
+				 	 System.out.println(str.getName());
 				}
 			};
 		}
@@ -585,24 +630,10 @@ public class NewEntry extends javax.swing.JDialog {
 		return SaveNewSDAction;
 	}
 	
-	private AbstractAction getSaveNewEntryAction() {
-		if(SaveNewEntryAction == null) {
-			SaveNewEntryAction = new AbstractAction("Speichern", new ImageIcon(getClass().getClassLoader().getResource("Picture/save.gif"))) {
-				public void actionPerformed(ActionEvent evt) {
-					String ediscipline = CB_Discipline.getToolTipText();
-					String eduration = TF_Duration.getText();
-					String edate = TF_Date.getText();
-					String edistance = TB_Distance.getText();
-					String elocation = TF_Location.getText();
-					String eHeardRate = TF_HeartRate.getText();
-					String eNote = TA_Note.getText();
-					
-					
-					
-				}
-			};
-		}
-		return SaveNewEntryAction;
+	public void addSaveEntryActionListener(ActionListener al){
+		B_SaveNewWork.addActionListener(al);
 	}
+	
+	
 
 }

@@ -545,10 +545,10 @@ public class DataHandler {
 		Statement st = dbCon.createStatement();
 		ArrayList<Workout> workout = new ArrayList<Workout>();
 		
-		ResultSet rsWorkout = st.executeQuery("SELECT * FROM workout WHERE uid = " + profileId + " ;");
+		ResultSet rsWorkout = st.executeQuery("SELECT rowid, did, uid, date, duration, heartrate, location, energy, comment FROM workout WHERE uid = " + profileId + " ;");
 		while (rsWorkout.next()) {
 			SportDiscipline sd = loadSportDiscipline(rsWorkout.getInt("did"));
-			Workout wo = new Workout(rsWorkout.getRow() ,
+			Workout wo = new Workout(rsWorkout.getInt("rowid"),
 									rsWorkout.getInt("uid"),
 									rsWorkout.getInt("did"), 
 									loadSportDiscipline(rsWorkout.getInt("did")), 
@@ -559,6 +559,7 @@ public class DataHandler {
 									rsWorkout.getInt("energy"),
 									rsWorkout.getString("comment"));
 			workout.add(wo);
+			
 		}		
 		
 		st.close();		
@@ -574,14 +575,15 @@ public class DataHandler {
 	public Workout loadUserWorkout(int id)throws SQLException {
 		Statement st = dbCon.createStatement();
 		Workout wo = null;
-		
+		System.out.println("ID " + id);
 		ResultSet rsWorkout = st.executeQuery("SELECT * FROM workout WHERE rowid = " + id + " ;");
 		while (rsWorkout.next()) {
 			SportDiscipline sd = loadSportDiscipline(rsWorkout.getInt("did"));
-			wo = new Workout(rsWorkout.getRow() ,
+			System.out.println("ROW  " + rsWorkout.getRow());
+			wo = new Workout(id ,
 									rsWorkout.getInt("uid"),
 									rsWorkout.getInt("did"), 
-									loadSportDiscipline(rsWorkout.getInt("did")), 
+									sd, 
 									new Date(rsWorkout.getLong("date")), 
 									rsWorkout.getInt("duration"), 
 									rsWorkout.getInt("heartrate"),
@@ -590,7 +592,9 @@ public class DataHandler {
 									rsWorkout.getString("comment"));
 		}		
 		
-		st.close();		
+		st.close();	
+		wo.setDisciplin(dh.loadSportDiscipline(wo.getDid()));
+		System.out.println(wo.getId() + "  loaded");
 		return wo;
 	}	
 	
@@ -639,6 +643,7 @@ public class DataHandler {
 		else {
 		//Workout exists just an Update
 		
+			System.out.println("update Workout " + w.getId());
 			pst = dbCon.prepareStatement("UPDATE workout SET 'uid' = ?, 'did' = ?, 'date' = ?, 'duration' = ?, 'heartrate' = ?, 'location' = ?, 'energy' = ?, 'comment' = ? WHERE rowid = ? ;");
 			
 			pst.setInt(1, w.getUid());
